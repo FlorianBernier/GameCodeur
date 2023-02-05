@@ -4,14 +4,42 @@ love.graphics.setDefaultFilter("nearest")
 ------TABLEAU------
 heros = {}
 
+math.randomseed(love.timer.getTime())
+
 --liste d'éléments
 listeSprites = {}
 listeTirs = {}
+listeAliens = {}
 
 
 sonShoot = love.audio.newSource("sons/shoot.wav", "static")
 
--- createSprite() permet de créé nimporte quel sprite du dossier images en appelant juste son nom 
+-- createAliens() permet de créé nimporte quel "aliens" du dossier images en appelant juste son nom 
+function createAliens(pType, pX, pY)
+
+    local nomImg = ""
+    if pType == 1 then
+        nomImg = "enemy1"
+    elseif pType == 2 then
+        nomImg = "enemy2"
+    end
+        local alien = createSprite(nomImg, pX, pY)
+    if pType == 1 then
+        alien.vy = 2
+        alien.vx = 0
+    elseif pType == 2 then
+        alien.vy = 2
+        local direction = math.random(1,2)
+        if direction == 1 then
+        alien.vx = 1
+        else 
+            alien.vx = -1
+        end
+    end
+        table.insert(listeAliens, alien)
+end
+
+-- createSprite() permet de créé nimporte quel "sprite" du dossier images en appelant juste son nom 
 function createSprite(pNomImg, pX, pY)
     
     sprite = {}
@@ -28,6 +56,18 @@ function createSprite(pNomImg, pX, pY)
     return sprite
 end
 ------FONCTION LOAD------
+
+-- startGame() au demagarge du jeu place le hero et crée les aliens
+function startGame()
+    -- place le hero
+    heros.x = larg/2
+    heros.y = haut - (heros.h*2)
+
+    -- création des aliens 
+    createAliens(1, larg/2, 100)
+    createAliens(2, larg/2, 50)
+
+end
 ------FONCTION UPDATE------
 ------FONCTION DRAW------
 ------FONCTION KEYPRESSED------
@@ -47,16 +87,17 @@ function love.load()
 
     -- definir heros pour créé un listeSprites suivant larg et haut
     heros = createSprite("heros", larg/2, haut/2)
-    heros.y = haut - (heros.h*2)
-    
+
+    startGame()
+
 end
 
 
 -----UPDATE----- : ACTION DU JEU A CHAQUE FRAME  
 function love.update(dt)
+    local n 
 
     -- pour chaque listeTirs, on fait quelque chose après...
-    local n 
     for n = #listeTirs, 1, -1 do
         local tir = listeTirs[n]
         tir.y = tir.y + tir.v
@@ -67,6 +108,21 @@ function love.update(dt)
             table.remove(listeTirs, n)
         end
     end
+    -- traitement des aliens
+    for n = #listeAliens, 1, -1 do
+        local alien = listeAliens[n]
+
+        alien.x = alien.x + alien.vx
+        alien.y = alien.y + alien.vy
+
+        if alien.y > haut then
+            alien.supr = true
+            table.remove(listeAliens, n)
+        end
+    end
+
+
+
 
     -- purge des listeSprites à suprimer 
     for n = #listeSprites, 1, -1 do
@@ -108,7 +164,7 @@ function love.draw()
         love.graphics.draw(s.img, s.x, s.y, 0, 2, 2, s.l/2, s.h/2)
     end
     -- afficher le nombre de listeTirs et le nombre de listeSprites actuel à l'écrant
-    love.graphics.print("Nombre de listeTirs : "..#listeTirs.." Nombre de listeSprites : "..#listeSprites, 0, 0)
+    love.graphics.print("Nombre de listeTirs : "..#listeTirs.." Nombre de listeSprites : "..#listeSprites.." Nombre d'aliens : "..#listeAliens, 0, 0)
 
 end
 
