@@ -13,6 +13,9 @@ CAMERA_V = 1
 --currentScreen
 currentScreen = "menu"
 
+victory = false
+timerVictory = 0
+
 ------TABLEAU------
 heros = {}
 
@@ -96,6 +99,8 @@ end
 --chargements des images
 imgMenu = love.graphics.newImage("images/menu.jpg")
 imgGameOver = love.graphics.newImage("images/gameover.jpg")
+imgVictory = love.graphics.newImage("images/victory.jpg")
+
 
 
 
@@ -113,6 +118,8 @@ function createAliens(pType, pX, pY)
         nomImg = "enemy2"
     elseif pType == 3 then
         nomImg = "tourelle"
+    elseif pType == 10 then
+        nomImg = "enemy3"
     end
 
         local alien = createSprite(nomImg, pX, pY)
@@ -139,6 +146,11 @@ function createAliens(pType, pX, pY)
         alien.vx = 0
         alien.vy = CAMERA_V
         alien.energie = 5
+    elseif pType == 10 then
+        alien.vx = 0
+        alien.vy = CAMERA_V * 2
+        alien.energie = 20
+        alien.angle = 0
     end
         table.insert(listeAliens, alien)
 end
@@ -183,6 +195,24 @@ function startGame()
     createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
     ligne = 11
     createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
+
+    ligne = 20
+    createAliens(1, larg/2, -(64/2)-(64*(ligne-1)))
+    ligne = 21
+    createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
+    ligne = 22
+    createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
+    ligne = 20
+    createAliens(1, 64, -(64/2)-(64*(ligne-1)))
+    ligne = 21
+    createAliens(2, 4*64, -(64/2)-(64*(ligne-1)))
+    ligne = 22
+    createAliens(3, 2*64, -(64/2)-(64*(ligne-1)))
+
+
+
+    ligne = #niveau
+    createAliens(10, larg/2, -(64/2)-(64*(ligne-1)))
 
     --remetre a zero la camera
     camera.y = 0
@@ -229,6 +259,13 @@ function updateJeu()
                             for nExplode = 1, 5 do
                                 createExplode(alien.x + math.random(-10, 10), alien.y + math.random(-10,10))
                             end
+                            if alien.type == 10 then
+                                victory = true
+                                timerVictory = 180
+                                for nExplode = 1, 20 do
+                                    createExplode(alien.x + math.random(-100, 100), alien.y + math.random(-100,100))
+                                end
+                            end
                             alien.supr = true
                             table.remove(listeAliens, nAlien)
                         end
@@ -259,13 +296,13 @@ function updateJeu()
         if alien.type == 1 or alien.type == 2 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = math.random(20, 100)
+                alien.chronotir = math.random(20, 50)
                 creeTir("alien", "laser2", alien.x, alien.y, 0, 10)
             end
         elseif alien.type == 3 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 30
+                alien.chronotir = 40
                 local vx,vy
                 local angle
                 angle = math.angle(alien.x, alien.y, heros.x, heros.y)
@@ -273,7 +310,19 @@ function updateJeu()
                 vy = 10 * math.sin(angle)
                 creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
             end
-
+        elseif alien.type == 10 then
+            if alien.y > haut/3 then
+                alien.y = haut/3
+            end
+            alien.chronotir = alien.chronotir - 1
+            if alien.chronotir <= 0 then
+                alien.chronotir = 15
+                local vx,vy
+                alien.angle = alien.angle + 0.5
+                vx = 10 * math.cos(alien.angle)
+                vy = 10 * math.sin(alien.angle)
+                creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
+            end
         end
         else
             alien.y = alien.y + CAMERA_V
@@ -305,16 +354,23 @@ function updateJeu()
 
     -- définir les touche de deplacement du hero
     if love.keyboard.isDown("right") and heros.x < larg then
-        heros.x = heros.x + 4
+        heros.x = heros.x + 8
     end
     if love.keyboard.isDown("left") and heros.x > 0 then
-        heros.x = heros.x - 4
+        heros.x = heros.x - 8
     end
     if love.keyboard.isDown("up") and heros.y > 0 then
-        heros.y = heros.y - 4
+        heros.y = heros.y - 8
     end
     if love.keyboard.isDown("down") and heros.y < haut then
-        heros.y = heros.y + 4
+        heros.y = heros.y + 8
+    end
+
+    if victory == true then
+        timerVictory = timerVictory - 1
+        if timerVictory == 0 then
+        currentScreen = "victory"
+        end
     end
 end
 
@@ -357,11 +413,15 @@ function drawJeu()
 end
 
 function drawMenu()
-    love.graphics.draw(imgMenu,0 ,0)
+    love.graphics.draw(imgMenu, 0, 0)
 end
 
 function drawGameOver()
-    love.graphics.draw(imgGameOver,0 ,0)
+    love.graphics.draw(imgGameOver, 0, 0)
+end
+
+function drawVictory()
+    love.graphics.draw(imgVictory,0, 0)
 end
 ------FONCTION KEYPRESSED------
 
@@ -436,6 +496,8 @@ function love.draw()
         drawMenu()
     elseif currentScreen == "gameOver" then
         drawGameOver()
+    elseif currentScreen == "victory" then
+        drawVictory()
     end
 end
 
