@@ -1,14 +1,20 @@
 --Empèche love de filtrer les contours de l'image quand elle est redimensionnées (pixel art)
 love.graphics.setDefaultFilter("nearest")
+
+math.randomseed(love.timer.getTime())
 ------VARIABLE------
 
+--constantes
+-- camera
+camera = {}
+camera.y = 0
 CAMERA_V = 1
 
+--currentScreen
+currentScreen = "menu"
 
 ------TABLEAU------
 heros = {}
-
-math.randomseed(love.timer.getTime())
 
 --liste d'éléments
 listeSprites = {}
@@ -74,18 +80,26 @@ table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 })
 
--- camera
-camera = {}
-camera.y = 0
-
---imgTuiles
+--imgages des Tuiles
 imgTuiles = {}
 local n
 for n = 1, 3 do
     imgTuiles[n] = love.graphics.newImage("images/tuile_"..n..".png")
 end
 
+--images des explosions
+imgExplode = {}
+for n = 1, 5 do
+        imgExplode[n] = love.graphics.newImage("images/explode_"..n..".png")
+end
 
+--chargements des images
+imgMenu = love.graphics.newImage("images/menu.jpg")
+imgGameOver = love.graphics.newImage("images/gameover.jpg")
+
+
+
+--chargements des sons
 sonShoot = love.audio.newSource("sons/shoot.wav", "static")
 sonExplode = love.audio.newSource("sons/explode_touch.wav", "static")
 
@@ -140,10 +154,19 @@ function createSprite(pNomImg, pX, pY)
         sprite.l = sprite.img:getWidth()
         sprite.h = sprite.img:getHeight()
 
+        sprite.frame = 1
+        sprite.listeFrames = {}
+        sprite.maxFrame = 1
     
     table.insert(listeSprites, sprite)
 
     return sprite
+end
+
+function createExplode(pX, pY)
+    local newExplode = createSprite("explode_1", pX, pY)
+    newExplode.listeFrames = imgExplode
+    newExplode.maxFrame = 5
 end
 ------FONCTION LOAD------
 
@@ -166,58 +189,8 @@ function startGame()
 
 end
 ------FONCTION UPDATE------
-------FONCTION DRAW------
-------FONCTION KEYPRESSED------
 
-function creeTir(pType, pNomImg, pX, pY, pVitesseX, pVitesseY)
-    local tir = createSprite(pNomImg, pX, pY)
-    tir.type = pType
-    tir.vx = pVitesseX
-    tir.vy = pVitesseY
-    table.insert( listeTirs, tir)
-
-    sonShoot:play()
-end
-
-------FONCTION MOUSEPRESSED------
-------FONCTION UTILE------
-function math.angle(x1,y1, x2,y2) return math.atan2(y2-y1, x2-x1) end
-
--- colision entre 2 sprite avec les meme proprietes
-function collide(a1, a2)
-    if (a1==a2) then return false end
-    local dx = a1.x - a2.x
-    local dy = a1.y - a2.y
-    if (math.abs(dx) < a1.img:getWidth()*2+a2.img:getWidth()*2) then
-     if (math.abs(dy) < a1.img:getHeight()*2+a2.img:getHeight()*2) then
-      return true
-     end
-    end
-    return false
-   end
-
------LOAD----- : ACTION DU JEU AU DEMARAGE
-function love.load()
-    -- definir taille écrant 
-    love.window.setMode(1024, 768)
-    -- defenir nom écrant
-    love.window.setTitle("Shoot'em Up")
-
-    -- definir larg et haut suivant la taille de l'écrant
-    larg = love.graphics.getWidth()
-    haut = love.graphics.getHeight()
-
-    -- definir heros pour créé un listeSprites suivant larg et haut
-    heros = createSprite("heros", larg/2, haut/2)
-
-    startGame()
-
-end
-
-
------UPDATE----- : ACTION DU JEU A CHAQUE FRAME  
-function love.update(dt)
-
+function updateJeu()
     -- avance la camera
     camera.y = camera.y + CAMERA_V
 
@@ -235,6 +208,7 @@ function love.update(dt)
                 print("boom heros touches")
                 tir.supr = true
                 table.remove(listeTirs, n)
+                currentScreen = "gameOver"
             end
         end
 
@@ -244,6 +218,7 @@ function love.update(dt)
             for nAlien = #listeAliens, 1, -1 do
                 local alien = listeAliens[nAlien]
                 if collide(tir, alien) then
+                    createExplode(tir.x, tir.y)
                     tir.supr = true
                     table.remove(listeTirs, n)
                     alien.energie = alien.energie -1
@@ -257,7 +232,7 @@ function love.update(dt)
         end
 
         -- vérifier si le tir n'est pas sortie de l'écrant
-        if tir.y < 0 or tir.y > haut then
+        if (tir.y < 0 or tir.y > haut) and tir.supr == false then
             -- marque le sprite pour le suprimer plus tard
             tir.supr = true
             table.remove(listeTirs, n)
@@ -291,7 +266,7 @@ function love.update(dt)
                 vx = 10 * math.cos(angle)
                 vy = 10 * math.sin(angle)
                 creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
-        end
+            end
 
         end
         else
@@ -304,12 +279,20 @@ function love.update(dt)
         end
     end
 
-
-
-
-    -- purge des listeSprites à suprimer 
+    -- traitement et purge des listeSprites
     for n = #listeSprites, 1, -1 do
-        if listeSprites[n].supr == true then
+        local sprite = listeSprites[n]
+        --Le sprite est il animé ?
+        if sprite.maxFrame > 1 then
+            sprite.frame = sprite.frame + 0.2
+            if math.floor(sprite.frame) > sprite.maxFrame then
+                sprite.supr = true
+            else
+                sprite.img = sprite.listeFrames[math.floor(sprite.frame)]
+            end
+        end
+
+        if sprite.supr == true then
             table.remove(listeSprites, n)
         end
     end
@@ -327,20 +310,14 @@ function love.update(dt)
     if love.keyboard.isDown("down") and heros.y < haut then
         heros.y = heros.y + 4
     end
-
-
-    -----------------------------------
-    if love.mouse.isDown(1) then
-        print(love.mouse.getPosition())
-    end
 end
 
+function updateMenu()
+end
 
+------FONCTION DRAW------
 
-
------DRAW----- : DESSINE CE QUE TU VOIS A L'ECRAN
-function love.draw()
-
+function drawJeu()
     -- dessin du niveau
     local nblignes = #niveau
     local ligne,colonne
@@ -373,13 +350,103 @@ function love.draw()
 
 end
 
+function drawMenu()
+    love.graphics.draw(imgMenu,0 ,0)
+end
+
+function drawGameOver()
+    love.graphics.draw(imgGameOver,0 ,0)
+end
+------FONCTION KEYPRESSED------
+
+function creeTir(pType, pNomImg, pX, pY, pVitesseX, pVitesseY)
+    local tir = createSprite(pNomImg, pX, pY)
+    tir.type = pType
+    tir.vx = pVitesseX
+    tir.vy = pVitesseY
+    table.insert( listeTirs, tir)
+
+    sonShoot:play()
+end
+
+------FONCTION MOUSEPRESSED------
+------FONCTION UTILE------
+--permet a un point de viser un autre point
+function math.angle(x1,y1, x2,y2) return math.atan2(y2-y1, x2-x1) end
+
+-- colision entre 2 sprite avec les meme proprietes
+function collide(a1, a2)
+    if (a1==a2) then return false end
+    local dx = a1.x - a2.x
+    local dy = a1.y - a2.y
+    if (math.abs(dx) < a1.img:getWidth()+a2.img:getWidth()) then
+     if (math.abs(dy) < a1.img:getHeight()+a2.img:getHeight()) then
+      return true
+     end
+    end
+    return false
+   end
+
+-----LOAD----- : ACTION DU JEU AU DEMARAGE
+function love.load()
+    -- definir taille écrant 
+    love.window.setMode(1024, 768)
+    -- defenir nom écrant
+    love.window.setTitle("Shoot'em Up")
+
+    -- definir larg et haut suivant la taille de l'écrant
+    larg = love.graphics.getWidth()
+    haut = love.graphics.getHeight()
+
+    -- definir heros pour créé une listeSprites suivant larg et haut
+    heros = createSprite("heros", larg/2, haut/2)
+
+    startGame()
+
+end
+
+
+-----UPDATE----- : ACTION DU JEU A CHAQUE FRAME  
+function love.update(dt)
+
+    if currentScreen == "jeu" then
+        updateJeu()
+    elseif currentScreen == "menu" then
+        updateMenu()
+    end
+
+    -----------------------------------
+    if love.mouse.isDown(1) then
+        print(love.mouse.getPosition())
+    end
+end
+
+
+-----DRAW----- : DESSINE CE QUE TU VOIS A L'ECRAN
+function love.draw()
+    if currentScreen == "jeu" then
+        drawJeu()
+    elseif currentScreen == "menu" then
+        drawMenu()
+    elseif currentScreen == "gameOver" then
+        drawGameOver()
+    end
+end
+
 -----KEYPRESSED----- : ACTION DU JOUEUR CLAVIER
 function love.keypressed(key)
-   
+
+    if currentScreen == "jeu" then
     -- définir la touche de tir du hero
-    if key == "space" then
-        creeTir("heros", "laser1", heros.x, heros.y - (heros.h*2)/2, 0, -10)
+        if key == "space" then
+            creeTir("heros", "laser1", heros.x, heros.y - (heros.h*2)/2, 0, -10)
+        end
+    elseif currentScreen == "menu" then
+        if key == "space" then
+            currentScreen = "jeu"
+        end
     end
+        
 
     print(key)
 end
