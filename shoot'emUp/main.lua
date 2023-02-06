@@ -90,7 +90,7 @@ end
 --images des explosions
 imgExplode = {}
 for n = 1, 5 do
-        imgExplode[n] = love.graphics.newImage("images/explode_"..n..".png")
+    imgExplode[n] = love.graphics.newImage("images/explode_"..n..".png")
 end
 
 --chargements des images
@@ -217,15 +217,21 @@ function updateJeu()
             local nAlien
             for nAlien = #listeAliens, 1, -1 do
                 local alien = listeAliens[nAlien]
-                if collide(tir, alien) then
-                    createExplode(tir.x, tir.y)
-                    tir.supr = true
-                    table.remove(listeTirs, n)
-                    alien.energie = alien.energie -1
-                    sonExplode:play()
-                    if alien.energie <= 0 then
-                        alien.supr = true
-                        table.remove(listeAliens, nAlien)
+                if alien.sleep == false then
+                    if collide(tir, alien) then
+                        createExplode(tir.x, tir.y)
+                        tir.supr = true
+                        table.remove(listeTirs, n)
+                        alien.energie = alien.energie -1
+                        sonExplode:play()
+                        if alien.energie <= 0 then
+                            local nExplode
+                            for nExplode = 1, 5 do
+                                createExplode(alien.x + math.random(-10, 10), alien.y + math.random(-10,10))
+                            end
+                            alien.supr = true
+                            table.remove(listeAliens, nAlien)
+                        end
                     end
                 end
             end
@@ -253,13 +259,13 @@ function updateJeu()
         if alien.type == 1 or alien.type == 2 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = math.random(60, 100)
+                alien.chronotir = math.random(20, 100)
                 creeTir("alien", "laser2", alien.x, alien.y, 0, 10)
             end
         elseif alien.type == 3 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 2
+                alien.chronotir = 30
                 local vx,vy
                 local angle
                 angle = math.angle(alien.x, alien.y, heros.x, heros.y)
