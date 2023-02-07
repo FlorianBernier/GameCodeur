@@ -189,14 +189,14 @@ function startGame()
     heros.y = haut - (heros.h*2)
 
     -- création des aliens 
-    local ligne = 4
+    local ligne = math.random(1, 7)
     createAliens(1, larg/2, -(64/2)-(64*(ligne-1)))
-    ligne = 10
+    ligne = math.random(5, 10)
     createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
-    ligne = 11
+    ligne = math.random(11, 22)
     createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
 
-    ligne = 20
+    ligne = math.random(20, 25)
     createAliens(1, larg/2, -(64/2)-(64*(ligne-1)))
     ligne = 21
     createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
@@ -207,8 +207,22 @@ function startGame()
     ligne = 21
     createAliens(2, 4*64, -(64/2)-(64*(ligne-1)))
     ligne = 22
-    createAliens(3, 2*64, -(64/2)-(64*(ligne-1)))
+    createAliens(3, 7*64, -(64/2)-(64*(ligne-1)))
 
+    ligne = 35
+    createAliens(1, larg*1.5, -(64/2)-(64*(ligne-1)))
+    ligne = 36
+    createAliens(2, larg/1.5, -(64/2)-(64*(ligne-1)))
+    ligne = 35
+    createAliens(3, 5*64, -(64/2)-(64*(ligne-1)))
+    ligne = 37
+    createAliens(1, 64, -(64/2)-(64*(ligne-1)))
+    ligne = 32
+    createAliens(2, 6*64, -(64/2)-(64*(ligne-1)))
+    ligne = 39
+    createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
+    ligne = 40
+    createAliens(2, 4*64, -(64/2)-(64*(ligne-1)))
 
 
     ligne = #niveau
@@ -296,13 +310,13 @@ function updateJeu()
         if alien.type == 1 or alien.type == 2 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = math.random(20, 50)
+                alien.chronotir = math.random(10, 100)
                 creeTir("alien", "laser2", alien.x, alien.y, 0, 10)
             end
         elseif alien.type == 3 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 40
+                alien.chronotir = 50
                 local vx,vy
                 local angle
                 angle = math.angle(alien.x, alien.y, heros.x, heros.y)
@@ -316,7 +330,7 @@ function updateJeu()
             end
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 15
+                alien.chronotir = 8
                 local vx,vy
                 alien.angle = alien.angle + 0.5
                 vx = 10 * math.cos(alien.angle)
@@ -446,12 +460,11 @@ function collide(a1, a2)
     local dx = a1.x - a2.x
     local dy = a1.y - a2.y
     if (math.abs(dx) < a1.img:getWidth()+a2.img:getWidth()) then
-     if (math.abs(dy) < a1.img:getHeight()+a2.img:getHeight()) then
-      return true
-     end
+        if (math.abs(dy) < a1.img:getHeight()+a2.img:getHeight()) then
+            return true
+        end
     end
-    return false
-   end
+end
 
 -----LOAD----- : ACTION DU JEU AU DEMARAGE
 function love.load()
