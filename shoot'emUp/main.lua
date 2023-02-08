@@ -8,7 +8,7 @@ math.randomseed(love.timer.getTime())
 -- camera
 camera = {}
 camera.y = 0
-CAMERA_V = 1
+CAMERA_V = 0.5
 
 --currentScreen
 currentScreen = "menu"
@@ -41,14 +41,25 @@ table.insert(niveau, { 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0 })
+table.insert(niveau, { 0,0,1,0,0,1,0,0,0,1,1,0,0,0,1,0 })
+table.insert(niveau, { 0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0 })
+table.insert(niveau, { 0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0 })
+table.insert(niveau, { 0,0,1,1,1,0,0,1,0,0,1,1,1,0,1,0 })
+table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
+table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
+table.insert(niveau, { 0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0 })
@@ -59,25 +70,14 @@ table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0 })
+table.insert(niveau, { 0,1,1,1,1,0,0,2,2,2,2,2,2,0,0,0 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
-table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
+table.insert(niveau, { 0,0,0,0,0,0,1,1,1,2,2,1,1,1,0,0 })
+table.insert(niveau, { 0,0,0,0,0,0,1,1,1,2,2,1,1,1,0,0 })
+table.insert(niveau, { 0,0,0,0,0,0,1,1,1,2,2,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0 })
 table.insert(niveau, { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 })
@@ -141,11 +141,11 @@ function createAliens(pType, pX, pY)
         else 
             alien.vx = -1
         end
-        alien.energie = 3
+        alien.energie = 1
     elseif pType == 3 then
         alien.vx = 0
-        alien.vy = CAMERA_V
-        alien.energie = 5
+        alien.vy = CAMERA_V 
+        alien.energie = 3
     elseif pType == 10 then
         alien.vx = 0
         alien.vy = CAMERA_V * 2
@@ -184,48 +184,236 @@ end
 
 -- startGame() au demagarge du jeu place le hero et crée les aliens
 function startGame()
+    
     -- place le hero
     heros.x = larg/2
     heros.y = haut - (heros.h*2)
 
     -- création des aliens 
-    local ligne = math.random(1, 7)
-    createAliens(1, larg/2, -(64/2)-(64*(ligne-1)))
+    local ligne = 1
+    createAliens(1, math.random(0, 1000), -(64/2)-(64*(ligne-1)))
     ligne = math.random(5, 10)
-    createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
-    ligne = math.random(11, 22)
-    createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
 
-    ligne = math.random(20, 25)
-    createAliens(1, larg/2, -(64/2)-(64*(ligne-1)))
-    ligne = 21
-    createAliens(2, larg/2, -(64/2)-(64*(ligne-1)))
-    ligne = 22
-    createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
-    ligne = 20
-    createAliens(1, 64, -(64/2)-(64*(ligne-1)))
-    ligne = 21
-    createAliens(2, 4*64, -(64/2)-(64*(ligne-1)))
-    ligne = 22
-    createAliens(3, 7*64, -(64/2)-(64*(ligne-1)))
+    ligne = 1 --oeuil
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
 
-    ligne = 35
-    createAliens(1, larg*1.5, -(64/2)-(64*(ligne-1)))
-    ligne = 36
-    createAliens(2, larg/1.5, -(64/2)-(64*(ligne-1)))
-    ligne = 35
-    createAliens(3, 5*64, -(64/2)-(64*(ligne-1)))
-    ligne = 37
-    createAliens(1, 64, -(64/2)-(64*(ligne-1)))
-    ligne = 32
-    createAliens(2, 6*64, -(64/2)-(64*(ligne-1)))
-    ligne = 39
-    createAliens(3, 3*64, -(64/2)-(64*(ligne-1)))
-    ligne = 40
-    createAliens(2, 4*64, -(64/2)-(64*(ligne-1)))
+    ligne = 1
+    createAliens(3, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = 5
+    createAliens(3, math.random(100,200), -(64/2)-(64*(ligne-1)))
+
+    ligne = 5
+    createAliens(3, math.random(800,900), -(64/2)-(64*(ligne-1)))
+
+    ligne = 7
+    createAliens(3, math.random(200,300), -(64/2)-(64*(ligne-1)))
+
+    ligne = 7
+    createAliens(3, math.random(700,800), -(64/2)-(64*(ligne-1)))
+
+    ligne = 9
+    createAliens(3, math.random(300,400), -(64/2)-(64*(ligne-1)))
+
+    ligne = 9
+    createAliens(3, math.random(600,700), -(64/2)-(64*(ligne-1)))
+
+    ligne = 10
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = 10
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = 13
+    createAliens(3, 100, -(64/2)-(64*(ligne-1)))
+
+    ligne = 13
+    createAliens(3, 900, -(64/2)-(64*(ligne-1)))
+
+    ligne = 15
+    createAliens(3, 200, -(64/2)-(64*(ligne-1)))
+
+    ligne = 15
+    createAliens(3, 800, -(64/2)-(64*(ligne-1)))
+
+    ligne = 17
+    createAliens(3, 300, -(64/2)-(64*(ligne-1)))
+
+    ligne = 17
+    createAliens(3, 700, -(64/2)-(64*(ligne-1)))
+
+    ligne = 19
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = 19
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(100,200), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(800,900), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(200,300), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(700,800), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(300,400), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, math.random(600,700), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(25,40)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 100, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 900, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 200, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 800, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 300, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(3, 700, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(25,40)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(25,40)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
 
 
-    ligne = #niveau
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(100,200), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(800,900), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(200,300), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(700,800), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(300,400), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(600,700), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(41,70)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 100, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 900, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 200, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 800, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 300, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 700, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(100,200), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(800,900), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(200,300), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(700,800), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(300,400), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, math.random(600,700), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(41,70)
+    createAliens(1, (larg/2), -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 100, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 900, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 200, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 800, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 300, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(3, 700, -(64/2)-(64*(ligne-1)))
+
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+   
+    ligne = math.random(41,70)
+    createAliens(2, (larg/2), -(64/2)-(64*(ligne-1)))
+
+
+
+    ligne = 75
     createAliens(10, larg/2, -(64/2)-(64*(ligne-1)))
 
     --remetre a zero la camera
@@ -307,21 +495,40 @@ function updateJeu()
         alien.x = alien.x + alien.vx
         alien.y = alien.y + alien.vy
         
-        if alien.type == 1 or alien.type == 2 then
+        if alien.type == 1 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = math.random(10, 100)
-                creeTir("alien", "laser2", alien.x, alien.y, 0, 10)
+                alien.chronotir = 30
+                local vx,vy
+                local angle 
+                angle = 360
+                vx = 4 * math.cos(math.random(angle))
+                vy = 4 * math.sin(math.random(angle))
+                creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
             end
-        elseif alien.type == 3 then
+
+        elseif alien.type == 2 then
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 50
+                alien.chronotir = 100
                 local vx,vy
                 local angle
                 angle = math.angle(alien.x, alien.y, heros.x, heros.y)
-                vx = 10 * math.cos(angle)
-                vy = 10 * math.sin(angle)
+                vx = 15 * math.cos(angle)
+                vy = 15 * math.sin(angle)
+                creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
+
+            end
+        
+        elseif alien.type == 3 then
+            alien.chronotir = alien.chronotir - 1
+            if alien.chronotir <= 0 then
+                alien.chronotir = 40
+                local vx,vy
+                local angle
+                angle = 360
+                vx = 5 * math.cos(math.random(angle))
+                vy = 5 * math.sin(math.random(angle))
                 creeTir("alien", "laser2", alien.x, alien.y, vx, vy)
             end
         elseif alien.type == 10 then
@@ -330,7 +537,7 @@ function updateJeu()
             end
             alien.chronotir = alien.chronotir - 1
             if alien.chronotir <= 0 then
-                alien.chronotir = 8
+                alien.chronotir = 3
                 local vx,vy
                 alien.angle = alien.angle + 0.5
                 vx = 10 * math.cos(alien.angle)
@@ -468,6 +675,7 @@ end
 
 -----LOAD----- : ACTION DU JEU AU DEMARAGE
 function love.load()
+    
     -- definir taille écrant 
     love.window.setMode(1024, 768)
     -- defenir nom écrant
@@ -481,7 +689,7 @@ function love.load()
     heros = createSprite("heros", larg/2, haut/2)
 
     startGame()
-
+    
 end
 
 
@@ -493,7 +701,6 @@ function love.update(dt)
     elseif currentScreen == "menu" then
         updateMenu()
     end
-
     -----------------------------------
     if love.mouse.isDown(1) then
         print(love.mouse.getPosition())
@@ -516,6 +723,7 @@ end
 
 -----KEYPRESSED----- : ACTION DU JOUEUR CLAVIER
 function love.keypressed(key)
+    
 
     if currentScreen == "jeu" then
     -- définir la touche de tir du hero
@@ -526,6 +734,7 @@ function love.keypressed(key)
         if key == "space" then
             currentScreen = "jeu"
         end
+    
     end
         
 
@@ -535,3 +744,4 @@ end
 -----MOUSEPRESSED----- : ACTION DU JOUEUR SOURIS
 function love.mousepressed()
 end
+
