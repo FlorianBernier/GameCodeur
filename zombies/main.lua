@@ -78,6 +78,9 @@ function createZombie()
     myZombie.x = math.random(10, ScreenWidth - 10)
     myZombie.y = math.random(10, (ScreenHeight/2) - 10)
     myZombie.speed = math.random(5, 50) / 200
+    myZombie.range = math.random(10, 150)
+    myZombie.target = nil
+
     myZombie.state = ZSTATES.NONE
 end
 
@@ -105,7 +108,7 @@ function animeSprite(dt)
         sprite.y = sprite.y + sprite.vy * dt
 
         if sprite.type == "zombie" then
-            updateZombie(sprite)
+            updateZombie(sprite, listSprite)
         end
     end
 end
@@ -125,10 +128,11 @@ function moveHero(dt)
     end
 end
 
-function updateZombie(pZombie)
+function updateZombie(pZombie, pEntities)
     if pZombie.state == ZSTATES.NONE then
         pZombie.state = ZSTATES.CHANGEDIR
     elseif pZombie.state == ZSTATES.WALK then
+        --collide with border 
         local bordCollide = false
         if pZombie.x < 0 then
             pZombie.x = 0
@@ -150,7 +154,32 @@ function updateZombie(pZombie)
             pZombie.state = ZSTATES.CHANGEDIR
         end
 
+        --look for hero 
+        for i, sprite in ipairs(pEntities) do
+            if sprite.type == "hero" then
+                local distance = math.dist(pZombie.x, pZombie.y, sprite.x, sprite.y)
+                if distance < pZombie.range then
+                    pZombie.state = ZSTATES.ATTACK
+                    pZombie.target = sprite
+                end
+            end
+        end
+
+
     elseif pZombie.state == ZSTATES.ATTACK then
+        if pZombie.target == nil then
+            pZombie.state = ZSTATES.CHANGEDIR
+        elseif math.dist(pZombie.x, pZombie.y, pZombie.target.x, pZombie.target.y) > pZombie.range and pZombie.target.type == "hero" then
+            pZombie.state = ZSTATES.CHANGEDIR
+        else
+            --attack
+            local destX, destY
+            destX = math.random(pZombie.target.x-20, pZombie.target.x+20)
+            destY = math.random(pZombie.target.y-20, pZombie.target.y+20)
+            local angle = math.angle(pZombie.x, pZombie.y, destX, destY)
+            pZombie.vx = pZombie.speed* 2 * 60 * math.cos(angle)
+            pZombie.vy = pZombie.speed* 2 * 60 * math.sin(angle)
+        end
     elseif pZombie.state == ZSTATES.CHANGEDIR then
         local angle = math.angle(pZombie.x, pZombie.y, math.random(0, ScreenWidth), math.random(0, ScreenHeight))
         pZombie.vx = pZombie.speed * 60 * math.cos(angle)
@@ -172,6 +201,12 @@ love.draw = function()
     for i, sprite in ipairs(listSprite) do
         local frame = sprite.img[math.floor(sprite.currentFrame)]
         love.graphics.draw(frame, sprite.x - (sprite.w/2), sprite.y - (sprite.h/2))
+
+        if sprite.type == "zombie" then
+            if love.keyboard.isDown("a") then
+                love.graphics.print(sprite.state, sprite.x - 10, sprite.y - sprite.h - 10)
+            end
+        end
     end
     love.graphics.pop()
 end
