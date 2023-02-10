@@ -28,7 +28,13 @@ local function mousepressed_get_pos()
     end
 end
 --- --- --- --- --- --- --- --- --- --- --- --- ---
-local CONST = {speedHero = 100, speedSprite = 7}
+-- Returns the distance between two points.
+function math.dist(x1,y1, x2,y2) return ((x2-x1)^2+(y2-y1)^2)^0.5 end
+
+-- Returns the angle between two vectors assuming the same origin.
+function math.angle(x1,y1, x2,y2) return math.atan2(y2-y1, x2-x1) end
+
+local CONST = {speedSprite = 7}
 
 local listSprite = {}
 local hero = {}
@@ -47,6 +53,8 @@ function createSprite(pList, pType, pImgFileName, pFrame)
 
     mySprite.x = 0
     mySprite.y = 0
+    mySprite.vx = 0
+    mySprite.vy = 0
     mySprite.w = mySprite.img[1]:getWidth()
     mySprite.h = mySprite.img[1]:getHeight()
 
@@ -60,12 +68,17 @@ function createHero()
     hero = createSprite(listSprite, "hero", "player_", 4)
     hero.x = ScreenWidth / 2
     hero.y = (ScreenHeight / 6) * 5
+    hero.speed = 100
 end
 
 function createZombie()
     local myZombie = createSprite(listSprite, "zombie", "monster_", 2)
     myZombie.x = math.random(10, ScreenWidth - 10)
     myZombie.y = math.random(10, (ScreenHeight/2) - 10)
+    myZombie.speed = math.random(5, 50) / 200
+    local angle = math.angle(myZombie.x, myZombie.y, math.random(0, ScreenWidth), math.random(0, ScreenHeight))
+    myZombie.vx = myZombie.speed * 60 * math.cos(angle)
+    myZombie.vy = myZombie.speed * 60 * math.sin(angle)
 end
 
 love.load = function()
@@ -88,21 +101,23 @@ function animeSprite(dt)
         if sprite.currentFrame >= #sprite.img+1 then-- +1: du fait d'avoir utiliser math.floor(frame)
             sprite.currentFrame = 1
         end
+        sprite.x = sprite.x + sprite.vx * dt
+        sprite.y = sprite.y + sprite.vy * dt
     end
 end
 
 function moveHero(dt)
     if love.keyboard.isDown("left") and hero.x > 0 then
-        hero.x = hero.x - CONST.speedHero * dt
+        hero.x = hero.x - hero.speed * dt
     end
     if love.keyboard.isDown("right") and hero.x < ScreenWidth then
-        hero.x = hero.x + CONST.speedHero * dt
+        hero.x = hero.x + hero.speed * dt
     end
     if love.keyboard.isDown("up") and hero.y > 0 then
-        hero.y = hero.y - CONST.speedHero * dt
+        hero.y = hero.y - hero.speed * dt
     end
     if love.keyboard.isDown("down") and hero.y < ScreenHeight then
-        hero.y = hero.y + CONST.speedHero * dt
+        hero.y = hero.y + hero.speed * dt
     end
 end
 
