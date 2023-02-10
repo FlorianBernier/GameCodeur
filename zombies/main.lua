@@ -34,7 +34,9 @@ function math.dist(x1,y1, x2,y2) return ((x2-x1)^2+(y2-y1)^2)^0.5 end
 -- Returns the angle between two vectors assuming the same origin.
 function math.angle(x1,y1, x2,y2) return math.atan2(y2-y1, x2-x1) end
 
-local CONST = {speedSprite = 7}
+local VAR = {speedSprite = 7, speedHero = 100}
+
+local ZSTATES = {NONE = "", WALK = "walk", ATTACK = "attack", BITE = "bite", CHANGEDIR = "change"}
 
 local listSprite = {}
 local hero = {}
@@ -68,7 +70,7 @@ function createHero()
     hero = createSprite(listSprite, "hero", "player_", 4)
     hero.x = ScreenWidth / 2
     hero.y = (ScreenHeight / 6) * 5
-    hero.speed = 100
+    hero.speed = 0
 end
 
 function createZombie()
@@ -76,9 +78,7 @@ function createZombie()
     myZombie.x = math.random(10, ScreenWidth - 10)
     myZombie.y = math.random(10, (ScreenHeight/2) - 10)
     myZombie.speed = math.random(5, 50) / 200
-    local angle = math.angle(myZombie.x, myZombie.y, math.random(0, ScreenWidth), math.random(0, ScreenHeight))
-    myZombie.vx = myZombie.speed * 60 * math.cos(angle)
-    myZombie.vy = myZombie.speed * 60 * math.sin(angle)
+    myZombie.state = ZSTATES.NONE
 end
 
 love.load = function()
@@ -97,27 +97,65 @@ end
 
 function animeSprite(dt)
     for i, sprite in ipairs(listSprite) do
-        sprite.currentFrame = sprite.currentFrame + CONST.speedSprite*dt
+        sprite.currentFrame = sprite.currentFrame + VAR.speedSprite*dt
         if sprite.currentFrame >= #sprite.img+1 then-- +1: du fait d'avoir utiliser math.floor(frame)
             sprite.currentFrame = 1
         end
         sprite.x = sprite.x + sprite.vx * dt
         sprite.y = sprite.y + sprite.vy * dt
+
+        if sprite.type == "zombie" then
+            updateZombie(sprite)
+        end
     end
 end
 
 function moveHero(dt)
     if love.keyboard.isDown("left") and hero.x > 0 then
-        hero.x = hero.x - hero.speed * dt
+        hero.x = hero.x - VAR.speedHero * dt
     end
     if love.keyboard.isDown("right") and hero.x < ScreenWidth then
-        hero.x = hero.x + hero.speed * dt
+        hero.x = hero.x + VAR.speedHero * dt
     end
     if love.keyboard.isDown("up") and hero.y > 0 then
-        hero.y = hero.y - hero.speed * dt
+        hero.y = hero.y - VAR.speedHero * dt
     end
     if love.keyboard.isDown("down") and hero.y < ScreenHeight then
-        hero.y = hero.y + hero.speed * dt
+        hero.y = hero.y + VAR.speedHero * dt
+    end
+end
+
+function updateZombie(pZombie)
+    if pZombie.state == ZSTATES.NONE then
+        pZombie.state = ZSTATES.CHANGEDIR
+    elseif pZombie.state == ZSTATES.WALK then
+        local bordCollide = false
+        if pZombie.x < 0 then
+            pZombie.x = 0
+            bordCollide = true
+        end
+        if pZombie.x > ScreenWidth then
+            pZombie.x = ScreenWidth
+            bordCollide = true
+        end
+        if pZombie.y < 0 then
+            pZombie.y = 0
+            bordCollide = true
+        end
+        if pZombie.y > ScreenHeight then
+            pZombie.y = ScreenHeight
+            bordCollide = true
+        end
+        if bordCollide then
+            pZombie.state = ZSTATES.CHANGEDIR
+        end
+
+    elseif pZombie.state == ZSTATES.ATTACK then
+    elseif pZombie.state == ZSTATES.CHANGEDIR then
+        local angle = math.angle(pZombie.x, pZombie.y, math.random(0, ScreenWidth), math.random(0, ScreenHeight))
+        pZombie.vx = pZombie.speed * 60 * math.cos(angle)
+        pZombie.vy = pZombie.speed * 60 * math.sin(angle)
+        pZombie.state = ZSTATES.WALK
     end
 end
 
