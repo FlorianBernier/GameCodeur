@@ -28,10 +28,11 @@ local function mousepressed_get_pos()
     end
 end
 --- --- --- --- --- --- --- --- --- --- --- --- ---
-local CONST = {speedHero = 100}
+local CONST = {speedHero = 100, speedSprite = 7}
 
 local listSprite = {}
 local hero = {}
+
 
 function createSprite(pList, pType, pImgFileName, pFrame)
     local mySprite = {}
@@ -53,23 +54,44 @@ function createSprite(pList, pType, pImgFileName, pFrame)
     return mySprite
 end
 
+--- --- --- --- --- --- --- --- --- --- --- --- ---
+
+function createHero()
+    hero = createSprite(listSprite, "hero", "player_", 4)
+    hero.x = ScreenWidth / 2
+    hero.y = (ScreenHeight / 6) * 5
+end
+
+function createZombie()
+    local myZombie = createSprite(listSprite, "zombie", "monster_", 2)
+    myZombie.x = math.random(10, ScreenWidth - 10)
+    myZombie.y = math.random(10, (ScreenHeight/2) - 10)
+end
+
 love.load = function()
     load_full_screen()
     ScreenWidth = love.graphics.getWidth()/2--larg(800)x
     ScreenHeight = love.graphics.getHeight()/2--haut(600)y
 
-    hero = createSprite(listSprite, "hero", "player_", 4)
-    hero.x = ScreenWidth / 2
-    hero.y = ScreenHeight / 2
+    createHero()
+
+    local nZombies
+    for nZombie = 1, 10 do
+        createZombie()
+    end
 end
 
-love.update = function(dt)
+
+function animeSprite(dt)
     for i, sprite in ipairs(listSprite) do
-        sprite.currentFrame = sprite.currentFrame + 9*dt
+        sprite.currentFrame = sprite.currentFrame + CONST.speedSprite*dt
         if sprite.currentFrame >= #sprite.img+1 then-- +1: du fait d'avoir utiliser math.floor(frame)
             sprite.currentFrame = 1
         end
     end
+end
+
+function moveHero(dt)
     if love.keyboard.isDown("left") and hero.x > 0 then
         hero.x = hero.x - CONST.speedHero * dt
     end
@@ -84,6 +106,12 @@ love.update = function(dt)
     end
 end
 
+love.update = function(dt)
+    animeSprite(dt)
+    moveHero(dt)
+end
+
+
 love.draw = function()
     draw_full_screen()
     love.graphics.push()
@@ -95,10 +123,12 @@ love.draw = function()
     love.graphics.pop()
 end
 
+
 love.keypressed = function(key)
     keypressed_key(key)
     print(key)
 end
+
 
 love.mousepressed = function()
     mousepressed_get_pos()
