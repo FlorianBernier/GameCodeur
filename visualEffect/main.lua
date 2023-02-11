@@ -29,12 +29,22 @@ local function mousepressed_get_pos()
 end
 --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-local scaleZoom = 20
+local mask_shader = love.graphics.newShader[[
+   vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
+      if (Texel(texture, texture_coords).rgba == vec4(0.0)) {
+         // a discarded pixel wont be applied as the stencil.
+         discard;
+      }
+      return vec4(1.0);
+   }
+]]
+
+local scaleZoom = 4
 
 local kirk = {}
 kirk.isBeam = true
 kirk.beamLevel = 1
-kirk.maxPercent = 100
+kirk.maxPercent = 60
 kirk.img = nil
 kirk.x = 0
 kirk.y = 0
@@ -72,12 +82,31 @@ function updateKirk(dt)
         end
         print(kirk.beamLevel)
     end
+    --move
+    if love.keyboard.isDown("left") then
+        kirk.x = kirk.x - 100 * dt
+    end
+    if love.keyboard.isDown("right") then
+        kirk.x = kirk.x + 100 * dt
+    end
+    if love.keyboard.isDown("up") then
+        kirk.y = kirk.y - 100 * dt
+    end
+    if love.keyboard.isDown("down") then
+        kirk.y = kirk.y + 100 * dt
+    end
 end
 
 love.update = function(dt)
     updateKirk(dt)
 end
 
+
+function myStencilFunction()
+    love.graphics.setShader(mask_shader)
+    love.graphics.draw(kirk.img, kirk.x, kirk.y)
+    love.graphics.setShader()
+end
 
 function drawKirk()
     if kirk.isBeam == false then
@@ -96,13 +125,17 @@ function drawKirk()
         local l,h = kirk.img:getWidth(), kirk.img:getHeight()
         local nbPoint = (l*h) * percent
 
-        
+        love.graphics.stencil(myStencilFunction, "replace", 1)
+        love.graphics.setStencilTest("greater", 0)
+        love.graphics.setColor(1,0,0,1)
         local np
         for np = 1, nbPoint do
             local rx,ry = math.random(0,l-1), math.random(0,h-1)
-            love.graphics.setColor(1,0,0)
+            
             love.graphics.rectangle("fill", kirk.x + rx, kirk.y + ry, 1,1)
         end
+        love.graphics.setStencilTest()
+        love.graphics.setColor(1,1,1)
     end
 end
 
