@@ -38,6 +38,8 @@ local VAR = {speedSprite = 7, speedHero = 100}
 
 local ZSTATES = {NONE = "", WALK = "walk", ATTACK = "attack", BITE = "bite", CHANGEDIR = "change"}
 
+local imgAlert = love.graphics.newImage("images/alert.png")
+
 local listSprite = {}
 local hero = {}
 
@@ -103,7 +105,7 @@ love.load = function()
     createHero()
 
     local nZombies
-    for nZombie = 1, 10 do
+    for nZombie = 1, 150 do
         createZombie()
     end
 end
@@ -232,6 +234,9 @@ love.draw = function()
             if sprite.type == "zombie" then
                 if love.keyboard.isDown("a") then
                     love.graphics.print(sprite.state, sprite.x - 10, sprite.y - sprite.h - 10)
+                end
+                if sprite.state == ZSTATES.ATTACK then
+                    love.graphics.draw(imgAlert, sprite.x - imgAlert:getWidth()/2, sprite.y - sprite.h - 2)
                 end
             end
         end
