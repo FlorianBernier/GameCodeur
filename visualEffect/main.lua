@@ -29,7 +29,7 @@ local function mousepressed_get_pos()
 end
 --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-local scaleZoom = 4
+local scaleZoom = 20
 
 local kirk = {}
 kirk.isBeam = true
@@ -46,7 +46,7 @@ local sndTransporter = love.audio.newSource("sons/voyager.wav", "static")
 function createKirk()
     kirk.img = love.graphics.newImage("images/kirk.png")
     kirk.x = math.floor(ScreenWidth/2) - math.floor(kirk.img:getWidth()/2)
-    kirk.Y = math.floor(ScreenHeight/2) - math.floor(kirk.img:getHeight()/2)
+    kirk.y = math.floor(ScreenHeight/2) - math.floor(kirk.img:getHeight()/2)
 
     love.audio.play(sndTransporter)
 end
@@ -81,11 +81,28 @@ end
 
 function drawKirk()
     if kirk.isBeam == false then
-        love.graphics.draw(kirk.img, kirk.x, kirk.Y)
+        love.graphics.draw(kirk.img, kirk.x, kirk.y)
     else
         --kirk en filigramme
         love.graphics.setColor(1,1,1,1*(kirk.beamLevel)/(kirk.maxPercent))
-        love.graphics.draw(kirk.img, kirk.x, kirk.Y)
+        love.graphics.draw(kirk.img, kirk.x, kirk.y)
+
+        local percent
+        if kirk.beamLevel <= kirk.maxPercent / 2 then
+            percent = (kirk.beamLevel * 2 ) / 100
+        else
+            percent = ((kirk.maxPercent - kirk.beamLevel) * 2 ) / 100
+        end
+        local l,h = kirk.img:getWidth(), kirk.img:getHeight()
+        local nbPoint = (l*h) * percent
+
+        
+        local np
+        for np = 1, nbPoint do
+            local rx,ry = math.random(0,l-1), math.random(0,h-1)
+            love.graphics.setColor(1,0,0)
+            love.graphics.rectangle("fill", kirk.x + rx, kirk.y + ry, 1,1)
+        end
     end
 end
 
