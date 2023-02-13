@@ -14,9 +14,11 @@ end
 local function keypressed_key(key)
     if (key == "f1") then
         SetFullScreen = love.window.setFullscreen(false)
+        load_full_screen()
     end
     if (key == "f2") then
         SetFullScreen = love.window.setFullscreen(true)
+        load_full_screen()
     end
     if (key == "f3") then
         love.event.quit()
@@ -39,7 +41,7 @@ local mask_shader = love.graphics.newShader[[
    }
 ]]
 
-local scaleZoom = 4
+local scaleZoom = 40
 
 local kirk = {}
 kirk.isBeam = true
