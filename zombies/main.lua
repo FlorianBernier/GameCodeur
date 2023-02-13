@@ -43,6 +43,11 @@ local imgAlert = love.graphics.newImage("images/alert.png")
 local listSprite = {}
 local hero = {}
 
+imhZombie= {
+    love.graphics.newImage("images/monster_1.png"), 
+    love.graphics.newImage("images/monster_2.png")}
+
+
 
 function createSprite(pList, pType, pImgFileName, pFrame)
     local mySprite = {}
@@ -50,11 +55,7 @@ function createSprite(pList, pType, pImgFileName, pFrame)
     mySprite.visible = true
     mySprite.img = {}
     mySprite.currentFrame = 1
-    for i = 1, pFrame do
-        local fileName = "images/"..pImgFileName..tostring(i)..".png"
-        print("Loading frame "..fileName)
-        mySprite.img[i] = love.graphics.newImage(fileName)
-    end
+    mySprite.img = imhZombie
 
     mySprite.x = 0
     mySprite.y = 0
@@ -105,9 +106,10 @@ love.load = function()
     createHero()
 
     local nZombies
-    for nZombie = 1, 150 do
+    for nZombie = 1, 500 do
         createZombie()
     end
+
 end
 
 
