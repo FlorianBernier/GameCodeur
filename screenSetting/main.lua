@@ -1,7 +1,5 @@
-
 Setting = require("setting")
 --- --- --- --- --- --- --- --- --- --- --- --- ---
-
 
 love.load = function()
     Setting.load()
@@ -9,18 +7,21 @@ love.load = function()
 
 end
 
+
 love.update = function(dt)
     Setting.update(dt)
     --- --- ---
 
 end
 
+
 love.draw = function()
     Setting.draw()
     --- --- ---
     --example
-    love.graphics.rectangle("fill",((ScreenWidth/2)-10 + Camera_x), ((ScreenHeight/2)-10 + Camera_y), 20, 20)
+    love.graphics.rectangle("fill",((Screen_Width/2)-10 + Camera_x), ((Screen_Height/2)-10 + Camera_y), 20, 20)
 end
+
 
 love.keypressed = function(key)
     Setting.keypressed(key)

@@ -4,7 +4,12 @@ local Setting = {}
 --sets up pixel art
 love.graphics.setDefaultFilter("nearest")
 --sets up fullScreen variables
-SetFullScreen = love.window.setFullscreen(false)
+love.window.setFullscreen(false)
+SetFullScreen = false
+--sets up scale variables
+Scale_x = 1 Scale_y = 1
+--sets up mouse variables
+Mouse_x = 0 Mouse_y = 0
 --sets up camera variables
 Camera_x = 0 Camera_y = 0 Camera_speed = 300
 --sets up window variables
@@ -19,13 +24,16 @@ local function load_full_screen()
         Screen_w, Screen_h = love.window.getMode()
         Scale_x = Screen_w / 800
         Scale_y = Screen_h / 600
+    else
+        Scale_x = 1
+        Scale_y = 1
     end
 end
 
 Setting.load = function()
     load_full_screen()
-    ScreenWidth = love.graphics.getWidth()  --larg
-    ScreenHeight = love.graphics.getHeight()  --haut
+    Screen_Width = love.graphics.getWidth()
+    Screen_Height = love.graphics.getHeight()
 end
 
 
@@ -37,10 +45,10 @@ local function MoveCamera(dt)
         y = y / Scale_y
     end
     if love.mouse.isDown(3) then
-        if x < ScreenWidth/3 then Camera_x = Camera_x + Camera_speed * dt end
-        if x > ScreenWidth/3 + ScreenWidth/3 then Camera_x = Camera_x - Camera_speed * dt end
-        if y < ScreenHeight/3 then Camera_y = Camera_y + Camera_speed * dt end
-        if y > ScreenHeight/3 + ScreenHeight/3 then Camera_y = Camera_y - Camera_speed * dt end
+        if x < Screen_Width/3 then Camera_x = Camera_x + Camera_speed * dt end
+        if x > Screen_Width/3 + Screen_Width/3 then Camera_x = Camera_x - Camera_speed * dt end
+        if y < Screen_Height/3 then Camera_y = Camera_y + Camera_speed * dt end
+        if y > Screen_Height/3 + Screen_Height/3 then Camera_y = Camera_y - Camera_speed * dt end
     else
         if x < 5 then Camera_x = Camera_x + Camera_speed * dt end
         if x > 795 then Camera_x = Camera_x - Camera_speed * dt end
@@ -50,6 +58,8 @@ local function MoveCamera(dt)
 end
 
 Setting.update = function(dt)
+    Mouse_x = (love.mouse.getX() / Scale_x - Window.translate.x) / Window.zoom - Camera_x
+    Mouse_y = (love.mouse.getY() / Scale_y - Window.translate.y) / Window.zoom - Camera_y
     MoveCamera(dt)
 end
 
@@ -74,11 +84,13 @@ end
 --key dimension screen et quit
 local function keypressed_key(key)
     if (key == "f1") then
-        SetFullScreen = love.window.setFullscreen(false)
+        love.window.setFullscreen(false)
+        SetFullScreen = false
         load_full_screen()
     end
     if (key == "f2") then
-        SetFullScreen = love.window.setFullscreen(true)
+        love.window.setFullscreen(true)
+        SetFullScreen = true
         load_full_screen()
     end
     if (key == "f3") then
@@ -94,9 +106,7 @@ end
 
 --affiche position souris dans la console
 local function mousepressed_get_pos()
-    if love.mouse.isDown(1,2,3) then
-        print(love.mouse.getPosition())
-    end
+    print(love.mouse.getPosition())
 end
 
 Setting.mousepressed = function()
@@ -107,13 +117,9 @@ end
 -- zoom de la camera avec molette de la souris
 local function ZoomCamera(x, y)
     if not (y == 0) then
-		local mouse_x = love.mouse.getX() - Window.translate.x
-		local mouse_y = love.mouse.getY() - Window.translate.y
-        if (SetFullScreen) then
-            mouse_x = mouse_x / Scale_x
-            mouse_y = mouse_y / Scale_y
-        end
-		local k = Dscale^y
+		local mouse_x = love.mouse.getX() / Scale_x - Window.translate.x
+		local mouse_y = love.mouse.getY() / Scale_y - Window.translate.y
+        local k = Dscale^y
 		Window.zoom = Window.zoom*k
 		Window.translate.x = math.floor(Window.translate.x + mouse_x*(1-k))
 		Window.translate.y = math.floor(Window.translate.y + mouse_y*(1-k))

@@ -106,7 +106,7 @@ love.load = function()
     createHero()
 
     local nZombies
-    for nZombie = 1, 500 do
+    for nZombie = 1, 100 do
         createZombie()
     end
 
