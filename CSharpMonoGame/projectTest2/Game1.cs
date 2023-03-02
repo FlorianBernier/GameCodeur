@@ -38,6 +38,16 @@ namespace projectTest2
             char cInitiale = 'c';
             System.Console.WriteLine("Initiale : " + cInitiale);
 
+            // Type chaine de caractere
+            string sMessageJoueur = "";
+            sMessageJoueur = "Il reste "+ nEnergie + " points d'énergie";
+            System.Console.WriteLine(sMessageJoueur);
+            System.Console.WriteLine("La chaine fait " + sMessageJoueur.Length + " charactères");
+
+            
+
+
+
 
             base.Initialize();
         }
