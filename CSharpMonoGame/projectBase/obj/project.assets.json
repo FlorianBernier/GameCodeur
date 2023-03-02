@@ -183,11 +183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectTest2\\projectTest2.csproj",
+      "projectUniqueName": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectBase\\projectTest2.csproj",
       "projectName": "projectTest2",
-      "projectPath": "c:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectTest2\\projectTest2.csproj",
+      "projectPath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectBase\\projectTest2.csproj",
       "packagesPath": "C:\\Users\\Soanara\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectTest2\\obj\\",
+      "outputPath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectBase\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Soanara\\AppData\\Roaming\\NuGet\\NuGet.Config"

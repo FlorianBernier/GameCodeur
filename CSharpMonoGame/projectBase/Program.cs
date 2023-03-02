@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace projectTest2
+namespace projectBase
 {
     public static class Program
     {

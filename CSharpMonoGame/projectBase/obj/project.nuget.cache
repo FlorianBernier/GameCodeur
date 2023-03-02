@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oB6WOiuk6V4XI5HiwdsvmH1AQwJAxmOfEC2EMWST5aF/XrmVvW1Q8qcMqc6cqWOC63GAZ5Y1iO6l7DuWqlODkQ==",
+  "dgSpecHash": "+UNHC+g5GoCtE7PBf9KzBwzZjw2g8EOZPMk8ziehXx74HKARP62KEiOcyZDWrGUJSvBWhnlB0k9bYS4iFf64PA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectTest2\\projectTest2.csproj",
+  "projectFilePath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\projectBase\\projectTest2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Soanara\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
     "C:\\Users\\Soanara\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",

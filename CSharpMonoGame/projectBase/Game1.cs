@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace projectTest2
+namespace projectBase
 {
       // Classe principale du jeu
     public class Game1 : Game
