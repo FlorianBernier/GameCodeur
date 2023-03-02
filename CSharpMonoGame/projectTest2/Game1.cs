@@ -4,47 +4,60 @@ using Microsoft.Xna.Framework.Input;
 
 namespace projectTest2
 {
+      // Classe principale du jeu
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
         }
 
+        // Fonction appelée une fois pour initialiser le jeu
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // TODO: Ajoutez ici votre code d'initialisation
 
             base.Initialize();
         }
 
+        // Fonction appelée une seule fois pour charger le contenu du jeu
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            // Crée un nouveau SpriteBatch, qui sera utilisé pour afficher des images (textures)
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // TODO: Ajoutez ici votre code qui chargera le contenu du jeu
         }
 
+        // Fonction appelée une fois pour décharger le contenu du jeu (hors ContentManager)
+        protected override void UnloadContent()
+        {
+            
+        }
+
+        // Fonction appelée 60x par seconde pour mettre à jour l'état du jeu
+        // Reçoit "gametime" qui contient le temps écoulé depuis le dernier update
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // TODO: Ajoutez le code de mise à jour ici
 
             base.Update(gameTime);
         }
 
+        // Fonction appelée aussi souvent que possible (jusqu'à 60x par seconde) pour afficher le jeu
+        // Reçoit "gametime" qui contient le temps écoulé depuis le dernier update
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // TODO: Ajouter le code d'affichage ici
 
             base.Draw(gameTime);
         }
