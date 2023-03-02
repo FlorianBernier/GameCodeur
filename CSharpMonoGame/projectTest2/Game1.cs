@@ -20,6 +20,7 @@ namespace projectTest2
         protected override void Initialize()
         {
             // TODO: Ajoutez ici votre code d'initialisation
+            System.Console.WriteLine("Hey");
 
             base.Initialize();
         }
@@ -55,7 +56,7 @@ namespace projectTest2
         // Reçoit "gametime" qui contient le temps écoulé depuis le dernier update
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Ajouter le code d'affichage ici
 
