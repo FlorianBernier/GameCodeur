@@ -22,6 +22,23 @@ namespace projectTest2
             // TODO: Ajoutez ici votre code d'initialisation
             System.Console.WriteLine("Hey");
 
+            // Type numérique entiers
+            int nNombreDeVie = 5;
+            int nEnergie = 100;
+            System.Console.WriteLine("j'ai actuelement {0} vies et {1} point d'énergie !", nNombreDeVie, nEnergie);
+
+            float nPos = 1.5f;
+            System.Console.WriteLine("Mon float nPos vaut : "+ nPos);
+
+            bool bDoorClosed; 
+            bDoorClosed = false;
+            System.Console.WriteLine("Ma porte est-elle close ? " + bDoorClosed);
+            bDoorClosed = true;
+            System.Console.WriteLine("Ma porte est-elle close ? " + bDoorClosed);
+            char cInitiale = 'c';
+            System.Console.WriteLine("Initiale : " + cInitiale);
+
+
             base.Initialize();
         }
 
