@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/projectTest2.csproj",
+                "${workspaceFolder}/ProjectBase.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/projectTest2.csproj",
+                "${workspaceFolder}/ProjectBase.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/projectTest2.csproj"
+                "${workspaceFolder}/ProjectBase.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

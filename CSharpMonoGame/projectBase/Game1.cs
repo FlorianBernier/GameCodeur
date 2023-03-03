@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace projectBase
+namespace ProjectBase
 {
       // Classe principale du jeu
     public class Game1 : Game
@@ -13,7 +13,7 @@ namespace projectBase
         Random monDe = new Random(System.DateTime.Now.Millisecond);
         public int Lance1D(int nombreDeFace)
         {
-            int resultatDe = monDe.Next(1, nombreDeFace);
+            int resultatDe = monDe.Next(1, nombreDeFace+1);
             return resultatDe;
         }
 
@@ -82,6 +82,29 @@ namespace projectBase
                 Console.WriteLine("Mon compteur j du do/while vaut : " + j);
                 j++;
             }while(j<10);
+
+            // tableau : int
+            int[] tableau1;
+            //                        0, 1, 2, 3, 4
+            tableau1 = new int[5] { 1, 4, 6, 2, 9 };
+            System.Console.WriteLine("Element 0 : "+ tableau1[1]);
+
+            // tableau : string
+            string[] classes;
+            classes = new string[] { "Barbare", "Barde", "Druide", "Ensorceleur", "Guerrier", "Magicien" };
+
+            string[] races = new string[] { "Humain", "Elfe", "Nain", "Gnome" };
+            System.Console.WriteLine("Nombre de races : " + races.Length);
+
+            for (int i = 0; i < races.Length; i++)
+            {
+
+
+            }
+
+
+
+
 
 
 
