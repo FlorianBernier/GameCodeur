@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -106,13 +107,47 @@ namespace ProjectBase
                 System.Console.WriteLine("Races : "+ laRace);
             }
 
+            // tableau 2D
             int[,] map = new int[,]{{5,1,0,1,0}, 
                                     {9,0,1,0,0}, 
                                     {0,0,1,0,0}, 
                                     {0,0,1,0,0}, 
                                     {0,1,0,1,0}};
-                                    
-            System.Console.WriteLine(map[1, 0]);
+
+            System.Console.WriteLine("tableau 2D ligne 1, colonne 0 : "+ map[1, 0]);
+
+            // liste : int
+            List<int> listeChiffres;
+            listeChiffres = new List<int>(){ 1,3,6,2,88,34,2};
+            Console.WriteLine("liste élément 1 : "+ listeChiffres[1]);
+
+            Console.WriteLine("Nombre d'éléments : "+ listeChiffres.Count);
+            listeChiffres.RemoveAt(1);
+            Console.WriteLine("Nombre d'éléments : "+ listeChiffres.Count);
+            listeChiffres.Insert(1,100);
+            Console.WriteLine("Nombre d'éléments : "+ listeChiffres.Count);
+            foreach (int chiffre in listeChiffres)
+            {
+                Console.WriteLine(chiffre);
+            }
+            if (listeChiffres.Contains(100))
+            {
+                Console.WriteLine("Contient bien 100 ! ");
+            }
+            listeChiffres.Reverse();
+            foreach (int chiffre in listeChiffres)
+            {
+                Console.WriteLine(chiffre);
+            }
+            listeChiffres.Clear();
+            Console.WriteLine("Nombre d'éléments : "+ listeChiffres.Count);
+
+        
+
+
+
+
+            
 
 
 
