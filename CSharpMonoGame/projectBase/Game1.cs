@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,6 +10,14 @@ namespace projectBase
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        public int Lance1D6(int nombreDeFace)
+        {
+            Random monDe = new Random();
+            int resultatDe = monDe.Next(1, nombreDeFace);
+            return resultatDe;
+        }
+
 
         public Game1()
         {
@@ -44,9 +53,11 @@ namespace projectBase
             System.Console.WriteLine(sMessageJoueur);
             System.Console.WriteLine("La chaine fait " + sMessageJoueur.Length + " charactères");
 
-            
-
-
+            int resultat;
+            resultat = Lance1D6(6);
+            Console.WriteLine("Le resultat du D6 est " + resultat);
+            resultat = Lance1D6(20);
+            Console.WriteLine("Le resultat des D20 est " + resultat);
 
 
             base.Initialize();
