@@ -10,13 +10,15 @@ namespace projectBase
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        public int Lance1D6(int nombreDeFace)
+        Random monDe = new Random(System.DateTime.Now.Millisecond);
+        public int Lance1D(int nombreDeFace)
         {
-            Random monDe = new Random();
             int resultatDe = monDe.Next(1, nombreDeFace);
             return resultatDe;
         }
+
+
+
 
 
         public Game1()
@@ -54,11 +56,19 @@ namespace projectBase
             System.Console.WriteLine("La chaine fait " + sMessageJoueur.Length + " charactères");
 
             int resultat;
-            resultat = Lance1D6(6);
+            resultat = Lance1D(6);
             Console.WriteLine("Le resultat du D6 est " + resultat);
-            resultat = Lance1D6(20);
+            resultat = Lance1D(20);
             Console.WriteLine("Le resultat des D20 est " + resultat);
 
+            // int i = 1; : initialisation / i <= 10; : vérification / i++ : incrémentation
+            for (int i = 1; i <= 10; i++)
+            {
+                int monDe = Lance1D(6);
+                Console.WriteLine("Au lancement du D" + i + " J'ai obtenue : " + monDe);
+
+
+            }
 
             base.Initialize();
         }
