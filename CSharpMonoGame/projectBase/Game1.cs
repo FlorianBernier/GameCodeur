@@ -66,9 +66,25 @@ namespace projectBase
             {
                 int monDe = Lance1D(6);
                 Console.WriteLine("Au lancement du D" + i + " J'ai obtenue : " + monDe);
-
-
             }
+
+            // while quand on ne sais pas cb de x on vas devoir executer la function (exemple generation de x aléatoire)
+            int j = 1;
+            while(j<10)
+            {
+                Console.WriteLine("Mon compteur j du while vaut : " + j);
+                j++;
+            }
+
+            j = 1;
+            do
+            {
+                Console.WriteLine("Mon compteur j du do/while vaut : " + j);
+                j++;
+            }while(j<10);
+
+
+
 
             base.Initialize();
         }
