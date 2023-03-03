@@ -142,10 +142,39 @@ namespace ProjectBase
             listeChiffres.Clear();
             Console.WriteLine("Nombre d'éléments : "+ listeChiffres.Count);
 
-        
-
-
-
+            // structure de controle
+            Random rnd = new Random();
+            int rndClasse = rnd.Next(0, classes.Length);
+            Console.WriteLine("La classes sélectionée est : "+ classes[rndClasse]);
+            // and : && (Alt Gr 1)
+            if ( rndClasse >= 0 && rndClasse <= 2)
+            {
+                Console.WriteLine("On est dans les 3 premières classes ");
+            }
+            // or : || (Alt Gr 6)
+            if ( rndClasse == 0 || rndClasse == 4) 
+            {
+                Console.WriteLine("Ca va saigner !! ");
+            }
+            else if ( rndClasse == 1)
+                Console.WriteLine("Ca va chanter !! ");
+            else
+            {
+                Console.WriteLine("Ma magie est puissante !! ");
+            }
+            
+            switch (rndClasse)
+            {
+                case 0:
+                    Console.WriteLine("Ca va saigner !! ");
+                    break;
+                case 1:
+                    Console.WriteLine("Ca va chanter !! ");
+                    break;
+                default:
+                    Console.WriteLine("Autre cas ...");
+                    break;
+            }
 
             
 
