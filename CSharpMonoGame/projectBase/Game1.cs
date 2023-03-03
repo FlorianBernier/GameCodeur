@@ -98,13 +98,21 @@ namespace ProjectBase
 
             for (int i = 0; i < races.Length; i++)
             {
-
-
+                System.Console.WriteLine("Races n"+ i + " : "+ races[i]);
             }
 
+            foreach (String laRace in races)
+            {
+                System.Console.WriteLine("Races : "+ laRace);
+            }
 
-
-
+            int[,] map = new int[,]{{5,1,0,1,0}, 
+                                    {9,0,1,0,0}, 
+                                    {0,0,1,0,0}, 
+                                    {0,0,1,0,0}, 
+                                    {0,1,0,1,0}};
+                                    
+            System.Console.WriteLine(map[1, 0]);
 
 
 
