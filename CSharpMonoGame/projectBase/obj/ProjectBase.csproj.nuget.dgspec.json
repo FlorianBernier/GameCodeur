@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj": {}
+    "C:\\Users\\Soanara\\Desktop\\Project\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj": {
+    "C:\\Users\\Soanara\\Desktop\\Project\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj",
+        "projectUniqueName": "C:\\Users\\Soanara\\Desktop\\Project\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj",
         "projectName": "ProjectBase",
-        "projectPath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj",
+        "projectPath": "C:\\Users\\Soanara\\Desktop\\Project\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\ProjectBase.csproj",
         "packagesPath": "C:\\Users\\Soanara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Soanara\\Desktop\\Prog\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\obj\\",
+        "outputPath": "C:\\Users\\Soanara\\Desktop\\Project\\GIT\\GameCodeur\\CSharpMonoGame\\ProjectBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Soanara\\AppData\\Roaming\\NuGet\\NuGet.Config"
