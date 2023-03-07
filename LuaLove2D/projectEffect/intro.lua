@@ -3,14 +3,21 @@ Intro = {}
 local snd = {
     love.graphics.newVideo("movie/soaStudioGame.ogv"),
     love.graphics.newVideo("movie/lordOfSoul.ogv"),
-    love.graphics.newVideo("movie/intro.ogv")
+
+    love.graphics.newVideo("menu/start.ogv"),
+    love.graphics.newVideo("movie/intro.ogv"),
+    
 }
+
+local play = love.graphics.newImage("image/play.png")
+
 
 local currentVideo = 1
 local videoWidth, videoHeight = snd[currentVideo]:getDimensions()
 local xIntro = 800 / videoWidth
 local yIntro = 600 / videoHeight
 local isSpacePressed = false
+local showIntro = false
 
 
 Intro.load = function()
@@ -19,7 +26,10 @@ end
 
 Intro.update = function(dt)
     if currentVideo == 2 and isSpacePressed == false and snd[currentVideo]:isPlaying() == false then
-        return -- ne fait rien si l'accès à la troisième vidéo n'est pas autorisé
+        return
+    end
+    if currentVideo == 3 and showIntro == false and snd[currentVideo]:isPlaying() == false then
+        return
     end
     if snd[currentVideo]:isPlaying() == false and currentVideo < #snd then
         currentVideo = currentVideo + 1
@@ -28,29 +38,44 @@ Intro.update = function(dt)
         yIntro = 600 / videoHeight
 
         snd[currentVideo]:play()
-        if currentVideo == 2 then 
+        if currentVideo == 2 then
             currentVideo = currentVideo
         end
     end
 end
 
 Intro.draw = function()
-    if currentVideo == 3 then
-        love.graphics.draw(snd[currentVideo], 100, 0, 0, xIntro, yIntro)
-    else
+    if currentVideo == 1 then
         love.graphics.draw(snd[currentVideo], 0, 0, 0, xIntro, yIntro)
+    end
+    if currentVideo == 2 then
+        love.graphics.draw(snd[currentVideo], 0, 0, 0, xIntro, yIntro)
+    end
+    if currentVideo == 4 then
+        love.graphics.draw(snd[currentVideo], 150, 0, 0, xIntro, yIntro)
+    end
+    if currentVideo == 3 then
+        love.graphics.setColor(0.7,0.7,0.7,1)
+        love.graphics.draw(snd[currentVideo], 0, 0, 0, xIntro, yIntro)
+        love.graphics.setColor(1,1,1)
+        love.graphics.draw(play, 300, 500)
     end
 end
 
 Intro.keypressed = function(key)
     if key == "space" then
-        isSpacePressed = false
         if currentVideo == 2 then
             isSpacePressed = true
             currentVideo = 3
             local videoWidth, videoHeight = snd[currentVideo]:getDimensions()
-         xIntro = 600 / videoWidth
-         yIntro = 600 / videoHeight
+            xIntro = 800 / videoWidth
+            yIntro = 700 / videoHeight
+        elseif currentVideo == 3 then
+            showIntro = true
+            currentVideo = 4
+            local videoWidth, videoHeight = snd[currentVideo]:getDimensions()
+            xIntro = 500 / videoWidth
+            yIntro = 600 / videoHeight
         end
 
         for i=1,#snd do

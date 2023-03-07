@@ -1,11 +1,6 @@
 Setting = require("setting")
 Intro = require("intro")
 --- --- --- --- --- --- --- --- --- --- --- --- ---
-local snd = {
-    love.graphics.newVideo("movie/soaStudioGame.ogv"),
-    love.graphics.newVideo("movie/lordOfSoul.ogv"),
-    love.graphics.newVideo("movie/intro.ogv")
-}
 
 love.load = function()
     Setting.load()
