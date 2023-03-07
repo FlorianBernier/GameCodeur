@@ -9,6 +9,7 @@ local snd = {
     
 }
 
+
 local play = love.graphics.newImage("image/play.png")
 
 
@@ -29,6 +30,8 @@ Intro.update = function(dt)
         return
     end
     if currentVideo == 3 and showIntro == false and snd[currentVideo]:isPlaying() == false then
+        snd[currentVideo]:seek(0)
+        snd[currentVideo]:play()
         return
     end
     if snd[currentVideo]:isPlaying() == false and currentVideo < #snd then
