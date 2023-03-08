@@ -10,7 +10,6 @@ local snd = {
 
 
 local play = love.graphics.newImage("image/test1.png")
-local test = love.graphics.newVideo("movie/test.ogv")
 
 local currentVideo = 1
 local videoWidth, videoHeight = snd[currentVideo]:getDimensions()
@@ -22,7 +21,6 @@ local showIntro = false
 
 Intro.load = function()
     snd[currentVideo]:play()
-    test:play()
 end
 
 Intro.update = function(dt)
@@ -63,7 +61,6 @@ Intro.draw = function()
         love.graphics.setColor(1,1,1)
         love.graphics.draw(play, 0, 500)
     end
-    love.graphics.draw(test, 0, 0, 0, 0.5, 0.5)
 end
 
 Intro.keypressed = function(key)
