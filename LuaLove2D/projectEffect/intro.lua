@@ -35,7 +35,7 @@ local buttons = {
 local font = love.graphics.newFont(15)
 local spacePressed = false
 
-local currentImg = 1
+local currentImg = 0
 local currentVideo = 1
 local videoWidth, videoHeight = movie[currentVideo]:getDimensions()
 local xIntro = 800 / videoWidth
@@ -118,14 +118,16 @@ end
 Intro.update = function(dt)
     updateVideo(dt)
     updateBtn(dt)
-    if currentImg == 1 then
-        love.audio.play(snd[1])
-    end
-    if currentImg == 2 then
-        love.audio.play(snd[2])
-    end
-    if currentImg == 3 then
-        love.audio.play(snd[3])
+    if currentVideo == 2 then
+        if currentImg == 1 then
+            love.audio.play(snd[1])
+        end
+        if currentImg == 2 then
+            love.audio.play(snd[2])
+        end
+        if currentImg == 3 then
+            love.audio.play(snd[3])
+        end
     end
 end
 
