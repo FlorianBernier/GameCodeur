@@ -11,7 +11,7 @@ end
 love.update = function(dt)
     Setting.update(dt)
     --- --- ---
-    Intro.update()
+    Intro.update(dt)
 end
 
 love.draw = function()
@@ -29,6 +29,7 @@ end
 love.mousepressed = function(x, y, button)
     Setting.mousepressed()
     --- --- ---
+    Intro.mousepressed(x, y, button)
 end
 
 
