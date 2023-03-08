@@ -9,7 +9,7 @@ function Dist_P_P(x1,y1,x2,y2)
 end
 --- --- --- --- --- --- --- --- --- --- --- --- ---
 --sets up pixel art
-love.graphics.setDefaultFilter("nearest")
+--love.graphics.setDefaultFilter("nearest")
 --sets up fullScreen variables
 love.window.setFullscreen(false)
 SetFullScreen = false
