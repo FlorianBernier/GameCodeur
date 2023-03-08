@@ -1,3 +1,5 @@
+
+
 Intro = {}
 
 local movie = {
@@ -13,7 +15,7 @@ local img = {
     love.graphics.newImage("image/option.png"),
     love.graphics.newImage("image/suplement.png"),
 
-local play = love.graphics.newImage("image/test1.png")
+}
 
 local snd = {
     love.audio.newSource("sound/chapitre.wav", "stream"),
@@ -41,9 +43,21 @@ local yIntro = 600 / videoHeight
 local isSpacePressed = false
 local showIntro = false
 
-
-Intro.load = function()
-    snd[currentVideo]:play()
+local function loadBtn()
+    for i,button in ipairs(buttons) do
+        button.letters = {}
+        for j=1,#button.text do
+          table.insert(button.letters, {
+            x = math.random(love.graphics.getWidth()),
+            y = math.random(love.graphics.getHeight()),
+            targetX = button.x + button.width/2 - font:getWidth(button.text)/2 + font:getWidth(button.text:sub(1,j))-font:getWidth(" "),
+            targetY = button.y + button.height/2 - font:getHeight()/2,
+            letter = button.text:sub(j,j),
+            speed = math.random(50,100),
+            done = false
+          })
+        end
+      end
 end
 
 Intro.load = function()
@@ -142,6 +156,19 @@ local function drawVideo()
         love.graphics.setColor(1,1,1)
         drawBtn()
     end
+    if currentVideo == 4 then
+        love.graphics.draw(movie[currentVideo], 150, 0, 0, xIntro, yIntro)
+    end
+    if currentImg == 1 then
+        love.graphics.draw(img[currentImg], 0, 0, 0, xIntro, yIntro)
+    end
+    if currentImg == 2 then
+        love.graphics.draw(img[currentImg], 0, 0, 0, xIntro, yIntro)
+    end
+    if currentImg == 3 then
+        love.graphics.draw(img[currentImg], 0, 0, 0, xIntro, yIntro)
+    end
+    
 end
 
 Intro.draw = function()
