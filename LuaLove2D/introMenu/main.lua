@@ -1,41 +1,35 @@
 Setting = require("Base/setting")
-local gameIntro = require("Base/intro")
-local gameMenu = require("Base/menu")
+local start = require("Base/start")
 
 --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 love.load = function()
     Setting.load()
-    gameIntro.load()
-    --gameMenu.load()
+    start.load()
     --- --- ---
 end
 
 love.update = function(dt)
     Setting.update(dt)
-    gameIntro.update(dt)
-    --gameMenu.update(dt)
+    start.update(dt)
     --- --- ---
 end
 
 love.draw = function()
     Setting.draw()
-    gameIntro.draw()
-    --gameMenu.draw()
+    start.draw()
     --- --- ---
 end
 
 love.keypressed = function(key)
     Setting.keypressed(key)
-    gameIntro.keypressed(key)
-    --gameMenu.keypressed(key)
+    start.keypressed(key)
     --- --- ---
 end
 
 love.mousepressed = function(x, y, button)
     Setting.mousepressed()
-    gameIntro.mousepressed()
-    --gameMenu.mousepressed()
+    start.mousepressed()
     --- --- ---
 end
 
