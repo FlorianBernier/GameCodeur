@@ -222,7 +222,7 @@ end
 function Intro.mousepressed(x, y, button)
     if button == 1 then -- vérifier si le clic est le bouton gauche de la souris
         for i, button in ipairs(buttons) do
-            if x >= button.x and x <= button.x + button.width and y >= button.y and y <= button.y + button.height then
+            if Mouse_x >= button.x and Mouse_x <= button.x + button.width and Mouse_y >= button.y and Mouse_y <= button.y + button.height then
                 if i == 1 then -- si le bouton cliqué est le premier bouton ("CONTINUER")
                     if currentVideo == 3 then
                         showIntro = true
