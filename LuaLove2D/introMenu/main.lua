@@ -1,6 +1,6 @@
-Setting = require("base/setting")
-local gameIntro = require("base/intro")
-local gameMenu = require("base/menu")
+Setting = require("Base/setting")
+local gameIntro = require("Base/intro")
+local gameMenu = require("Base/menu")
 
 --- --- --- --- --- --- --- --- --- --- --- --- ---
 
