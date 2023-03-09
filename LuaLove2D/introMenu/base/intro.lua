@@ -1,38 +1,33 @@
-local intro = {}
+local gameIntro = {}
 
-intro.load = function()
+
+
+
+gameIntro.load = function()
     Setting.load()
     --- --- ---
 end
 
-intro.update = function(dt)
+gameIntro.update = function(dt)
     Setting.update(dt)
     --- --- ---
 end
 
-intro.draw = function()
+gameIntro.draw = function()
     Setting.draw()
     --- --- ---
 end
 
-intro.keypressed = function(key)
+gameIntro.keypressed = function(key)
     Setting.keypressed(key)
     --- --- ---
 end
 
-intro.mousepressed = function(x, y, button)
+gameIntro.mousepressed = function(x, y, button)
     Setting.mousepressed()
     --- --- ---
 end
 
 
 
-
-
-
-
-
-
-
-
-return intro
+return gameIntro
