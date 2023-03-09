@@ -2,6 +2,10 @@ local gameMenu = {}
 
 local movieMenu = love.graphics.newVideo("movie/menu/gameMenu.ogv")
 local soundMenu = love.audio.newSource("sound/menu/gameMenu.wav", "stream")
+
+local movieW, movieH = movieMenu:getDimensions()
+local introX = 800 / movieW
+local introY = 600 / movieH
 local playVideo = false
 
 gameMenu.load = function()

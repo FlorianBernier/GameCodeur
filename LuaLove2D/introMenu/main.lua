@@ -7,35 +7,35 @@ local gameMenu = require("Base/menu")
 love.load = function()
     Setting.load()
     gameIntro.load()
-    gameMenu.load()
+    --gameMenu.load()
     --- --- ---
 end
 
 love.update = function(dt)
     Setting.update(dt)
     gameIntro.update(dt)
-    gameMenu.update(dt)
+    --gameMenu.update(dt)
     --- --- ---
 end
 
 love.draw = function()
     Setting.draw()
     gameIntro.draw()
-    gameMenu.draw()
+    --gameMenu.draw()
     --- --- ---
 end
 
 love.keypressed = function(key)
     Setting.keypressed(key)
     gameIntro.keypressed(key)
-    gameMenu.keypressed(key)
+    --gameMenu.keypressed(key)
     --- --- ---
 end
 
 love.mousepressed = function(x, y, button)
     Setting.mousepressed()
     gameIntro.mousepressed()
-    gameMenu.mousepressed()
+    --gameMenu.mousepressed()
     --- --- ---
 end
 
