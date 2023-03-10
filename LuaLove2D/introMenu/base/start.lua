@@ -3,7 +3,7 @@ local start = {}
 local gameIntro = require("Base/start/intro")
 local gameMenu = require("Base/start/menuPrincipal")
 
-local spacePressed = false
+start.spacePressed = false
 
 start.load = function()
     gameIntro.load()
@@ -11,15 +11,15 @@ start.load = function()
 end
 
 start.update = function(dt)
-    if not spacePressed then
+    if not start.spacePressed then
         gameIntro.update(dt)
     else
         gameMenu.update(dt)
     end
 end
 
-start.draw = function()
-    if not spacePressed then
+start.draw = function(f)
+    if not start.spacePressed then
         gameIntro.draw()
     else
         gameMenu.draw()
@@ -29,13 +29,14 @@ end
 start.keypressed = function(key)
     gameMenu.keypressed(key)
     if key == "space" then
-        spacePressed = true
+        start.spacePressed = true
         gameIntro.movieIntro[gameIntro.currentMovie]:pause()
     end
 end
 
 start.mousepressed = function(x, y, button)
-    gameMenu.mousepressed()
+    gameMenu.mousepressed(x, y, button)
+
 end
 
 return start

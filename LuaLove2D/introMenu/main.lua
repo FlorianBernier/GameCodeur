@@ -28,8 +28,8 @@ love.keypressed = function(key)
 end
 
 love.mousepressed = function(x, y, button)
-    Setting.mousepressed()
-    start.mousepressed()
+    Setting.mousepressed(x, y, button)
+    start.mousepressed(x, y, button)
     --- --- ---
 end
 

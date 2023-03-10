@@ -1,22 +1,28 @@
 local gameMenuPrincipal = {}
 
+local continuer = require("Base/start/menu/continuer")
+local nouvelleHistoire = require("Base/start/menu/nouvelleHistoire")
+local chapitres = require("Base/start/menu/chapitres")
+local options = require("Base/start/menu/options")
+local suplements = require("Base/start/menu/suplements")
+
 gameMenuPrincipal.movieMenu = love.graphics.newVideo("movie/menu/gameMenuPrincipal.ogv")
 gameMenuPrincipal.soundMenu = love.audio.newSource("sound/menu/gameMenuPrincipal.wav", "stream")
+gameMenuPrincipal.on = true
+gameMenuPrincipal.play = false
 
 gameMenuPrincipal.btn = {
-    {text = "CONTINUER", x=75, y=75, w=200, h=50},
-    {text = "NOUVELLE HISTOIRE", x=175, y=175, w=200, h=50},
-    {text = "CHAPITRES", x=275, y=275, w=200, h=50},
-    {text = "OPTIONS", x=375, y=375, w=200, h=50},
-    {text = "SUPPLEMENTS", x=475, y=475, w=200, h=50}
+    {text = "CONTINUER", x=75, y=75, w=200, h=50, on = false},
+    {text = "NOUVELLE HISTOIRE", x=175, y=175, w=200, h=50, on = false},
+    {text = "CHAPITRES", x=275, y=275, w=200, h=50, on = false},
+    {text = "OPTIONS", x=375, y=375, w=200, h=50, on = false},
+    {text = "SUPPLEMENTS", x=475, y=475, w=200, h=50, on = false}
 }
 local font = love.graphics.newFont(15)
 
 local movieW, movieH = gameMenuPrincipal.movieMenu:getDimensions()
 local introX = 800 / movieW
 local introY = 600 / movieH
-local playVideo = false
-
 
 
 gameMenuPrincipal.load = function()
@@ -25,26 +31,93 @@ end
 gameMenuPrincipal.update = function(dt)
 end
 
-gameMenuPrincipal.draw = function()
-    if playVideo then
+
+local function drawMenuPrincipal()
+    if gameMenuPrincipal.on == true then
+        gameMenuPrincipal.movieMenu:play()
+        gameMenuPrincipal.soundMenu:play()
+
         love.graphics.draw(gameMenuPrincipal.movieMenu, 0, 0, 0, introX, introY)
+        for i = 1, #gameMenuPrincipal.btn do
+            local v = gameMenuPrincipal.btn[i]
+            love.graphics.rectangle("line", v.x, v.y, v.w, v.h)
+            love.graphics.setFont(font)
+            love.graphics.printf(v.text, v.x, v.y + v.h/2 - font:getHeight()/2, v.w, "center")
+        end
     end
-    for i, v in ipairs(gameMenuPrincipal.btn) do
-        love.graphics.rectangle("line", v.x, v.y, v.w, v.h)
-        love.graphics.setFont(font)
-        love.graphics.printf(v.text, v.x, v.y + v.h/2 - font:getHeight()/2, v.w, "center")
+    if gameMenuPrincipal.on == false and gameMenuPrincipal.play == false then
+        gameMenuPrincipal.play = true
+        --gameMenuPrincipal.movieMenu:seek(0)
+        gameMenuPrincipal.movieMenu:pause()
+        --gameMenuPrincipal.soundMenu:seek(0)
+        gameMenuPrincipal.soundMenu:pause()
     end
 end
 
+local function drawMenu()
+    for i = 1, #gameMenuPrincipal.btn do
+        local v = gameMenuPrincipal.btn[i]
+        if v.text == "CONTINUER" and v.on == true then
+            continuer.draw()
+        elseif v.text == "NOUVELLE HISTOIRE" and v.on == true then
+            nouvelleHistoire.draw()
+        elseif v.text == "CHAPITRES" and v.on == true then
+            chapitres.draw()
+        elseif v.text == "OPTIONS" and v.on == true then
+            options.draw()
+        elseif v.text == "SUPPLEMENTS" and v.on == true then
+            suplements.draw()
+        end
+    end
+end
+
+gameMenuPrincipal.draw = function()
+    drawMenuPrincipal()
+    drawMenu()
+end
+
 gameMenuPrincipal.keypressed = function(key)
-    if key == "space" then
-        playVideo = true
-        gameMenuPrincipal.movieMenu:play()
-        gameMenuPrincipal.soundMenu:play()
+    continuer.keypressed(key)
+    chapitres.keypressed(key)
+    if key == "escape" then
+        gameMenuPrincipal.on = true
+        gameMenuPrincipal.play = false
+        for i = 1, #gameMenuPrincipal.btn do
+            local v = gameMenuPrincipal.btn[i]
+            v.on = false
+            print(v.on)
+        end
     end
 end
 
 gameMenuPrincipal.mousepressed = function(x, y, button)
+    for i = button, #gameMenuPrincipal.btn do
+        local v = gameMenuPrincipal.btn[i]
+        if Mouse_x > v.x and Mouse_x < v.x + v.w and Mouse_y > v.y and Mouse_y < v.y + v.h then
+
+            if v.text == "CONTINUER" then
+                gameMenuPrincipal.on = false
+                v.on = true
+                print(v.on)
+            elseif v.text == "NOUVELLE HISTOIRE" then
+                gameMenuPrincipal.on = false
+                v.on = true
+                print(v.on)
+            elseif v.text == "CHAPITRES" then
+                gameMenuPrincipal.on = false
+                v.on = true
+                print(v.on)
+            elseif v.text == "OPTIONS" then
+                gameMenuPrincipal.on = false
+                v.on = true
+                print(v.on)
+            elseif v.text == "SUPPLEMENTS" then
+                gameMenuPrincipal.on = false
+                v.on = true
+                print(v.on)
+            end
+        end
+    end
 end
 
 
