@@ -28,18 +28,21 @@ local introY = 600 / movieH
 
 
 local function loadBtn()
-    for i,button in ipairs(gameMenuPrincipal.btn) do
-        button.letters = {}
-        for j=1,#button.text do
-          table.insert(button.letters, {
-            x = math.random(love.graphics.getWidth()),
-            y = math.random(love.graphics.getHeight()),
-            targetX = button.x + button.w/2 - font:getWidth(button.text)/2 + (j-1)*spaceWidth + font:getWidth(button.text:sub(1,j))-font:getWidth(" ") + (button.text:sub(j,j) == "I" and 2 or 0),
-            targetY = button.y + button.h/2 - font:getHeight()/2,
-            letter = button.text:sub(j,j),
-            speed = math.random(50,100),
-            done = false
-          })
+    if gameMenuPrincipal.on == true then
+        for i = 1, #gameMenuPrincipal.btn do
+            local v = gameMenuPrincipal.btn[i]
+            v.letters = {}
+            for j = 1, #v.text do
+            table.insert(v.letters, {
+                x = math.random(love.graphics.getWidth()),
+                y = math.random(love.graphics.getHeight()),
+                targetX = v.x + v.w/2 - font:getWidth(v.text)/2 + (j-1)*spaceWidth + font:getWidth(v.text:sub(1,j))-font:getWidth(" ") + (v.text:sub(j,j) == "I" and 2 or 0),
+                targetY = v.y + v.h/2 - font:getHeight()/2,
+                letter = v.text:sub(j,j),
+                speed = math.random(50,100),
+                done = false
+            })
+            end
         end
     end
 end
@@ -50,32 +53,35 @@ end
 
 
 local function updateBtn(dt)
-    if spacePressed then -- vérifier si la touche "space" a été enfoncée
-        for i,button in ipairs(gameMenuPrincipal.btn) do
-          for j,letter in ipairs(button.letters) do
-            if not letter.done then
-              local dx = letter.targetX - letter.x
-              local dy = letter.targetY - letter.y
-              local distance = math.sqrt(dx*dx + dy*dy)
-              local nx = dx/distance
-              local ny = dy/distance
-              local moveDistance = letter.speed * dt
-              if moveDistance > distance then
-                letter.x = letter.targetX
-                letter.y = letter.targetY
-                letter.done = true
-              else
-                letter.x = letter.x + nx * moveDistance
-                letter.y = letter.y + ny * moveDistance
-              end
-              if letter.letter == "I" then
-                letter.x = letter.x + 0.1
+    if gameMenuPrincipal.on == true then
+        if spacePressed then
+            for i = 1, #gameMenuPrincipal.btn do
+                local v = gameMenuPrincipal.btn[i]
+                for j,letter in ipairs(v.letters) do
+                    if not letter.done then
+                    local dx = letter.targetX - letter.x
+                    local dy = letter.targetY - letter.y
+                    local distance = math.sqrt(dx*dx + dy*dy)
+                    local nx = dx/distance
+                    local ny = dy/distance
+                    local moveDistance = letter.speed * dt
+                    if moveDistance > distance then
+                        letter.x = letter.targetX
+                        letter.y = letter.targetY
+                        letter.done = true
+                    else
+                        letter.x = letter.x + nx * moveDistance
+                        letter.y = letter.y + ny * moveDistance
+                    end
+                    if letter.letter == "I" then
+                        letter.x = letter.x + 0.1
+                        end
+                    end
                 end
             end
-          end
         end
-      end
-  end
+    end
+end
 
 gameMenuPrincipal.update = function(dt)
     updateBtn(dt)
@@ -86,8 +92,8 @@ local function drawMenuPrincipal()
     if gameMenuPrincipal.on == true then
         gameMenuPrincipal.movieMenu:play()
         gameMenuPrincipal.soundMenu:play()
-
         love.graphics.draw(gameMenuPrincipal.movieMenu, 0, 0, 0, introX, introY)
+
         for i = 1, #gameMenuPrincipal.btn do
             local v = gameMenuPrincipal.btn[i]
             love.graphics.rectangle("line", v.x, v.y, v.w, v.h)
@@ -157,26 +163,28 @@ end
 
 
 local function selectMenu(x, y, button)
-    for i = button, #gameMenuPrincipal.btn do
-        local v = gameMenuPrincipal.btn[i]
-        if Mouse_x > v.x and Mouse_x < v.x + v.w and Mouse_y > v.y and Mouse_y < v.y + v.h then
-            gameMenuPrincipal.movieMenu:seek(0)
-            gameMenuPrincipal.soundMenu:seek(0)
-            if v.text == "CONTINUER" then
-                gameMenuPrincipal.on = false
-                v.on = true
-            elseif v.text == "NOUVELLE HISTOIRE" then
-                gameMenuPrincipal.on = false
-                v.on = true
-            elseif v.text == "CHAPITRES" then
-                gameMenuPrincipal.on = false
-                v.on = true
-            elseif v.text == "OPTIONS" then
-                gameMenuPrincipal.on = false
-                v.on = true
-            elseif v.text == "SUPPLEMENTS" then
-                gameMenuPrincipal.on = false
-                v.on = true
+    if gameMenuPrincipal.on == true then
+        for i = button, #gameMenuPrincipal.btn do
+            local v = gameMenuPrincipal.btn[i]
+            if Mouse_x > v.x and Mouse_x < v.x + v.w and Mouse_y > v.y and Mouse_y < v.y + v.h then
+                gameMenuPrincipal.movieMenu:seek(0)
+                gameMenuPrincipal.soundMenu:seek(0)
+                if v.text == "CONTINUER" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                elseif v.text == "NOUVELLE HISTOIRE" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                elseif v.text == "CHAPITRES" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                elseif v.text == "OPTIONS" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                elseif v.text == "SUPPLEMENTS" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                end
             end
         end
     end
