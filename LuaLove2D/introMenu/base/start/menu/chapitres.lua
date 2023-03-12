@@ -21,6 +21,7 @@ end
 menuChapitres.keypressed = function(key)
     if key == "escape" then
         menuChapitres.soundMenu:pause()
+        menuChapitres.soundMenu:seek(0)
     end
 end
 

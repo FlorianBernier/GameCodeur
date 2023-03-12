@@ -1,5 +1,8 @@
 local menuNouvelleHistoire = {}
 
+menuNouvelleHistoire.imageMenu = love.graphics.newImage("image/menu/nouvelleHistoire.png")
+menuNouvelleHistoire.soundMenu = love.graphics.newSource("sound/menu/nouvelleHistoire.png")
+
 menuNouvelleHistoire.load = function()
 end
 

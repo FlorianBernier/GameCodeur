@@ -47,9 +47,7 @@ local function drawMenuPrincipal()
     end
     if gameMenuPrincipal.on == false and gameMenuPrincipal.play == false then
         gameMenuPrincipal.play = true
-        --gameMenuPrincipal.movieMenu:seek(0)
         gameMenuPrincipal.movieMenu:pause()
-        --gameMenuPrincipal.soundMenu:seek(0)
         gameMenuPrincipal.soundMenu:pause()
     end
 end
@@ -76,48 +74,53 @@ gameMenuPrincipal.draw = function()
     drawMenu()
 end
 
-gameMenuPrincipal.keypressed = function(key)
-    continuer.keypressed(key)
-    chapitres.keypressed(key)
+
+local function returnMenuPrincipal(key)
     if key == "escape" then
         gameMenuPrincipal.on = true
         gameMenuPrincipal.play = false
         for i = 1, #gameMenuPrincipal.btn do
             local v = gameMenuPrincipal.btn[i]
             v.on = false
-            print(v.on)
+        end
+    end
+end
+
+gameMenuPrincipal.keypressed = function(key)
+    returnMenuPrincipal(key)
+    continuer.keypressed(key)
+    chapitres.keypressed(key)
+end
+
+
+local function selectMenu(x, y, button)
+    for i = button, #gameMenuPrincipal.btn do
+        local v = gameMenuPrincipal.btn[i]
+        if Mouse_x > v.x and Mouse_x < v.x + v.w and Mouse_y > v.y and Mouse_y < v.y + v.h then
+            gameMenuPrincipal.movieMenu:seek(0)
+            gameMenuPrincipal.soundMenu:seek(0)
+            if v.text == "CONTINUER" then
+                gameMenuPrincipal.on = false
+                v.on = true
+            elseif v.text == "NOUVELLE HISTOIRE" then
+                gameMenuPrincipal.on = false
+                v.on = true
+            elseif v.text == "CHAPITRES" then
+                gameMenuPrincipal.on = false
+                v.on = true
+            elseif v.text == "OPTIONS" then
+                gameMenuPrincipal.on = false
+                v.on = true
+            elseif v.text == "SUPPLEMENTS" then
+                gameMenuPrincipal.on = false
+                v.on = true
+            end
         end
     end
 end
 
 gameMenuPrincipal.mousepressed = function(x, y, button)
-    for i = button, #gameMenuPrincipal.btn do
-        local v = gameMenuPrincipal.btn[i]
-        if Mouse_x > v.x and Mouse_x < v.x + v.w and Mouse_y > v.y and Mouse_y < v.y + v.h then
-
-            if v.text == "CONTINUER" then
-                gameMenuPrincipal.on = false
-                v.on = true
-                print(v.on)
-            elseif v.text == "NOUVELLE HISTOIRE" then
-                gameMenuPrincipal.on = false
-                v.on = true
-                print(v.on)
-            elseif v.text == "CHAPITRES" then
-                gameMenuPrincipal.on = false
-                v.on = true
-                print(v.on)
-            elseif v.text == "OPTIONS" then
-                gameMenuPrincipal.on = false
-                v.on = true
-                print(v.on)
-            elseif v.text == "SUPPLEMENTS" then
-                gameMenuPrincipal.on = false
-                v.on = true
-                print(v.on)
-            end
-        end
-    end
+    selectMenu(x, y, button)
 end
 
 
