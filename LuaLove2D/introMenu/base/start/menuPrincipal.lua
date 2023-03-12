@@ -89,6 +89,7 @@ end
 gameMenuPrincipal.keypressed = function(key)
     returnMenuPrincipal(key)
     continuer.keypressed(key)
+    nouvelleHistoire.keypressed(key)
     chapitres.keypressed(key)
 end
 
