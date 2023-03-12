@@ -92,6 +92,7 @@ gameMenuPrincipal.keypressed = function(key)
     nouvelleHistoire.keypressed(key)
     chapitres.keypressed(key)
     options.keypressed(key)
+    suplements.keypressed(key)
 end
 
 
