@@ -16,7 +16,8 @@ gameMenuPrincipal.btn = {
     {text = "NOUVELLE HISTOIRE", x=175, y=175, w=200, h=50, on = false},
     {text = "CHAPITRES", x=275, y=275, w=200, h=50, on = false},
     {text = "OPTIONS", x=375, y=375, w=200, h=50, on = false},
-    {text = "SUPPLEMENTS", x=475, y=475, w=200, h=50, on = false}
+    {text = "SUPPLEMENTS", x=475, y=475, w=200, h=50, on = false},
+    {text = "QUITTER", x=0, y=550, w=100, h=50, on = false},
 }
 local font = love.graphics.newFont(15)
 local spacePressed = false
@@ -184,6 +185,10 @@ local function selectMenu(x, y, button)
                 elseif v.text == "SUPPLEMENTS" then
                     gameMenuPrincipal.on = false
                     v.on = true
+                elseif v.text == "QUITTER" then
+                    gameMenuPrincipal.on = false
+                    v.on = true
+                    love.event.quit()
                 end
             end
         end
