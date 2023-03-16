@@ -10,8 +10,15 @@ namespace Heritage
     {
         static void Main(string[] args)
         {
-            Personnage monPerso = new Barbare("Conan");
-            Console.WriteLine("Le nom du personnage est "+ monPerso.Name);
+            Barbare monBarbare = new Barbare("Conan");
+            Console.WriteLine("Le nom du personnage est "+ monBarbare.Name);
+
+            Console.WriteLine("=====================================");
+
+            Druide monDruide = new Druide("Soa");
+            Console.WriteLine("Le nom du personnage est " + monDruide.Name);
+            monDruide.CastSpell("Heal");
+
             Console.ReadKey();
         }
     }
