@@ -16,7 +16,7 @@ namespace TemplateMonogame
             Content.RootDirectory = "Content";
         }
 
-        // Fonction appelée une fois pour initialiser le jeu
+        // Fonction appelée une fois pour initialiser le jeu toto
         protected override void Initialize()
         {
             // TODO: Ajoutez ici votre code d'initialisation
