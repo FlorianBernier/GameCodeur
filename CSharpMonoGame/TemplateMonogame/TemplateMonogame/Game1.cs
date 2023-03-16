@@ -24,7 +24,7 @@ namespace TemplateMonogame
             base.Initialize();
         }
 
-        // Fonction appelée une seule fois pour charger le contenu du jeu
+        // Fonction appelée une seule fois pour charger le contenu du jeu test 14
         protected override void LoadContent()
         {
             // Crée un nouveau SpriteBatch, qui sera utilisé pour afficher des images (textures)
