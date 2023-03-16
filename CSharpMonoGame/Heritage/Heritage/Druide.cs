@@ -15,7 +15,12 @@ namespace Heritage
         public Druide(string pName) : base(pName)
         {
             Console.WriteLine("Je suis un nouveau Druide !");
-            DePDV = "1D8";
+            DePv = "1D8";
+        }
+
+        public override void attack()
+        {
+            Console.WriteLine("Je suis un Druide et j'attaque !");
         }
     }
 }

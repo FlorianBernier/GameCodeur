@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Heritage
 {
-    internal class Personnage
+    abstract class Personnage
     {
         public string Name { get; set; }
         public int TotalPv { get; set; }
@@ -20,6 +20,9 @@ namespace Heritage
             TotalPv = 0;
             Console.WriteLine(TotalPv);
         }
+
+        public abstract void attack();
+
 
     }
 }

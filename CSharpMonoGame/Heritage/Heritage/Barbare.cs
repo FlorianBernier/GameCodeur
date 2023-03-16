@@ -11,7 +11,11 @@ namespace Heritage
         public Barbare(string pName) : base(pName)
         {
             Console.WriteLine("Je suis un nouveau Barbare !");
-            DePDV = "1D12";
+            DePv = "1D12";
+        }
+        public override void attack()
+        {
+            Console.WriteLine("Je suis un Barbare et j'attaque !");
         }
     }
 }

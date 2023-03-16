@@ -12,12 +12,17 @@ namespace Heritage
         {
             Barbare monBarbare = new Barbare("Conan");
             Console.WriteLine("Le nom du personnage est "+ monBarbare.Name);
+            monBarbare.attack();
 
             Console.WriteLine("=====================================");
 
             Druide monDruide = new Druide("Soa");
             Console.WriteLine("Le nom du personnage est " + monDruide.Name);
             monDruide.CastSpell("Heal");
+            monDruide.attack();
+
+
+            Console.WriteLine("=====================================");
 
             Console.ReadKey();
         }
