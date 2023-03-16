@@ -13,7 +13,7 @@ local lander = {
     engineOn = true
 }
 
------LOAD----- : ACTION DU JEU AU DEMARAGE
+-----LOAD----- : ACTION DU JEU AU DEMARAGE test 12
 function love.load()
     largeur = love.graphics.getWidth()
     hauteur = love.graphics.getHeight()
