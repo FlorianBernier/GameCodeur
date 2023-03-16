@@ -17,11 +17,14 @@ namespace Heritage
             Console.WriteLine("Je suis un nouveau Personnage, mon nom est "+ pName);
             DePv = "";
             Name = pName;
-            TotalPv = 0;
+            TotalPv = -1;
             Console.WriteLine(TotalPv);
         }
 
-        public abstract void attack();
+        public virtual void attack()
+        {
+            Console.WriteLine("Initialisation attack");
+        }
 
 
     }

@@ -20,6 +20,7 @@ namespace Heritage
 
         public override void attack()
         {
+            base.attack();
             Console.WriteLine("Je suis un Druide et j'attaque !");
         }
     }
