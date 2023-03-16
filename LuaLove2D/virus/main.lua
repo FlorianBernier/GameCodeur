@@ -11,6 +11,7 @@ local sim = {
   infectedTime = 5
 
 }
+-- test 
 local listIndividus = {}
 
 function createIndividu(px, py, pState)
