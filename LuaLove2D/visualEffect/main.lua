@@ -29,7 +29,7 @@ local function mousepressed_get_pos()
         print(love.mouse.getPosition())
     end
 end
---- --- --- --- --- --- --- --- --- --- --- --- ---
+--- --- --- --- --- --- --- --- --- --- --- --- --- toto
 
 local mask_shader = love.graphics.newShader[[
    vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
