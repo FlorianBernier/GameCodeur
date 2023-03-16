@@ -8,15 +8,17 @@ namespace Heritage
 {
     internal class Personnage
     {
-        public string Name;
-        public int TotalPDV;
-        protected string DePDV;
+        public string Name { get; set; }
+        public int TotalPv { get; set; }
+        public string DePv { get; protected set; }
 
         public Personnage(string pName)
         {
             Console.WriteLine("Je suis un nouveau Personnage, mon nom est "+ pName);
-            DePDV = "";
+            DePv = "";
             Name = pName;
+            TotalPv = 0;
+            Console.WriteLine(TotalPv);
         }
 
     }
