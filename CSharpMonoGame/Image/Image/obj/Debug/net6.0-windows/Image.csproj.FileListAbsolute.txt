@@ -36,3 +36,4 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Image\Image\obj\
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Image\Image\obj\Debug\net6.0-windows\Image.pdb
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Image\Image\obj\Debug\net6.0-windows\Image.genruntimeconfig.cache
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Image\Image\obj\Debug\net6.0-windows\ref\Image.dll
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Image\Image\bin\Debug\net6.0-windows\Content\slimePurple.xnb
