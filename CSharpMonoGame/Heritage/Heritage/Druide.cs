@@ -14,7 +14,7 @@ namespace Heritage
         }
         public Druide(string pName) : base(pName)
         {
-            Console.WriteLine("Je suis un nouveau Druide !");
+            Console.WriteLine("Je suis un nouveau n Druide !");
             DePv = "1D8";
         }
 

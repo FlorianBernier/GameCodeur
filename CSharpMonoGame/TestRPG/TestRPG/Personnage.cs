@@ -55,7 +55,7 @@ namespace TestRPG
 
         public override string ToString()
         {
-            string s;
+            string s;  
 
             s = "Personnage " + Nom;
             s += "\n=========================\n";
