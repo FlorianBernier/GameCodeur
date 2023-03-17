@@ -20,7 +20,7 @@ namespace Image
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // TODO: Ajoutez ici votre code
             position = new Vector2 (100, 100);
 
             base.Initialize();
@@ -30,7 +30,7 @@ namespace Image
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // TODO: Ajoutez ici votre code
             img = this.Content.Load<Texture2D>("personnage");
         }
 
@@ -39,7 +39,7 @@ namespace Image
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // TODO: Ajoutez ici votre code
 
             base.Update(gameTime);
         }
@@ -48,7 +48,7 @@ namespace Image
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            // TODO: Ajoutez ici votre code
             _spriteBatch.Begin();
             _spriteBatch.Draw(img, position, Color.White);
             _spriteBatch.End();
