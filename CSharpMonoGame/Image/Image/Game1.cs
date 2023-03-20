@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct2D1.Effects;
 
 namespace Image
 {
@@ -15,6 +16,8 @@ namespace Image
         Texture2D img2;
         Vector2 position2;
         int speed2;
+        float scale;
+        float scaleSpeed;
 
         public Game1()
         {
@@ -27,9 +30,12 @@ namespace Image
         {
             // TODO: Ajoutez ici votre code
             position = new Vector2 (100, 0);
-            position2 = new Vector2(100, 200);
             speed = 5;
+
+            position2 = new Vector2(100, 200);
             speed2 = 5;
+            scale = 1.0f;
+            scaleSpeed = -0.01f;
 
             base.Initialize();
         }
@@ -69,6 +75,18 @@ namespace Image
                 speed2 = 0 - speed2;
             }
 
+            scaleSpeed += scaleSpeed;
+            if (scale <= 0.5f)
+            {
+                scale = 0.5f;
+                scaleSpeed = 0 - scaleSpeed;
+            }
+            if (scale > 1.0f)
+            {
+                scale = 1.0f;
+                scaleSpeed = 0 - scaleSpeed; 
+            }
+
 
             base.Update(gameTime);
         }
@@ -84,7 +102,7 @@ namespace Image
             effect = SpriteEffects.None;
             if (speed2 > 0)
                 effect = SpriteEffects.FlipHorizontally;
-            _spriteBatch.Draw(img2, position2, null, Color.White, 0, Vector2.Zero, 1.0f, effect, 0);
+            _spriteBatch.Draw(img2, position2, null, Color.White, 0, Vector2.Zero, new Vector2(scale, 1.0f), effect, 0);
             _spriteBatch.End();
 
             base.Draw(gameTime);
