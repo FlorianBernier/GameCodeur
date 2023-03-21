@@ -30,6 +30,7 @@ namespace FullScreen
             Content.RootDirectory = "Content";
         }
 
+
         private void InitializeFullScreen()
         {
             PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
@@ -49,6 +50,7 @@ namespace FullScreen
             base.Initialize();
         }
 
+
         private void LoadFullScreen()
         {
             imgTemplateBG = Content.Load<Texture2D>("Template800x480");
@@ -65,18 +67,13 @@ namespace FullScreen
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // TODO: Ajoutez ici votre code
             render.Dispose();
         }
 
-        protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
 
-            // TODO: Add your update logic here
+        private void UpdateFullScreen()
+        {
             KeyboardState state = Keyboard.GetState();
 
             if (state.IsKeyDown(Keys.F3) && !previousState.IsKeyDown(Keys.F3))
@@ -118,30 +115,22 @@ namespace FullScreen
             }
 
             previousState = state;
+        }
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
+            UpdateFullScreen();
+            // TODO: Ajoutez ici votre code
 
             base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime)
+
+        private void DrawFullScreen()
         {
-            // TODO: Add your drawing code here
-
-            GraphicsDevice.SetRenderTarget(render);
-
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            _spriteBatch.Begin();
-
-            // ===================
-            // Draw your game here
-            // ===================
-
-            _spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
-
-            // ===================
-
-            _spriteBatch.End();
-
             GraphicsDevice.SetRenderTarget(null);
 
             // Now, we draw the render target on the screen
@@ -165,7 +154,7 @@ namespace FullScreen
                 }
             }
 
-            Rectangle dst = new Rectangle(marginH,marginV,(int)(TargetWidth*ratio),(int)(TargetHeight*ratio));
+            Rectangle dst = new Rectangle(marginH, marginV, (int)(TargetWidth * ratio), (int)(TargetHeight * ratio));
 
             if (!bSampling)
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
@@ -178,14 +167,27 @@ namespace FullScreen
             // Up - Left
             _spriteBatch.Draw(imgMark, Vector2.Zero, null, Color.White);
             // Up - Right
-            _spriteBatch.Draw(imgMark, new Vector2(Window.ClientBounds.Width-imgMark.Width,0), null, Color.White);
+            _spriteBatch.Draw(imgMark, new Vector2(Window.ClientBounds.Width - imgMark.Width, 0), null, Color.White);
             // Down - Left
             _spriteBatch.Draw(imgMark, new Vector2(0, Window.ClientBounds.Height - imgMark.Height), null, Color.White);
             // Down - Right
             _spriteBatch.Draw(imgMark, new Vector2(Window.ClientBounds.Width - imgMark.Width, Window.ClientBounds.Height - imgMark.Height), null, Color.White);
 
             _spriteBatch.End();
+        }
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.SetRenderTarget(render);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            // TODO: Ajoutez ici votre code
+            _spriteBatch.Begin();
+            
+            //_spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
+
+            _spriteBatch.End();
+
+            DrawFullScreen();
             base.Draw(gameTime);
         }
     }
