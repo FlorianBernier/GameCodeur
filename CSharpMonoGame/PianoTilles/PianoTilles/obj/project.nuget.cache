@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ol70A7PQntVfQeGoIICyxSRwOLuPCWD0Uj3gwSLFezWBv+g1hlvlI3mjd+trpz53aNMk2tGPASChCbkN9heS3Q==",
+  "dgSpecHash": "NEAPjNm/fMc78YXz5ANZkzpqLvlmuLf19r/VIqNvFC505rwFndxJvmWbltfEaFYQBGkVoqmDFKrvuRKf8/ht3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTilles.csproj",
+  "projectFilePath": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTiles.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flori\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",

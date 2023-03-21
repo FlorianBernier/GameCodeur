@@ -7530,9 +7530,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTilles.csproj",
-      "projectName": "PianoTilles",
-      "projectPath": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTilles.csproj",
+      "projectUniqueName": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTiles.csproj",
+      "projectName": "PianoTiles",
+      "projectPath": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\PianoTiles.csproj",
       "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\flori\\Documents\\Projects\\GIT\\GameCodeur\\CSharpMonoGame\\PianoTilles\\PianoTilles\\obj\\",
       "projectStyle": "PackageReference",
