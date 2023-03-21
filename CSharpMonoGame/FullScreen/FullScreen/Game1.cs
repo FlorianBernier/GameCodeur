@@ -30,39 +30,39 @@ namespace FullScreen
             Content.RootDirectory = "Content";
         }
 
-        protected override void Initialize()
+        private void InitializeFullScreen()
         {
-            // TODO: Add your initialization logic here
             PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
             render = new RenderTarget2D(graphics.GraphicsDevice,
                 TargetWidth, TargetHeight,
-                false, 
+                false,
                 SurfaceFormat.Color,
                 DepthFormat.None,
                 pp.MultiSampleCount,
                 RenderTargetUsage.DiscardContents);
+        }
+        protected override void Initialize()
+        {
+            InitializeFullScreen();
+            // TODO: Ajoutez ici votre code
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
+        private void LoadFullScreen()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
             imgTemplateBG = Content.Load<Texture2D>("Template800x480");
             imgMark = Content.Load<Texture2D>("mark");
         }
+        protected override void LoadContent()
+        {
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            LoadFullScreen();
+            // TODO: Ajoutez ici votre code
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+        }
+
+
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
