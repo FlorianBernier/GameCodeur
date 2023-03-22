@@ -12,12 +12,9 @@ namespace FullScreen
 
         RenderTarget2D render;
         bool bSampling = false;
-
         Texture2D imgTemplateBG;
         Texture2D imgMark;
-
         KeyboardState previousState;
-
         int TargetWidth = 800;
         int TargetHeight = 480;
 
