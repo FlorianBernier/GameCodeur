@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,23 +12,41 @@ namespace GameCodeur
 {
     class SceneGamePlay : Scene
     {
+        private KeyboardState oldKBS;
+
+
         public SceneGamePlay(MainGame pGame) : base(pGame)
         {
-            Debug.WriteLine("New SceneMenu");
+
         }
 
         public override void Load()
         {
-            Debug.WriteLine("SceneMenu.Load");
+            oldKBS = Keyboard.GetState();
             base.Load();
         }
         public override void Unload()
         {
-            Debug.WriteLine("SceneMenu.Unload");
             base.Unload();
         }
         public override void Update(GameTime gameTime)
         {
+            KeyboardState newKBS = Keyboard.GetState();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                Debug.WriteLine("Accerelation on Gameplay");
+            }
+
+            if (newKBS.IsKeyDown(Keys.Z) && !oldKBS.IsKeyDown(Keys.Z))
+            {
+                Debug.WriteLine("Z on Gameplay !");
+            }
+
+
+
+            oldKBS = newKBS;
+
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)

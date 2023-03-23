@@ -22,7 +22,7 @@ namespace Template
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            gameState.ChangeScene(GameState.SceneType.GamePlay);
+            gameState.ChangeScene(GameState.SceneType.Menu);
 
             base.Initialize();
         }
@@ -32,6 +32,7 @@ namespace Template
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
             AssetManager.Load(Content);
         }
 
