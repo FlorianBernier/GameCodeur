@@ -4,9 +4,21 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/button.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/cool.mp3</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/explode.wav</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/mainfont.spritefont</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/meteor.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/ship.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Template/Template/Content/techno.mp3</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

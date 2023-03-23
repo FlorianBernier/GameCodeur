@@ -69,12 +69,7 @@ namespace GameCodeur
         }
         public override void Draw(GameTime gameTime)
         {
-            mainGame.spriteBatch.Begin();
-
             mainGame.spriteBatch.DrawString(AssetManager.MainFont, "This is the menu !", new Vector2(1,1), Color.White);
-
-            mainGame.spriteBatch.End();
-
 
             base.Draw(gameTime);
         }

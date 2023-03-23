@@ -36,3 +36,11 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Templat
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\obj\Debug\net6.0-windows\Template.genruntimeconfig.cache
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\obj\Debug\net6.0-windows\ref\Template.dll
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\mainfont.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\button.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\cool.wma
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\cool.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\explode.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\meteor.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\ship.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\techno.wma
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Template\Template\bin\Debug\net6.0-windows\Content\techno.xnb

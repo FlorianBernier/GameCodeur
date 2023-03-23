@@ -32,12 +32,7 @@ namespace GameCodeur
         }
         public override void Draw(GameTime gameTime)
         {
-            mainGame.spriteBatch.Begin();
-
             mainGame.spriteBatch.DrawString(AssetManager.MainFont, "GAME OVER !", new Vector2(1, 1), Color.White);
-
-            mainGame.spriteBatch.End();
-
 
             base.Draw(gameTime);
         }

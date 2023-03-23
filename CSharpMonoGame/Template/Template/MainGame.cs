@@ -54,11 +54,17 @@ namespace Template
         {
             GraphicsDevice.Clear(Color.Black);
 
+
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+
             if (gameState.CurrentScene != null)
             {
                 gameState.CurrentScene.Draw(gameTime);
             }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -13,6 +13,8 @@ namespace GameCodeur
         // IActor
         public Vector2 Position { get; set; }
         public Rectangle BoudingBox { get; set; }
+        public float vx;
+        public float vy;
 
         // Sprite
         public Texture2D Texture { get; }
@@ -20,9 +22,17 @@ namespace GameCodeur
         {
             Texture = pTexture;
         }
+        
+        public void Move(float pX, float pY)
+        {
+            Position = new Vector2(Position.X + pX, Position.Y + pY);
+        }
+
         public void Update(GameTime pGameTime)
         {
-           BoudingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+            Move(vx, vy);
+            BoudingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+
         }
 
         public void Draw(SpriteBatch pSpriteBatch)
