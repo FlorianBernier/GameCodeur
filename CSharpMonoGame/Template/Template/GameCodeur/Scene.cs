@@ -11,9 +11,11 @@ namespace GameCodeur
     abstract public class Scene
     {
         protected MainGame mainGame;
+        protected List<IActor> listeActor;
         public Scene(MainGame pGame) 
         {
             mainGame = pGame;
+            listeActor = new List<IActor>();
         }
 
         public virtual void Load()
@@ -26,11 +28,17 @@ namespace GameCodeur
         }
         public virtual void Update(GameTime gameTime) 
         {
-        
+            foreach (IActor actor in listeActor) 
+            {
+                actor.Update(gameTime);
+            }
         }
         public virtual void Draw(GameTime gameTime)
         {
-
+            foreach (IActor actor in listeActor)
+            {
+                actor.Draw(mainGame.spriteBatch);
+            }
         }
     }
 }
