@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameCodeur
 {
-    class Sprite : IActor
+    public class Sprite : IActor
     {
         // IActor
         public Vector2 Position { get; set; }
@@ -28,14 +28,14 @@ namespace GameCodeur
             Position = new Vector2(Position.X + pX, Position.Y + pY);
         }
 
-        public void Update(GameTime pGameTime)
+        public virtual void Update(GameTime pGameTime)
         {
             Move(vx, vy);
             BoudingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
         }
 
-        public void Draw(SpriteBatch pSpriteBatch)
+        public virtual void Draw(SpriteBatch pSpriteBatch)
         {
             pSpriteBatch.Draw(Texture, Position, Color.White);
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,29 @@ namespace GameCodeur
     {
         KeyboardState oldKBS;
         GamePadState oldGPS;
+        private Button MyButton;
         public SceneMenu(MainGame pGame) : base(pGame) 
         {
             Debug.WriteLine("New SceneMenu");
         }
 
+        public void onClickPlay(Button pSender)
+        {
+            mainGame.gameState.ChangeScene(GameState.SceneType.GamePlay);
+        }
+
         public override void Load()
         {
             Debug.WriteLine("SceneMenu.Load");
+
+            Rectangle Screen = mainGame.Window.ClientBounds;
+            MyButton = new Button(mainGame.Content.Load<Texture2D>("button"));
+            MyButton.Position = new Vector2((Screen.Width/2) - MyButton.Texture.Width / 2,
+                                            (Screen.Height/2) - MyButton.Texture.Height / 2);
+
+            MyButton.onClick = onClickPlay;
+
+            listeActor.Add(MyButton);
 
             oldKBS = Keyboard.GetState();
             oldGPS = GamePad.GetState(PlayerIndex.One, GamePadDeadZone.IndependentAxes);
