@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -51,16 +52,21 @@ namespace GameCodeur
         private KeyboardState oldKBS;
         private Hero MyShip;
         private Song music;
+        private SoundEffect sndExplode;
 
         public SceneGamePlay(MainGame pGame) : base(pGame)
         {
-            music = AssetManager.MusicGamePlay;
-            MediaPlayer.Play(music);
-            MediaPlayer.IsRepeating = true;
+            
         }
 
         public override void Load()
         {
+            music = AssetManager.MusicGamePlay;
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
+
+            sndExplode = mainGame.Content.Load<SoundEffect>("explode");
+
             oldKBS = Keyboard.GetState();
 
             Rectangle Screen = mainGame.Window.ClientBounds;
@@ -123,6 +129,7 @@ namespace GameCodeur
                         MyShip.TouchedBy(m);
                         m.TouchedBy(MyShip);
                         m.ToRemove = true;
+                        sndExplode.Play();
                     }
                 }
             }
