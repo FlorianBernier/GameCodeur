@@ -18,6 +18,11 @@ namespace GameCodeur
             listeActor = new List<IActor>();
         }
 
+        public void Clean()
+        {
+            listeActor.RemoveAll(item => item.ToRemove == true);
+        }
+
         public virtual void Load()
         {
 

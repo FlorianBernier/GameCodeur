@@ -14,5 +14,7 @@ namespace GameCodeur
         Rectangle BoudingBox { get; }
         void Update(GameTime pGameTime);
         void Draw(SpriteBatch pSpriteBatch);
+        void TouchedBy(IActor pBy);
+        bool ToRemove { get; set; }
     }
 }

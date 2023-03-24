@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +14,18 @@ namespace GameCodeur
 {
     class Hero : Sprite
     {
-        public int Energy;
+        public float Energy;
         public Hero(Texture2D texture2D): base(texture2D)
         {
             Energy = 100;
+        }
+
+        public override void TouchedBy(IActor pBy)
+        {
+            if (pBy is Meteor)
+            {
+                Energy -= 0.1f;
+            }
         }
 
     }
@@ -41,11 +50,13 @@ namespace GameCodeur
     {
         private KeyboardState oldKBS;
         private Hero MyShip;
-
+        private Song music;
 
         public SceneGamePlay(MainGame pGame) : base(pGame)
         {
-
+            music = AssetManager.MusicGamePlay;
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
         }
 
         public override void Load()
@@ -74,6 +85,7 @@ namespace GameCodeur
         }
         public override void Unload()
         {
+            MediaPlayer.Stop();
             base.Unload();
         }
         public override void Update(GameTime gameTime)
@@ -106,8 +118,16 @@ namespace GameCodeur
                         m.vy = 0 - m.vy;
                         m.Position = new Vector2(m.Position.X, Screen.Height - m.BoudingBox.Height);
                     }
+                    if (Util.collideByBox(m, MyShip))
+                    {
+                        MyShip.TouchedBy(m);
+                        m.TouchedBy(MyShip);
+                        m.ToRemove = true;
+                    }
                 }
             }
+
+            Clean();
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
@@ -134,7 +154,7 @@ namespace GameCodeur
         }
         public override void Draw(GameTime gameTime)
         {
-            mainGame.spriteBatch.DrawString(AssetManager.MainFont, "GAME PLAY !", new Vector2(1, 1), Color.White);
+            mainGame.spriteBatch.DrawString(AssetManager.MainFont, "GAME PLAY! "+ MyShip.Energy, new Vector2(1, 1), Color.White);
 
             base.Draw(gameTime);
         }

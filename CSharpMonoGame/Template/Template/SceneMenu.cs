@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,6 +17,7 @@ namespace GameCodeur
         KeyboardState oldKBS;
         GamePadState oldGPS;
         private Button MyButton;
+        private Song music;
         public SceneMenu(MainGame pGame) : base(pGame) 
         {
             Debug.WriteLine("New SceneMenu");
@@ -29,6 +31,10 @@ namespace GameCodeur
         public override void Load()
         {
             Debug.WriteLine("SceneMenu.Load");
+
+            music = mainGame.Content.Load<Song>("cool");
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
 
             Rectangle Screen = mainGame.Window.ClientBounds;
             MyButton = new Button(mainGame.Content.Load<Texture2D>("button"));
@@ -46,6 +52,7 @@ namespace GameCodeur
         public override void Unload()
         {
             Debug.WriteLine("SceneMenu.Unload");
+            MediaPlayer.Stop();
             base.Unload();
         }
         public override void Update(GameTime gameTime)

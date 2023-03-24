@@ -19,5 +19,10 @@ namespace GameCodeur
         {
             return RandomGenerator.Next(pMin, pMax + 1);
         }
+
+        public static bool collideByBox(IActor p1, IActor p2)
+        {
+            return p1.BoudingBox.Intersects(p2.BoudingBox);
+        }
     }
 }

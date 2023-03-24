@@ -15,17 +15,25 @@ namespace GameCodeur
         public Rectangle BoudingBox { get; set; }
         public float vx;
         public float vy;
+        public bool ToRemove {get; set;}
 
         // Sprite
         public Texture2D Texture { get; }
+
         public Sprite(Texture2D pTexture) 
         {
             Texture = pTexture;
+            ToRemove = false;
         }
         
         public void Move(float pX, float pY)
         {
             Position = new Vector2(Position.X + pX, Position.Y + pY);
+        }
+
+        public virtual void TouchedBy(IActor pBy)
+        {
+
         }
 
         public virtual void Update(GameTime pGameTime)
