@@ -24,6 +24,7 @@ namespace FullScreen
             graphics.PreferredBackBufferWidth = TargetWidth;
             graphics.PreferredBackBufferHeight = TargetHeight;
             graphics.IsFullScreen = false;
+            IsMouseVisible = true;
             Content.RootDirectory = "Content";
         }
 
