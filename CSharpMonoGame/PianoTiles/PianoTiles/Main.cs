@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PianoTiles
 {
@@ -27,7 +28,11 @@ namespace PianoTiles
 
         
         int noteSpeed;
-        bool noteClick = false;
+        int noteClick = -1;
+
+        int[] columns = new int[] { 297, 349, 401, 453 }; 
+        int noteSpawnDelay = 300; 
+        int timeSinceLastSpawn = 0;
 
         List<Vector2> notePositions = new List<Vector2>();
 
@@ -50,7 +55,7 @@ namespace PianoTiles
             notePositions.Add(new Vector2(401, -450)); 
             notePositions.Add(new Vector2(453, -525));
 
-            noteSpeed = 1;
+            noteSpeed = 2;
 
             
 
@@ -110,13 +115,22 @@ namespace PianoTiles
                 Rectangle noteRect = new Rectangle((int)notePositions[i].X, (int)notePositions[i].Y, note.Width, note.Height);
                 if (noteRect.Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    noteClick = true;
+                    notePositions.RemoveAt(i);
+                    noteClick = i;
                 }
                 if (notePositions[i].Y >= 480)
                 {
                     notePositions.RemoveAt(i);
                     i--;
                 }
+            }
+
+            timeSinceLastSpawn += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastSpawn >= noteSpawnDelay)
+            {
+                int column = rand.Next(4); // Génère un nombre aléatoire entre 0 et 3
+                notePositions.Add(new Vector2(columns[column], -note.Height));
+                timeSinceLastSpawn = 0;
             }
 
 
@@ -138,18 +152,12 @@ namespace PianoTiles
 
             spriteBatch.Draw(button, new Vector2(50,50), Color.White);
 
-            foreach (Vector2 notePositions in notePositions)
+            if (buttonOn)
             {
-                if (buttonOn)
+                foreach (int i in Enumerable.Range(0, notePositions.Count))
                 {
-                    if (noteClick == false)
-                    {
-                        spriteBatch.Draw(note, notePositions, null, Color.White);
-                    }
-                    else
-                    {
-                        spriteBatch.Draw(noteOn, notePositions, null, Color.White);
-                    }
+                    Vector2 notePosition = notePositions[i];
+                    spriteBatch.Draw(note, notePosition, null, Color.White);
                 }
             }
 
