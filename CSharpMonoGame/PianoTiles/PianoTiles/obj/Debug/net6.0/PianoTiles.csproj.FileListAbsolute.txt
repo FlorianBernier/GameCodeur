@@ -23,3 +23,12 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\Piano
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\obj\Debug\net6.0\PianoTiles.pdb
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\obj\Debug\net6.0\PianoTiles.genruntimeconfig.cache
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\obj\Debug\net6.0\ref\PianoTiles.dll
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\backGround1.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\backGround2.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\backGround3.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\grille.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\note.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\noteClicked.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\pianoTiles1.ogg
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\pianoTiles1.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\PianoTiles\PianoTiles\bin\Debug\net6.0\Content\button.xnb

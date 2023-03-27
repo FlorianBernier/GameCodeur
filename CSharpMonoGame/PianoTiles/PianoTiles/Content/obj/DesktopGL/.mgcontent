@@ -7,11 +7,15 @@
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/backGround1.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/backGround2.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/backGround3.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/button.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/grille.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/note.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/noteClicked.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/PianoTiles/PianoTiles/Content/pianoTiles1.mp3</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

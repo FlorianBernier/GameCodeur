@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:backGround3.png
 
+#begin button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:button.png
+
 #begin grille.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,4 +96,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:noteClicked.png
+
+#begin pianoTiles1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:pianoTiles1.mp3
 
