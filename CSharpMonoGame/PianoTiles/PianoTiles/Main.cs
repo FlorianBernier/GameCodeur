@@ -7,13 +7,14 @@ namespace PianoTiles
     public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private SpriteBatch spriteBatch;
 
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
         }
 
         protected override void Initialize()
@@ -25,7 +26,7 @@ namespace PianoTiles
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -45,6 +46,10 @@ namespace PianoTiles
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
