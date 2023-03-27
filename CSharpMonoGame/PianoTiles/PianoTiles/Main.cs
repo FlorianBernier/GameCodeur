@@ -25,13 +25,13 @@ namespace PianoTiles
         Texture2D note;
         Texture2D noteOn;
 
-        Vector2 notePos;
+        
         int noteSpeed;
         bool noteClick = false;
 
+        List<Vector2> notePositions = new List<Vector2>();
 
 
-        
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -43,10 +43,16 @@ namespace PianoTiles
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            notePos = new Vector2 (297, -300);
-            noteSpeed = 2;
-
             rand = new Random();
+
+            notePositions.Add(new Vector2(297, -300)); 
+            notePositions.Add(new Vector2(349, -375)); 
+            notePositions.Add(new Vector2(401, -450)); 
+            notePositions.Add(new Vector2(453, -525));
+
+            noteSpeed = 1;
+
+            
 
             base.Initialize();
         }
@@ -86,17 +92,31 @@ namespace PianoTiles
 
             if (buttonOn)
             {
-                notePos.Y = notePos.Y + noteSpeed;
-                if (notePos.Y >= 480)
+                for (int i = 0; i < notePositions.Count; i++)
                 {
-                    notePos.Y = 0 + noteSpeed;
+                    notePositions[i] = new Vector2(notePositions[i].X, notePositions[i].Y + noteSpeed);
+                    // Si la note est en dessous de la position 480, on la supprime de la liste
+                    if (notePositions[i].Y >= 480)
+                    {
+                        notePositions.RemoveAt(i);
+                        i--; // Pour s'assurer que la note suivante est bien traitée
+                    }
                 }
             }
 
-            Rectangle noteRectangle = new Rectangle((int)notePos.X, (int)notePos.Y, note.Width, note.Height);
-            if (noteRectangle.Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
+            for (int i = 0; i < notePositions.Count; i++)
             {
-                noteClick = true;
+                notePositions[i] = new Vector2(notePositions[i].X, notePositions[i].Y + noteSpeed);
+                Rectangle noteRect = new Rectangle((int)notePositions[i].X, (int)notePositions[i].Y, note.Width, note.Height);
+                if (noteRect.Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    noteClick = true;
+                }
+                if (notePositions[i].Y >= 480)
+                {
+                    notePositions.RemoveAt(i);
+                    i--;
+                }
             }
 
 
@@ -118,22 +138,22 @@ namespace PianoTiles
 
             spriteBatch.Draw(button, new Vector2(50,50), Color.White);
 
-            if (buttonOn)
+            foreach (Vector2 notePositions in notePositions)
             {
-                if (noteClick == false)
+                if (buttonOn)
                 {
-                    if ((notePos.Y > 0) && (notePos.Y < 480))
+                    if (noteClick == false)
                     {
-                        spriteBatch.Draw(note, notePos, null, Color.White);
+                        spriteBatch.Draw(note, notePositions, null, Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(noteOn, notePositions, null, Color.White);
                     }
                 }
-                else
-                {
-                    spriteBatch.Draw(noteOn, notePos, null, Color.White);
-                }
             }
-            
 
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
