@@ -13,15 +13,20 @@ namespace _3DIsometrique
         List<Texture2D> lstTextures3D;
         TileMap myMap;
         Vector2 map2D_origin;
+        Vector2 map3D_origin;
 
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.ApplyChanges();
 
             myMap = new TileMap();
-            myMap.set2DSize(32, 32);
+            myMap.set2DTileSize(32, 32);
+            myMap.set3DTileSize(64, 32);
 
             int[,] mapData = new int[,]
             {
@@ -39,7 +44,9 @@ namespace _3DIsometrique
 
             myMap.setData(mapData);
 
-            map2D_origin = new Vector2(10, 240 - ((myMap.tileHeight2D * myMap.mapHeight) / 2));
+            map2D_origin = new Vector2(10, (_graphics.PreferredBackBufferHeight/2) - ((myMap.tileHeight2D * myMap.mapHeight) / 2));
+
+            map3D_origin = new Vector2(10 + (myMap.tileHeight2D * myMap.mapWidth) + (myMap.tileWidth3D * (myMap.mapWidth/2)), ((myMap.tileHeight2D * myMap.mapHeight) / 2));
         }
 
         protected override void Initialize()
@@ -65,9 +72,9 @@ namespace _3DIsometrique
 
 
             tx = Content.Load<Texture2D>("stone3D");
-            lstTextures2D.Add(tx);
+            lstTextures3D.Add(tx);
             tx = Content.Load<Texture2D>("dirt3D");
-            lstTextures2D.Add(tx);
+            lstTextures3D.Add(tx);
         }
 
         protected override void Update(GameTime gameTime)
@@ -101,6 +108,29 @@ namespace _3DIsometrique
                         if (tx != null)
                         {
                             pos += map2D_origin;
+                            spriteBatch.Draw(tx, pos, Color.White);
+                        }
+
+                    }
+                }
+            }
+
+            for (int line = 0; line < myMap.mapWidth; line++)
+            {
+                for (int column = 0; column < myMap.mapHeight; column++)
+                {
+                    int id = myMap.getID(line, column);
+                    if (id >= 0)
+                    {
+                        int x = column * myMap.tileWidth2D;
+                        int y = line * myMap.tileHeight2D;
+                        Vector2 pos = new Vector2(x, y);
+                        pos = myMap.To3D(pos);
+                        Texture2D tx = lstTextures3D[id - 1];
+                        // Calcul de la pos en 3D Iso 
+                        if (tx != null)
+                        {
+                            pos += map3D_origin;
                             spriteBatch.Draw(tx, pos, Color.White);
                         }
 

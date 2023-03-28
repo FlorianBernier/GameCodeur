@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace _3DIsometrique
 {
     class TileMap
     {
-         public int mapWidth {  get; set; }
+        public int mapWidth {  get; set; }
         public int mapHeight { get; set; }
         public int tileWidth2D { get; set; }
         public int tileHeight2D { get; set; }
+        public int tileWidth3D { get; set; }
+        public int tileHeight3D { get; set; }
         private int[,] _data;
 
         public TileMap()
@@ -20,10 +23,16 @@ namespace _3DIsometrique
 
         }
 
-        public void set2DSize(int pTileWidth, int pTileHeight)
+        public void set2DTileSize(int pTileWidth, int pTileHeight)
         {
             tileWidth2D = pTileWidth;
             tileHeight2D = pTileHeight;
+        }
+
+        public void set3DTileSize(int pTileWidth, int pTileHeight)
+        {
+            tileWidth3D = pTileWidth;
+            tileHeight3D = pTileHeight;
         }
 
         public void setData(int[,] pArray)
@@ -48,6 +57,13 @@ namespace _3DIsometrique
             }
             Console.WriteLine("ERROR: getID bad parameters");
             return -1;
+        }
+        public Vector2 To3D(Vector2 pCoord2D)
+        {
+            Vector2 newcoord = new Vector2();
+            newcoord.X = pCoord2D.X - pCoord2D.Y;
+            newcoord.Y = (pCoord2D.X + pCoord2D.Y) / 2;
+            return newcoord;
         }
     }
 }
