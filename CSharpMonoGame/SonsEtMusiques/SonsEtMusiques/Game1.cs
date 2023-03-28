@@ -31,9 +31,9 @@ namespace SonsEtMusiques
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: Ajoutez ici votre code
-            //Song myMusic = Content.Load<Song>("cool");
-            //MediaPlayer.IsRepeating = true;
-            //MediaPlayer.Play(myMusic);
+            Song myMusic = Content.Load<Song>("cool");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(myMusic);
 
             SoundEffect mySound = Content.Load<SoundEffect>("sfx_movement_jump13");
             mySound.Play();
