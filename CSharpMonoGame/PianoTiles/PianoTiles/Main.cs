@@ -13,6 +13,7 @@ namespace PianoTiles
         private GraphicsDeviceManager _graphics;
         private SpriteBatch spriteBatch;
         private Random rand;
+        Game mainGame;
 
         Texture2D backGround1;
         Texture2D backGround2;
@@ -21,6 +22,7 @@ namespace PianoTiles
         Texture2D button;
         bool buttonOn = false;
         private Song sound1;
+        public Button myButton;
 
 
         Texture2D note;
@@ -31,7 +33,7 @@ namespace PianoTiles
         int noteClick = -1;
 
         int[] columns = new int[] { 297, 349, 401, 453 }; 
-        int noteSpawnDelay = 300; 
+        int noteSpawnDelay = 400; 
         int timeSinceLastSpawn = 0;
 
         List<Vector2> notePositions = new List<Vector2>();
@@ -55,7 +57,7 @@ namespace PianoTiles
             notePositions.Add(new Vector2(401, -450)); 
             notePositions.Add(new Vector2(453, -525));
 
-            noteSpeed = 2;
+            noteSpeed = 1;
 
             
 
@@ -70,7 +72,7 @@ namespace PianoTiles
             backGround1 = this.Content.Load<Texture2D>("backGround1");
             backGround2 = this.Content.Load<Texture2D>("backGround2");
             backGround3 = this.Content.Load<Texture2D>("backGround3");
-
+            
             button = this.Content.Load<Texture2D>("button");
             grille = this.Content.Load<Texture2D>("grille");
 
@@ -78,6 +80,7 @@ namespace PianoTiles
             noteOn = this.Content.Load<Texture2D>("noteClicked");
             sound1 = Content.Load<Song>("pianoTiles1");
 
+            Button mybutton = new Button(mainGame, spriteBatch, new Vector2(100,  100));
         }
 
         protected override void Update(GameTime gameTime)
@@ -151,6 +154,7 @@ namespace PianoTiles
             spriteBatch.Draw(grille, gridRectangle, Color.White);
 
             spriteBatch.Draw(button, new Vector2(50,50), Color.White);
+            myButton.Draw(gameTime);
 
             if (buttonOn)
             {
