@@ -8,7 +8,7 @@ namespace Tilled
     public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private SpriteBatch spriteBatch;
 
         // Map
         TmxMap map;
@@ -37,7 +37,7 @@ namespace Tilled
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             map = new TmxMap("Content/map.tmx");
@@ -65,9 +65,27 @@ namespace Tilled
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            int nbLayers = map.Layers.Count;
+            int line;
+            int column;
+
+            for ( int nLayer = 0; nLayer < nbLayers; nLayer++ )
+            {
+                line = 0;
+                column = 0;
+
+                for (int i = 0; i < map.Layers[nLayer].Tiles.Count; i++ )
+                {
+                    int gid = map.Layers[nLayer].Tiles[i].Gid;
+                }
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
