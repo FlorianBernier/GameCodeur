@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using TiledSharp;
 
 namespace Tilled
@@ -17,8 +18,8 @@ namespace Tilled
         int tileHeight;
         int mapWidth;
         int mapHeight;
-        int tilesetColumn;
-        int tilesetLine;
+        int tilesetColumns;
+        int tilesetLines;
 
 
         public Main()
@@ -49,8 +50,8 @@ namespace Tilled
             mapWidth = map.Width;
             mapHeight = map.Height;
 
-            tilesetColumn = tileset.Width / tileWidth;
-            tilesetLine = tileset.Height / tileHeight;
+            tilesetColumns = tileset.Width / tileWidth;
+            tilesetLines = tileset.Height / tileHeight;
         }
 
         protected override void Update(GameTime gameTime)
@@ -82,6 +83,26 @@ namespace Tilled
                 for (int i = 0; i < map.Layers[nLayer].Tiles.Count; i++ )
                 {
                     int gid = map.Layers[nLayer].Tiles[i].Gid;
+
+                    if ( gid != 0 )
+                    {
+                        int tileFrame = gid -1;
+                        int tilesetColumn = tileFrame % tilesetColumns;
+                        int tilesetLine = (int)Math.Floor((double)tileFrame / (double)tilesetColumns);
+
+                        float x = column * map.TileWidth;
+                        float y = line * map.TileHeight;
+
+                        Rectangle tilesetRect = new Rectangle(tileWidth * tilesetColumn, tileHeight * tilesetLine, tileWidth, tileHeight);
+
+                        spriteBatch.Draw(tileset, new Vector2(x, y), tilesetRect, Color.White);
+                    }
+                    column++;
+                    if (column == mapWidth)
+                    {
+                        column = 0;
+                        line++;
+                    }
                 }
             }
 
