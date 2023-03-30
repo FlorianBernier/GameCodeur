@@ -10,7 +10,7 @@ namespace PianoTiles
 {
     public class Button
     {
-        private Game mainGame;
+        private Main mainGame;
         private SpriteBatch spriteBatch;
         private Vector2 pos { get; set; }
         private Rectangle buttonRectangle { get; set; }
@@ -19,25 +19,29 @@ namespace PianoTiles
         private bool IsPressed { get; set; }
 
 
-        public Button(Game pGame, SpriteBatch spriteBatch, Vector2 pPos)
+        public Button(Main pGame, Vector2 pPos, Texture2D pTextureOff, Texture2D pTextureOn)
         {
-            this.mainGame = pGame;
-            this.pos = pPos;
-            this.IsPressed = false;
-            this.TextureOff = mainGame.Content.Load<Texture2D>("button");
-            this.TextureOn = mainGame.Content.Load<Texture2D>("button");
+            mainGame = pGame;
+            pos = pPos;
+            IsPressed = false;
+            TextureOff = pTextureOff;
+            TextureOn = pTextureOn;
             this.buttonRectangle = new Rectangle((int)pos.X, (int)pPos.Y, TextureOff.Width, TextureOff.Height);
         }
         public void ButtonPressed()
         {
             IsPressed = !IsPressed;
         }
-        public void Update()
+        public void Load() {
+
+        }
+        public void Update(GameTime gameTime)
         {
 
         }
-        public void Draw(Game mainGame)
+        public void Draw(GameTime gameTime)
         {
+            
             if (IsPressed)
             {
 
@@ -49,6 +53,7 @@ namespace PianoTiles
                 spriteBatch.Draw(TextureOff, pos, Color.White);
 
             }
+            
         }
     }
 }

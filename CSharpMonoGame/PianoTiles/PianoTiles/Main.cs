@@ -11,10 +11,9 @@ namespace PianoTiles
     public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
         private Random rand;
-        Game mainGame;
-
+ 
         Texture2D backGround1;
         Texture2D backGround2;
         Texture2D backGround3;
@@ -80,7 +79,7 @@ namespace PianoTiles
             noteOn = this.Content.Load<Texture2D>("noteClicked");
             sound1 = Content.Load<Song>("pianoTiles1");
 
-            Button mybutton = new Button(mainGame, spriteBatch, new Vector2(100,  100));
+            Button mybutton = new Button(this, new Vector2(100,  100), button, button);
         }
 
         protected override void Update(GameTime gameTime)
@@ -154,7 +153,7 @@ namespace PianoTiles
             spriteBatch.Draw(grille, gridRectangle, Color.White);
 
             spriteBatch.Draw(button, new Vector2(50,50), Color.White);
-            myButton.Draw(gameTime);
+            //myButton.Draw(gameTime);
 
             if (buttonOn)
             {
