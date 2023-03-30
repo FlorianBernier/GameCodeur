@@ -16,14 +16,14 @@ namespace Setting
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //IsMouseVisible = true;
+
             mySetting = new BaseSetting(this);
         }
 
         protected override void Initialize()
         {
             
-            mySetting.Initialize_BaseSetting();
+            mySetting.Initialize();
             // TODO: Ajoutez ici votre code
 
             base.Initialize();
@@ -33,7 +33,7 @@ namespace Setting
         {
             draw = new SpriteBatch(GraphicsDevice);
 
-            mySetting.LoadContent_BaseSetting();
+            mySetting.LoadContent();
             // TODO: Ajoutez ici votre code
         }
 
@@ -47,7 +47,7 @@ namespace Setting
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            mySetting.Update_BaseSetting(gameTime);
+            mySetting.Update(gameTime);
             // TODO: Ajoutez ici votre code
 
             base.Update(gameTime);
@@ -61,7 +61,7 @@ namespace Setting
             // TODO: Ajoutez ici votre code
             draw.Begin();
 
-            mySetting.Draw_BaseSetting(gameTime);
+            mySetting.Draw(gameTime);
 
             draw.End();
 
