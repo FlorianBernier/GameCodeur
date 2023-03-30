@@ -7,7 +7,7 @@ namespace Setting
     public class Main : Game
     {
         public GraphicsDeviceManager graphics;
-        public SpriteBatch draw;
+        public SpriteBatch spriteBatch;
 
         public BaseSetting mySetting;
         
@@ -31,7 +31,7 @@ namespace Setting
 
         protected override void LoadContent()
         {
-            draw = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             mySetting.LoadContent();
             // TODO: Ajoutez ici votre code
@@ -55,15 +55,15 @@ namespace Setting
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
 
             // TODO: Ajoutez ici votre code
-            draw.Begin();
+            spriteBatch.Begin();
 
             mySetting.Draw(gameTime);
 
-            draw.End();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

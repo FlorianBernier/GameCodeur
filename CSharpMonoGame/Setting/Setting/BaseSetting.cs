@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
-using System.Drawing;
+//using System.Drawing;
 
 namespace Setting
 {
@@ -11,28 +11,37 @@ namespace Setting
     {
         private Main main;
 
+        // Setting fullScreen
         KeyboardState previousState;
         int TargetWidth = 800;
         int TargetHeight = 480;
 
+        // Image test
+        Texture2D img;
+
+        // Le constructeur de la classe
         public BaseSetting(Main main) : base() 
         {
             this.main = main;
-            // Le constructeur vide de la classe
+            
+            main.IsMouseVisible = true;
+
+            // Setting fullScreen
             main.graphics.PreferredBackBufferWidth = TargetWidth;
             main.graphics.PreferredBackBufferHeight = TargetHeight;
             main.graphics.IsFullScreen = false;
-            main.IsMouseVisible = true;
         }
 
         public void Initialize()
         {
             // Initialisez votre classe ici
+            
         }
 
         public void LoadContent()
         {
             // Chargez votre contenu ici
+            img = main.Content.Load<Texture2D>("BaseSetting");
         }
 
         public void UnloadContent()
@@ -70,6 +79,7 @@ namespace Setting
         public void Draw(GameTime gameTime)
         {
             // Dessinez votre classe ici
+            main.spriteBatch.Draw(img, new Vector2(0,0), null, Color.White);
         }
     }
 }
