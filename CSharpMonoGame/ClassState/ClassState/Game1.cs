@@ -28,6 +28,26 @@ namespace ClassState
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            Zombie zombie = new Zombie();
+
+            zombie.DoSomething();
+
+            zombie.WhatHappen = ZombieStimuli.SeeHuman;
+            zombie.DoSomething();
+
+            zombie.WhatHappen = ZombieStimuli.SeeNothing;
+            zombie.DoSomething();
+
+            zombie.WhatHappen = ZombieStimuli.SeeHuman;
+            zombie.DoSomething();
+
+            zombie.WhatHappen = ZombieStimuli.OnHuman;
+            zombie.DoSomething();
+
+            zombie.WhatHappen = ZombieStimuli.SeeNothing;
+            zombie.DoSomething();
+
+            zombie.DoSomething();
         }
 
         protected override void Update(GameTime gameTime)
