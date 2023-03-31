@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// IPublisher : oblige les class qui l'implemante a utiliser les 3 méthode
 namespace ClassObserver
 {
     public interface IPublisher

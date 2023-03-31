@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
+// Observer (gestion des touche clavier / souris) 
 namespace ClassObserver
 {
     public class Game1 : Game
@@ -29,8 +31,25 @@ namespace ClassObserver
 
             // TODO: use this.Content to load your game content here
             Magasin appleStore = new Magasin();
-            Client Soanara = new Client();
-            Client Heresie = new Client();
+            Client soanara = new Client("Soanara");
+            Client heresie = new Client("Heresie");
+
+            appleStore.Register(soanara);
+            appleStore.Register(heresie);
+
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+
+            appleStore.Unregister(heresie);
+
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+            appleStore.DoSomething();
+
+
 
 
         }

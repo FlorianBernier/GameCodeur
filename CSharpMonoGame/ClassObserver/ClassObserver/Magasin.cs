@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// Magasin : implemante l'interface IPublisher  
 namespace ClassObserver
 {
     public class Magasin : IPublisher
@@ -22,7 +24,7 @@ namespace ClassObserver
         public void Register(ISubscriber subscriber) 
         {
             _subscribers.Add(subscriber);
-            Debug.WriteLine("Magasin : Inscription d'un nouveau client.");
+            Debug.WriteLine("Magasin : Inscription du nouveau client.");
         }
 
 
@@ -45,18 +47,19 @@ namespace ClassObserver
         public void DoSomething() 
         {
             Debug.WriteLine("Magasin : Chengement des stocks.");  
-            int rand = new Random().Next(0, 2);
+            float rand = new Random().Next(2);
             Stock = true;
             if (rand == 0)
             {
                 Stock = false;
             }
 
-            Debug.WriteLine($"Magasin : Etats des stocks : {rand} ");
+
+
+            Debug.WriteLine($"Magasin : Etats des stocks : {Stock} ");
 
             if (Stock)
             {
-                Debug.WriteLine("Magasin : Notification de tous les clients.");
                 Notify();
             }
         }
