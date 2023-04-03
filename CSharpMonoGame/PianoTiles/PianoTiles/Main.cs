@@ -10,8 +10,13 @@ namespace PianoTiles
 {
     public class Main : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+        // Setting
+        public SettingBase _settingBase;
+        public FullScreen _fullScreen;
+        public MoveCamera _moveCamera;
+
         private Random rand;
  
         Texture2D backGround1;
@@ -21,7 +26,6 @@ namespace PianoTiles
         Texture2D button;
         bool buttonOn = false;
         private Song sound1;
-        public Button myButton;
 
 
         Texture2D note;
@@ -40,14 +44,18 @@ namespace PianoTiles
 
         public Main()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-
+            // Setting
+            _settingBase = new SettingBase(this);
+            _fullScreen = new FullScreen(this);
+            _moveCamera = new MoveCamera(this);
         }
 
         protected override void Initialize()
         {
+            _fullScreen.Initialize();
+            _moveCamera.Initialize();
             // TODO: Add your initialization logic here
             rand = new Random();
 
@@ -79,11 +87,19 @@ namespace PianoTiles
             noteOn = this.Content.Load<Texture2D>("noteClicked");
             sound1 = Content.Load<Song>("pianoTiles1");
 
-            Button mybutton = new Button(this, new Vector2(100,  100), button, button);
+        }
+
+        protected override void UnloadContent()
+        {
+            _fullScreen.UnloadContent();
+            // TODO: Ajoutez ici votre code
+
         }
 
         protected override void Update(GameTime gameTime)
         {
+            _fullScreen.Update(gameTime);
+            _moveCamera.Update(gameTime);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -142,14 +158,16 @@ namespace PianoTiles
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            _settingBase.Draw(gameTime);
+            _fullScreen.DrawSet(gameTime);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
 
-            Rectangle backgroundRectangle = new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            Rectangle backgroundRectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             spriteBatch.Draw(backGround1, backgroundRectangle, Color.White);
 
-            Rectangle gridRectangle = new Rectangle((_graphics.PreferredBackBufferWidth - grille.Width) / 2, (_graphics.PreferredBackBufferHeight - grille.Height) / 2,grille.Width, grille.Height);
+            Rectangle gridRectangle = new Rectangle((graphics.PreferredBackBufferWidth - grille.Width) / 2, (graphics.PreferredBackBufferHeight - grille.Height) / 2,grille.Width, grille.Height);
             spriteBatch.Draw(grille, gridRectangle, Color.White);
 
             spriteBatch.Draw(button, new Vector2(50,50), Color.White);
@@ -167,6 +185,7 @@ namespace PianoTiles
             
             spriteBatch.End();
 
+            _fullScreen.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
