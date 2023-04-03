@@ -4,56 +4,39 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Setting
 {
-    public class Camera2D
-    {
-        public Vector2 Position { get; set; }
-        public float Zoom { get; set; }
-        public float Rotation { get; set; }
-
-        private readonly Viewport _viewport;
-
-        public Camera2D(Viewport viewport)
-        {
-            _viewport = viewport;
-            Zoom = 1f;
-            Rotation = 0f;
-            Position = Vector2.Zero;
-        }
-
-        public Matrix GetViewMatrix()
-        {
-            return Matrix.CreateTranslation(new Vector3(-Position, 0f)) *
-                   Matrix.CreateRotationZ(Rotation) *
-                   Matrix.CreateScale(Zoom) *
-                   Matrix.CreateTranslation(new Vector3(_viewport.Width * 0.5f, _viewport.Height * 0.5f, 0f));
-        }
-    }
+    
     public class Main : Game
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
-        public BaseSetting mySetting;
-        Texture2D imgTemplateBG;
+        // Setting
+        public SettingBase _settingBase;
+        public FullScreen _fullScreen;
+        public MoveCamera _moveCamera;
 
-        private Camera2D _camera;
-        private float _cameraSpeed = 0.1f;
+        // Img test
+        Texture2D imgTemplateBG;
 
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            mySetting = new BaseSetting(this);
+            // Setting
+            _settingBase = new SettingBase(this);
+            _fullScreen = new FullScreen(this);
+            _moveCamera = new MoveCamera(this);
+
         }
 
         protected override void Initialize()
         {
-            mySetting.Initialize();
+            _fullScreen.Initialize(); 
+            _moveCamera.Initialize();
             // TODO: Ajoutez ici votre code
 
             base.Initialize();
-            _camera = new Camera2D(GraphicsDevice.Viewport);
         }
 
         protected override void LoadContent()
@@ -66,39 +49,34 @@ namespace Setting
 
         protected override void UnloadContent()
         {
-            mySetting.UnloadContent();
+            _fullScreen.UnloadContent();
             // TODO: Ajoutez ici votre code
 
         }
 
         protected override void Update(GameTime gameTime)
         {
-            mySetting.Update(gameTime);
+            _fullScreen.Update(gameTime);
+            _moveCamera.Update(gameTime);
             // TODO: Ajoutez ici votre code
-
-            var mouseState = Mouse.GetState();
-
-            if (mouseState.MiddleButton == ButtonState.Pressed)
-            {
-                _camera.Position += new Vector2((mouseState.X - graphics.PreferredBackBufferWidth / 2) * _cameraSpeed,
-                                              (mouseState.Y - graphics.PreferredBackBufferHeight / 2) * _cameraSpeed);
-            }
+            
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            mySetting.Base(gameTime);
-
+            _settingBase.Draw(gameTime);
+            _fullScreen.DrawBase(gameTime);
             // TODO: Ajoutez ici votre
-            spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
+
+            spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
 
             spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
 
             spriteBatch.End();
 
 
-            mySetting.Draw(gameTime);
+            _fullScreen.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
