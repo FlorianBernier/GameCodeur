@@ -59,7 +59,6 @@ namespace FullScreen
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadFullScreen();
             // TODO: Ajoutez ici votre code
-
         }
 
 
@@ -181,7 +180,7 @@ namespace FullScreen
             // TODO: Ajoutez ici votre code
             _spriteBatch.Begin();
             
-            //_spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
+            _spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
 
             _spriteBatch.End();
 
