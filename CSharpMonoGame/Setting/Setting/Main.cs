@@ -10,7 +10,8 @@ namespace Setting
         public SpriteBatch spriteBatch;
 
         public BaseSetting mySetting;
-        
+        Texture2D imgTemplateBG;
+
 
         public Main()
         {
@@ -22,7 +23,6 @@ namespace Setting
 
         protected override void Initialize()
         {
-            
             mySetting.Initialize();
             // TODO: Ajoutez ici votre code
 
@@ -33,20 +33,19 @@ namespace Setting
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            mySetting.LoadContent();
             // TODO: Ajoutez ici votre code
+            imgTemplateBG = Content.Load<Texture2D>("Template800x480");
         }
 
         protected override void UnloadContent()
         {
+            mySetting.UnloadContent();
             // TODO: Ajoutez ici votre code
+
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             mySetting.Update(gameTime);
             // TODO: Ajoutez ici votre code
 
@@ -55,16 +54,17 @@ namespace Setting
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            mySetting.Base(gameTime);
 
-
-            // TODO: Ajoutez ici votre code
+            // TODO: Ajoutez ici votre
             spriteBatch.Begin();
 
-            mySetting.Draw(gameTime);
+            spriteBatch.Draw(imgTemplateBG, new Vector2(0, 0), null, Color.White);
 
             spriteBatch.End();
 
+
+            mySetting.Draw(gameTime);
             base.Draw(gameTime);
         }
     }

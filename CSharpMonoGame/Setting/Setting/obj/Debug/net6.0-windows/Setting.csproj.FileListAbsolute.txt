@@ -36,3 +36,4 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Setting\Setting\
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Setting\Setting\obj\Debug\net6.0-windows\Setting.genruntimeconfig.cache
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Setting\Setting\obj\Debug\net6.0-windows\ref\Setting.dll
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Setting\Setting\bin\Debug\net6.0-windows\Content\BaseSetting.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\Setting\Setting\bin\Debug\net6.0-windows\Content\Template800x480.xnb

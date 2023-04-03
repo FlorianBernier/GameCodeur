@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/BaseSetting.png","C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/bin/Windows/BaseSetting.xnb","TextureProcessor","Texture2DContent",1261817,4194389,0,3578982
+"C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/Template800x480.png","C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/bin/Windows/Template800x480.xnb","TextureProcessor","Texture2DContent",14213,1536085,0,224479
