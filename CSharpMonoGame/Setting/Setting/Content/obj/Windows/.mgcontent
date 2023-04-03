@@ -4,11 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/BaseSetting.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/Setting/Setting/Content/Template800x480.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -66,7 +66,7 @@ namespace Setting
         protected override void Draw(GameTime gameTime)
         {
             _settingBase.Draw(gameTime);
-            _fullScreen.DrawBase(gameTime);
+            _fullScreen.DrawSet(gameTime);
             // TODO: Ajoutez ici votre
 
             spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
