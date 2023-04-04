@@ -1,0 +1,36 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "mapTD.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "mapTD.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 365.5,
+                "y": 678
+            }
+        },
+        "tileSheetMap.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content",
+    "map.height": 30,
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "mapTD.tmx",
+        "tileSheetMap.tsx"
+    ],
+    "project": "TowerDefence.tiled-project",
+    "recentFiles": [
+        "tileSheetMap.tsx",
+        "mapTD.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
