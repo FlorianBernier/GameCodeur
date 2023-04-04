@@ -35,3 +35,7 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\Tow
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\obj\Debug\net6.0-windows\TowerDefence.pdb
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\obj\Debug\net6.0-windows\TowerDefence.genruntimeconfig.cache
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\obj\Debug\net6.0-windows\ref\TowerDefence.dll
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\tileSheetMap.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\mapTD.tmx
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\tileSheetMap.tsx
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Interface.xnb

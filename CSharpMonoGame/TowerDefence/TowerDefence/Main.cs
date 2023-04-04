@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Configuration;
+using TiledSharp;
 
 namespace TowerDefence
 {
@@ -14,7 +16,15 @@ namespace TowerDefence
         public SettingBase _settingBase;
         public FullScreen _fullScreen;
         public MoveCamera _moveCamera;
+
+        // Interface
+        public Interface _interface;
+
+        // Map
+        public Map _map;
+
         
+
 
         public Main()
         {
@@ -25,6 +35,12 @@ namespace TowerDefence
             _settingBase = new SettingBase(this);
             _fullScreen = new FullScreen(this);
             _moveCamera = new MoveCamera(this);
+
+            // Interface
+            _interface = new Interface(this);
+
+            // Map
+            _map = new Map(this);
 
         }
 
@@ -42,7 +58,10 @@ namespace TowerDefence
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: Ajoutez ici votre code
+            _map.MapLoadContent();
+            _interface.LoadContent();
             
+
         }
 
         protected override void UnloadContent()
@@ -67,11 +86,16 @@ namespace TowerDefence
             _fullScreen.DrawSet(gameTime);
             // TODO: Ajoutez ici votre
 
-            spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
-
             
 
+            spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
+
+            _map.MapDraw(gameTime);
+
             spriteBatch.End();
+
+
+            _interface.Draw(gameTime);
 
 
             _fullScreen.Draw(gameTime);
