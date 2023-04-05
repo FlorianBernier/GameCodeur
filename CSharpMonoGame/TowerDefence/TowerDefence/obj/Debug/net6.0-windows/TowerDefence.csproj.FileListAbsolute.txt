@@ -39,5 +39,4 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\Tow
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\mapTD.tmx
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\tileSheetMap.tsx
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Interface.xnb
-C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\BtnWhite30x30.xnb
-C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\BtnG.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\BtnLineWhite.xnb

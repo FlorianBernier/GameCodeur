@@ -24,7 +24,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Monster\" />
     <Folder Include="Tower\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

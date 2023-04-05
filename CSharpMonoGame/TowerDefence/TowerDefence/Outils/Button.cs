@@ -9,18 +9,15 @@ namespace TowerDefence
     {
         private Main main;
 
-        private Texture2D _btnRight;
-        private Texture2D _btnLeft;
-        private Rectangle _rectRight;
-        private Rectangle _rectLeft;
+        private Texture2D _textureBtn;
+        private Rectangle _rectangle;
         private bool _isClicked = false;
 
 
         public Button(Main main, Rectangle pRect) : base()
         {
             this.main = main;
-            this._rectRight = pRect;
-            this._rectLeft = pRect;
+            this._rectangle = pRect;
         }
 
         public void Initialize()
@@ -30,10 +27,7 @@ namespace TowerDefence
 
         public void LoadContent()
         {
-            _btnRight = main.Content.Load<Texture2D>("BtnG");
-
-            _btnLeft = main.Content.Load<Texture2D>("BtnWhite30x30");
-
+            _textureBtn = main.Content.Load<Texture2D>("BtnLineWhite");
         }
 
         public void UnloadContent()
@@ -43,23 +37,7 @@ namespace TowerDefence
 
         public void Update(GameTime gameTime)
         {
-            if (_rectRight.Contains(Mouse.GetState().Position))
-            {
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                {
-                    _isClicked = true;
-                }
-                else
-                {
-                    _isClicked = false;
-                }
-            }
-            else
-            {
-                _isClicked = false;
-            }
-
-            if (_rectLeft.Contains(Mouse.GetState().Position))
+            if (_rectangle.Contains(Mouse.GetState().Position))
             {
                 if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
@@ -81,7 +59,6 @@ namespace TowerDefence
         {
             main.spriteBatch.Begin();
 
-            
             Color buttonColor = Color.Gray;
             if (_isClicked)
             {
@@ -89,11 +66,7 @@ namespace TowerDefence
                 Debug.WriteLine(_isClicked);
             }
 
-            main.spriteBatch.Draw(_btnRight, _rectRight, buttonColor);
-
-            main.spriteBatch.Draw(_btnLeft, _rectRight, buttonColor);
-
-
+            main.spriteBatch.Draw(_textureBtn, _rectangle, buttonColor);
 
             main.spriteBatch.End();
         }

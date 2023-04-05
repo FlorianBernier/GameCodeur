@@ -30,7 +30,35 @@ namespace TowerDefence
                 new Button(main, new Rectangle(1, 241, 98, 58)),
                 new Button(main, new Rectangle(1, 301, 98, 58)),
                 new Button(main, new Rectangle(1, 361, 98, 58)),
-                new Button(main, new Rectangle(1, 421, 98, 58))
+                new Button(main, new Rectangle(1, 421, 98, 58)),
+
+                new Button(main, new Rectangle(701, 89, 30, 30)),
+                new Button(main, new Rectangle(734, 89, 30, 30)),
+                new Button(main, new Rectangle(769, 89, 30, 30)),
+
+                new Button(main, new Rectangle(701, 149, 30, 30)),
+                new Button(main, new Rectangle(734, 149, 30, 30)),
+                new Button(main, new Rectangle(769, 149, 30, 30)),
+
+                new Button(main, new Rectangle(701, 209, 30, 30)),
+                new Button(main, new Rectangle(734, 209, 30, 30)),
+                new Button(main, new Rectangle(769, 209, 30, 30)),
+
+                new Button(main, new Rectangle(701, 269, 30, 30)),
+                new Button(main, new Rectangle(734, 269, 30, 30)),
+                new Button(main, new Rectangle(769, 269, 30, 30)),
+
+                new Button(main, new Rectangle(701, 329, 30, 30)),
+                new Button(main, new Rectangle(734, 329, 30, 30)),
+                new Button(main, new Rectangle(769, 329, 30, 30)),
+
+                new Button(main, new Rectangle(701, 389, 30, 30)),
+                new Button(main, new Rectangle(734, 389, 30, 30)),
+                new Button(main, new Rectangle(769, 389, 30, 30)),
+
+                new Button(main, new Rectangle(701, 449, 30, 30)),
+                new Button(main, new Rectangle(734, 449, 30, 30)),
+                new Button(main, new Rectangle(769, 449, 30, 30)),
             };
 
 

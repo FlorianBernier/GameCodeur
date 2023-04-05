@@ -4,13 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/BtnG.png</File>
-    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/BtnWhite30x30.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/BtnLineWhite.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/Interface.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/tileSheetMap.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
