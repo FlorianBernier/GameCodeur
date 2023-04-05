@@ -12,14 +12,16 @@ namespace TowerDefence
     {
         private Main main;
         // Map
-        TmxMap map;
-        Texture2D tileset;
-        int tileWidth;
-        int tileHeight;
-        int mapWidth;
-        int mapHeight;
-        int tilesetColumns;
-        int tilesetLines;
+        public TmxMap map;
+        public Texture2D tileset;
+        public int tileWidth;
+        public int tileHeight;
+        public int mapWidth;
+        public int mapHeight;
+        public int tilesetColumns;
+        public int tilesetLines;
+
+        
 
 
         public Map(Main main) : base()
@@ -97,5 +99,3 @@ namespace TowerDefence
         }
     }
 }
-
-

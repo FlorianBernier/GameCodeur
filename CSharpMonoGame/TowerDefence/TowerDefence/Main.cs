@@ -23,8 +23,9 @@ namespace TowerDefence
         // Map
         public Map _map;
 
-        // Btn
-        //Button _button;
+        // Monster
+        public Monster _monster;
+        
 
 
         public Main()
@@ -43,8 +44,8 @@ namespace TowerDefence
             // Map
             _map = new Map(this);
 
-            // Btn
-            //_button = new Button(this);
+            // Monster
+            _monster = new Monster(this, this._map);
 
         }
 
@@ -55,7 +56,7 @@ namespace TowerDefence
             // TODO: Ajoutez ici votre code
             _interface.Initialize();
 
-            //_button.Initialize();
+            _monster.Initialize();
 
             base.Initialize();
         }
@@ -68,7 +69,7 @@ namespace TowerDefence
             _map.MapLoadContent();
             _interface.LoadContent();
 
-            //_button.LoadContent();
+            _monster.LoadContent();
         }
 
         protected override void UnloadContent()
@@ -85,7 +86,7 @@ namespace TowerDefence
             // TODO: Ajoutez ici votre code
             _interface.Update(gameTime);
 
-            //_button.Update(gameTime);
+            _monster.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -102,12 +103,13 @@ namespace TowerDefence
             spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
 
             _map.MapDraw(gameTime);
+            _monster.Draw(gameTime);
 
             spriteBatch.End();
 
 
             _interface.Draw(gameTime);
-            //_button.Draw(gameTime);
+            
 
             _fullScreen.Draw(gameTime);
             base.Draw(gameTime);
