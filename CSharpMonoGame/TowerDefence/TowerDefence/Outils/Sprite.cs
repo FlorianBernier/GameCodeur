@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TowerDefence.Outils
+namespace TowerDefence
 {
-    internal class Sprite
+    public class Sprite
     {
+
     }
 }
