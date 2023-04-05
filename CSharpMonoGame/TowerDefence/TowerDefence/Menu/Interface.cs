@@ -14,24 +14,43 @@ namespace TowerDefence
         private Texture2D menu;
 
         // Btn
-        //Button _button;
+        private List<Button> _listBtn;
+        
+        
 
 
         public Interface(Main main) : base()
         {
             this.main = main;
-            //_button = new Button(main);
+            _listBtn = new List<Button>
+            {
+                new Button(main, new Rectangle(1, 61, 98, 58)),
+                new Button(main, new Rectangle(1, 121, 98, 58)),
+                new Button(main, new Rectangle(1, 181, 98, 58)),
+                new Button(main, new Rectangle(1, 241, 98, 58)),
+                new Button(main, new Rectangle(1, 301, 98, 58)),
+                new Button(main, new Rectangle(1, 361, 98, 58)),
+                new Button(main, new Rectangle(1, 421, 98, 58))
+            };
+
+
         }
 
         public void Initialize()
         {
-            //_button.Initialize();
+            foreach (Button button in _listBtn)
+            {
+                button.Initialize();
+            }
         }
 
         public void LoadContent()
         {
             menu = main.Content.Load<Texture2D>("Interface");
-            //_button.LoadContent();
+            foreach (Button button in _listBtn)
+            {
+                button.LoadContent();
+            }
         }
 
         public void UnloadContent()
@@ -41,19 +60,27 @@ namespace TowerDefence
 
         public void Update(GameTime gameTime)
         {
-            //_button.Update(gameTime);   
+            foreach (Button button in _listBtn)
+            {
+                button.Update(gameTime);
+            }
         }
 
         public void Draw(GameTime gameTime)
         {
+
+            
             main.spriteBatch.Begin();
 
+            
             main.spriteBatch.Draw(menu, new Vector2(0,0), Color.White);
 
             main.spriteBatch.End();
 
-            //_button.Draw(gameTime);
-
+            foreach (Button button in _listBtn)
+            {
+                button.Draw(gameTime);
+            }
         }
     }
 }

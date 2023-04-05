@@ -24,7 +24,7 @@ namespace TowerDefence
         public Map _map;
 
         // Btn
-        Button _button;
+        //Button _button;
 
 
         public Main()
@@ -44,7 +44,7 @@ namespace TowerDefence
             _map = new Map(this);
 
             // Btn
-            _button = new Button(this);
+            //_button = new Button(this);
 
         }
 
@@ -55,7 +55,7 @@ namespace TowerDefence
             // TODO: Ajoutez ici votre code
             _interface.Initialize();
 
-            _button.Initialize();
+            //_button.Initialize();
 
             base.Initialize();
         }
@@ -68,7 +68,7 @@ namespace TowerDefence
             _map.MapLoadContent();
             _interface.LoadContent();
 
-            _button.LoadContent();
+            //_button.LoadContent();
         }
 
         protected override void UnloadContent()
@@ -83,9 +83,9 @@ namespace TowerDefence
             _fullScreen.Update(gameTime);
             _moveCamera.Update(gameTime);
             // TODO: Ajoutez ici votre code
-            _interface.UnloadContent();
+            _interface.Update(gameTime);
 
-            _button.Update(gameTime);
+            //_button.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -107,7 +107,7 @@ namespace TowerDefence
 
 
             _interface.Draw(gameTime);
-            _button.Draw(gameTime);
+            //_button.Draw(gameTime);
 
             _fullScreen.Draw(gameTime);
             base.Draw(gameTime);
