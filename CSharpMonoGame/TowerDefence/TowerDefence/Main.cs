@@ -25,7 +25,6 @@ namespace TowerDefence
 
         // Monster
         public Monster _monster;
-        
 
 
         public Main()
@@ -46,6 +45,7 @@ namespace TowerDefence
 
             // Monster
             _monster = new Monster(this, this._map);
+
 
         }
 
