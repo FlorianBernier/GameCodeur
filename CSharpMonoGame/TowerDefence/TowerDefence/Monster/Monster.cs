@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct2D1;
 using System;
+using System.Diagnostics;
 
 namespace TowerDefence
 {
@@ -9,7 +11,7 @@ namespace TowerDefence
         private Main main;
         private Map map;
 
-        private Texture2D _monster1;
+        private Texture2D _textureMonster;
 
         private Vector2 _position;
         private Vector2 _velocity;
@@ -19,10 +21,6 @@ namespace TowerDefence
         private bool _isMovingRight = false;
         private bool _isMovingUp = false;
         private bool _isMovingLeft = false;
-
-        private bool _reachedEndOfPath = false;
-
-        
 
 
         public Monster(Main main, Map map) : base()
@@ -41,7 +39,7 @@ namespace TowerDefence
         public void LoadContent()
         {
 
-            _monster1 = main.Content.Load<Texture2D>("Monster1");
+            _textureMonster = main.Content.Load<Texture2D>("Monster1");
         }
 
         public void UnloadContent()
@@ -117,27 +115,28 @@ namespace TowerDefence
                 _isMovingLeft = false;
                 _velocity.X = 0;
                 _velocity.Y = 0;
+
             }
 
             // Définir la vitesse en fonction de la direction
             if (_isMovingDown)
             {
                 _velocity.X = 0;
-                _velocity.Y = 300;
+                _velocity.Y = 50;
             }
             else if (_isMovingRight)
             {
-                _velocity.X = 300;
+                _velocity.X = 50;
                 _velocity.Y = 0;
             }
             else if (_isMovingUp)
             {
                 _velocity.X = 0;
-                _velocity.Y = -300;
+                _velocity.Y = -50;
             }
             else if (_isMovingLeft)
             {
-                _velocity.X = -300;
+                _velocity.X = -50;
                 _velocity.Y = 0;
             }
 
@@ -150,7 +149,7 @@ namespace TowerDefence
 
         public void Draw(GameTime gameTime)
         {
-            main.spriteBatch.Draw(_monster1, _position, Color.White);
+            main.spriteBatch.Draw(_textureMonster, _position, Color.White);
         }
     }
 }

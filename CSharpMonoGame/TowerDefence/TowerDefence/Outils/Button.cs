@@ -18,6 +18,7 @@ namespace TowerDefence
         {
             this.main = main;
             this._rectangle = pRect;
+
         }
 
         public void Initialize()
