@@ -14,7 +14,16 @@ namespace TowerDefence
         private Vector2 _position;
         private Vector2 _velocity;
 
-        private bool _isMovingRight = true;
+
+        private bool _isMovingDown = true;
+        private bool _isMovingRight = false;
+        private bool _isMovingUp = false;
+        private bool _isMovingLeft = false;
+
+        private bool _reachedEndOfPath = false;
+
+        
+
 
         public Monster(Main main, Map map) : base()
         {
@@ -43,40 +52,84 @@ namespace TowerDefence
         public void Update(GameTime gameTime)
         {
             // Convertir la position du monstre en indices de tuile
-            int tileX = (int)Math.Floor(_position.X / map.tileWidth);
-            int tileY = (int)Math.Floor((_position.Y + 64)/ map.tileHeight);
-
-            // Vérifier si la tuile actuelle est un chemin
-            if (map.map.Layers[0].Tiles[tileY * map.mapWidth + tileX].Gid != 27)
-            {
-                // Si ce n'est pas le cas, changer de direction
-                _isMovingRight = false;
-               
-                if (_velocity.Y > 0)
-                {
-                    _velocity.X = 50; // tourner à gauche avec une vitesse horizontale négative
-                    _velocity.Y = 0;
-                }
-               
-            }
+            int tileX = (int)Math.Floor((_position.X +32) / map.tileWidth);
+            int tileY = (int)Math.Floor((_position.Y + 32) / map.tileHeight);
 
             // Vérifier la prochaine tuile dans la direction actuelle
-            int nextTileX = tileX + (_isMovingRight ? 1 : -1); // ajouter ou soustraire 1 pour la direction
-            nextTileX += _isMovingRight ? 1 : -1; // ajouter ou soustraire 32 pour la moitié de la taille du monstre
-            nextTileX /= 2; // diviser par 2 pour obtenir l'indice de tuile correct
-
+            int nextTileX = tileX;
             int nextTileY = tileY;
+
+
+            // Vérifier la direction du mouvement actuel
+            if (_isMovingDown)
+            {
+                nextTileY++; // prochaine tuile en bas
+            }
+            else if (_isMovingRight)
+            {
+                nextTileX++; // prochaine tuile à droite
+            }
+            else if (_isMovingUp)
+            {
+                nextTileY--; // prochaine tuile en haut
+            }
+            else if (_isMovingLeft)
+            {
+                nextTileX--; // prochaine tuile à gauche
+            }
 
             // Vérifier si la prochaine tuile est un chemin valide
             if (map.map.Layers[0].Tiles[nextTileY * map.mapWidth + nextTileX].Gid != 27)
             {
                 // Si ce n'est pas le cas, changer de direction
-                _isMovingRight = !_isMovingRight;
-                //_velocity.X *= -1; // inverser la vitesse horizontale pour changer de direction
+                if (_isMovingDown)
+                {
+                    _isMovingRight = true;
+                    _isMovingDown = false;
+                }
+                else if (_isMovingRight)
+                {
+                    _isMovingUp = true;
+                    _isMovingRight = false;
+                }
+                else if (_isMovingUp)
+                {
+                    _isMovingLeft = true;
+                    _isMovingUp = false;
+                }
+                else if (_isMovingLeft)
+                {
+                    _isMovingDown = true;
+                    _isMovingLeft = false;
+                }
             }
+
+            // Définir la vitesse en fonction de la direction
+            if (_isMovingDown)
+            {
+                _velocity.X = 0;
+                _velocity.Y = 300;
+            }
+            else if (_isMovingRight)
+            {
+                _velocity.X = 300;
+                _velocity.Y = 0;
+            }
+            else if (_isMovingUp)
+            {
+                _velocity.X = 0;
+                _velocity.Y = -300;
+            }
+            else if (_isMovingLeft)
+            {
+                _velocity.X = -300;
+                _velocity.Y = 0;
+            }
+
 
             // Mettre à jour la position du monstre
             _position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
         }
 
         public void Draw(GameTime gameTime)
