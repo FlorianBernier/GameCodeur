@@ -51,8 +51,13 @@ namespace TowerDefence
             {
                 // Si ce n'est pas le cas, changer de direction
                 _isMovingRight = false;
-                _velocity.X = -50; // tourner à gauche avec une vitesse horizontale négative
-                _velocity.Y = 0;
+               
+                if (_velocity.Y > 0)
+                {
+                    _velocity.X = 50; // tourner à gauche avec une vitesse horizontale négative
+                    _velocity.Y = 0;
+                }
+               
             }
 
             // Vérifier la prochaine tuile dans la direction actuelle
@@ -67,7 +72,7 @@ namespace TowerDefence
             {
                 // Si ce n'est pas le cas, changer de direction
                 _isMovingRight = !_isMovingRight;
-                _velocity.X *= -1; // inverser la vitesse horizontale pour changer de direction
+                //_velocity.X *= -1; // inverser la vitesse horizontale pour changer de direction
             }
 
             // Mettre à jour la position du monstre
