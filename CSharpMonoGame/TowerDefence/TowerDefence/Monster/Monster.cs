@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct2D1;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace TowerDefence
@@ -10,6 +11,7 @@ namespace TowerDefence
     {
         private Main main;
         private Map map;
+        private bool toRemove = false;
 
         private Texture2D _textureMonster;
 
@@ -21,7 +23,6 @@ namespace TowerDefence
         private bool _isMovingRight = false;
         private bool _isMovingUp = false;
         private bool _isMovingLeft = false;
-
 
         public Monster(Main main, Map map) : base()
         {
@@ -106,7 +107,7 @@ namespace TowerDefence
                     }
                 }
             }
-            else
+            else 
             {
                 // Si la prochaine tuile est en dehors des limites de la carte, arrêter le mouvement
                 _isMovingDown = false;
@@ -115,7 +116,7 @@ namespace TowerDefence
                 _isMovingLeft = false;
                 _velocity.X = 0;
                 _velocity.Y = 0;
-
+                toRemove = true;
             }
 
             // Définir la vitesse en fonction de la direction
@@ -146,6 +147,11 @@ namespace TowerDefence
 
             
         }
+        public bool getToRemove()
+        {
+            return toRemove;
+        }
+
 
         public void Draw(GameTime gameTime)
         {

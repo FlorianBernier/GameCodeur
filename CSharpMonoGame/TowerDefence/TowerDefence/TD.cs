@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace TowerDefence
@@ -36,46 +32,28 @@ namespace TowerDefence
 
         public void Initialize()
         {
-            foreach (Monster monster in _listMonster)
-            {
-                monster.Initialize();
-            }
+            _listMonster.ForEach(m => m.Initialize());
         }
 
         public void LoadContent()
         {
-            foreach (Monster monster in _listMonster)
-            {
-                monster.LoadContent();
-            }
-
+            _listMonster.ForEach(m => m.LoadContent());
         }
 
         public void UnloadContent()
         {
-            foreach (Monster monster in _listMonster)
-            {
-                monster.UnloadContent();
-            }
-
+            _listMonster.ForEach(m => m.UnloadContent());
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (Monster monster in _listMonster)
-            {
-                monster.Update(gameTime);
-            }
-
+            _listMonster.ForEach(m => m.Update(gameTime));
+            _listMonster.RemoveAll(monster => monster.getToRemove());
         }
 
         public void Draw(GameTime gameTime)
         {
-            foreach (Monster monster in _listMonster)
-            {
-                monster.Draw(gameTime);
-            }
-
+            _listMonster.ForEach(m => m.Draw(gameTime));
         }
 
         private void CreateNewMonster()
