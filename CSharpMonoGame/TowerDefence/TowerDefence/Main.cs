@@ -44,7 +44,7 @@ namespace TowerDefence
             _fullScreen = new FullScreen(this);
             _moveCamera = new MoveCamera(this);
 
-            // Interface
+            // Menu
             _menuInGame = new MenuInGame(this);
 
             // Map

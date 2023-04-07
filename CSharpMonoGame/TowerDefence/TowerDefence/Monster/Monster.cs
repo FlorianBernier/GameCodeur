@@ -114,6 +114,7 @@ namespace TowerDefence
                 _velocity.X = 0;
                 _velocity.Y = 0;
                 toRemove = true;
+                main._menuInGame._life--;
             }
 
             // Définir la vitesse en fonction de la direction

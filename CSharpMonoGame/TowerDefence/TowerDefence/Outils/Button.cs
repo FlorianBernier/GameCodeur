@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct3D9;
 using System.Diagnostics;
 
 namespace TowerDefence
@@ -18,7 +19,7 @@ namespace TowerDefence
         {
             this.main = main;
             this._rectangle = pRect;
-
+            
         }
 
         public void Initialize()
@@ -68,6 +69,7 @@ namespace TowerDefence
             }
 
             main.spriteBatch.Draw(_textureBtn, _rectangle, buttonColor);
+            
 
             main.spriteBatch.End();
         }

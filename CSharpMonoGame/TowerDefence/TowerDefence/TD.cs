@@ -14,7 +14,7 @@ namespace TowerDefence
         // Monster
         public List<Monster> _listMonster;
         private TimerMiliseconde _monsterCreationTimer;
-        private int _wave = 3;
+        public int _wave = 1;
         private TimerMiliseconde _waveTimer;
         private int _MonsterByWave = 15;
         private int _monsterCount = 0;
@@ -41,7 +41,7 @@ namespace TowerDefence
 
         public void Initialize()
         {
-            //_listMonster.ForEach(m => m.Initialize());
+
         }
 
         public void LoadContent()
@@ -58,16 +58,12 @@ namespace TowerDefence
         {
             CreateNewMonster();
             _listMonster.ForEach(m => m.Update(gameTime));
-
             _listMonster.RemoveAll(monster => monster.getToRemove());
         }
 
         public void Draw(GameTime gameTime)
         {
             _listMonster.ForEach(m => m.Draw(gameTime));
-
-            // Test Font
-            //main.spriteBatch.DrawString(main._font, "sltr", new Vector2(400, 400), Color.White);
         }
 
         private void CreateNewMonster()
