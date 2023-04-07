@@ -85,6 +85,13 @@
 /processorParam:TextureFormat=Color
 /build:Monster4.png
 
+#begin MyFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:MyFont.spritefont
+
 #begin tileSheetMap.png
 /importer:TextureImporter
 /processor:TextureProcessor

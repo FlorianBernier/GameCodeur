@@ -10,9 +10,11 @@
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/Monster2.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/Monster3.png</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/Monster4.png</File>
+    <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/MyFont.spritefont</File>
     <File>C:/Users/flori/Documents/Projects/GIT/GameCodeur/CSharpMonoGame/TowerDefence/TowerDefence/Content/tileSheetMap.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

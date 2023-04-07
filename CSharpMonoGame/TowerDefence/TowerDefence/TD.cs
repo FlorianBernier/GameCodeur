@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -18,7 +19,8 @@ namespace TowerDefence
         private int _MonsterByWave = 15;
         private int _monsterCount = 0;
 
-        
+        //public SpriteFont _font; 
+
 
 
         public TD(Main main, Map map) : base()
@@ -34,17 +36,18 @@ namespace TowerDefence
             _monsterCreationTimer = new TimerMiliseconde(500);
             _waveTimer = new TimerMiliseconde(5000);
             _waveTimer.stop();
+            
         }
 
         public void Initialize()
         {
-            _listMonster.ForEach(m => m.Initialize());
+            //_listMonster.ForEach(m => m.Initialize());
         }
 
         public void LoadContent()
         {
-/*            _listMonster.ForEach(m => m.LoadContent());
-*/        }
+
+        }
 
         public void UnloadContent()
         {
@@ -62,6 +65,9 @@ namespace TowerDefence
         public void Draw(GameTime gameTime)
         {
             _listMonster.ForEach(m => m.Draw(gameTime));
+
+            // Test Font
+            //main.spriteBatch.DrawString(main._font, "sltr", new Vector2(400, 400), Color.White);
         }
 
         private void CreateNewMonster()

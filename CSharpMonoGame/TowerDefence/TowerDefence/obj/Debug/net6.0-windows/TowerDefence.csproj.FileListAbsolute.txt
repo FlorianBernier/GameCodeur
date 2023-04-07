@@ -44,3 +44,6 @@ C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\Tow
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Monster2.xnb
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Monster3.xnb
 C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Monster4.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\Arial .spritefont
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\MyFont.xnb
+C:\Users\flori\Documents\Projects\GIT\GameCodeur\CSharpMonoGame\TowerDefence\TowerDefence\bin\Debug\net6.0-windows\Content\MyFont.spritefont
