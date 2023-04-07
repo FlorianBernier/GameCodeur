@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.Direct2D1;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace TowerDefence
@@ -37,10 +35,9 @@ namespace TowerDefence
 
         }
 
-        public void LoadContent()
+        public void LoadContent(int level)
         {
-
-            _textureMonster = main.Content.Load<Texture2D>("Monster1");
+            _textureMonster = main.Content.Load<Texture2D>("Monster" +level);
         }
 
         public void UnloadContent()
@@ -120,24 +117,25 @@ namespace TowerDefence
             }
 
             // Définir la vitesse en fonction de la direction
+            int speed = 300;
             if (_isMovingDown)
             {
                 _velocity.X = 0;
-                _velocity.Y = 50;
+                _velocity.Y = speed;
             }
             else if (_isMovingRight)
             {
-                _velocity.X = 50;
+                _velocity.X = speed;
                 _velocity.Y = 0;
             }
             else if (_isMovingUp)
             {
                 _velocity.X = 0;
-                _velocity.Y = -50;
+                _velocity.Y = -speed;
             }
             else if (_isMovingLeft)
             {
-                _velocity.X = -50;
+                _velocity.X = -speed;
                 _velocity.Y = 0;
             }
 

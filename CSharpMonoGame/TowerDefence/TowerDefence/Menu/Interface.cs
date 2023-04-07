@@ -58,6 +58,15 @@ namespace TowerDefence
                 new Button(main, new Rectangle(769, 449, 30, 30)),
             };
 
+            for(int i = 0; i < 7; i++)
+            {
+                _listBtn.Add(new Button(main, new Rectangle(1, 61 + 60 * i, 98, 58)));
+
+                _listBtn.Add(new Button(main, new Rectangle(701, 89 + 60 * i, 30, 30)));
+                _listBtn.Add(new Button(main, new Rectangle(734, 89 + 60 * i, 30, 30)));
+                _listBtn.Add(new Button(main, new Rectangle(769, 89 + 60 * i, 30, 30)));
+            }
+
 
         }
 

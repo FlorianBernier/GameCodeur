@@ -34,6 +34,11 @@ namespace TowerDefence
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+        }
+
+        protected override void Initialize()
+        {
+
             // Setting
             _settingBase = new SettingBase(this);
             _fullScreen = new FullScreen(this);
@@ -45,18 +50,14 @@ namespace TowerDefence
             // Map
             _map = new Map(this);
 
-            
-
             // TD
             _TD = new TD(this, this._map);
 
-        }
 
-        protected override void Initialize()
-        {
+
+            // TODO: Ajoutez ici votre code
             _fullScreen.Initialize();
             _moveCamera.Initialize();
-            // TODO: Ajoutez ici votre code
             _interface.Initialize();
 
             

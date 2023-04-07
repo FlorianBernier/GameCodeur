@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
-using System.Timers;
+using System.Diagnostics;
 
 namespace TowerDefence
 {
@@ -11,9 +12,14 @@ namespace TowerDefence
 
         // Monster
         public List<Monster> _listMonster;
-        private Timer _monsterCreationTimer;
+        private TimerMiliseconde _monsterCreationTimer;
+        private int _wave = 3;
+        private TimerMiliseconde _waveTimer;
+        private int _MonsterByWave = 15;
         private int _monsterCount = 0;
+
         
+
 
         public TD(Main main, Map map) : base()
         {
@@ -25,9 +31,9 @@ namespace TowerDefence
             
 
             // Créer un timer qui déclenche la méthode CreateNewMonster toutes les 1000 millisecondes (soit 1 seconde)
-            _monsterCreationTimer = new Timer(1000);
-            _monsterCreationTimer.Elapsed += (sender, e) => CreateNewMonster();
-            _monsterCreationTimer.Start();
+            _monsterCreationTimer = new TimerMiliseconde(500);
+            _waveTimer = new TimerMiliseconde(5000);
+            _waveTimer.stop();
         }
 
         public void Initialize()
@@ -37,8 +43,8 @@ namespace TowerDefence
 
         public void LoadContent()
         {
-            _listMonster.ForEach(m => m.LoadContent());
-        }
+/*            _listMonster.ForEach(m => m.LoadContent());
+*/        }
 
         public void UnloadContent()
         {
@@ -47,7 +53,9 @@ namespace TowerDefence
 
         public void Update(GameTime gameTime)
         {
+            CreateNewMonster();
             _listMonster.ForEach(m => m.Update(gameTime));
+
             _listMonster.RemoveAll(monster => monster.getToRemove());
         }
 
@@ -58,23 +66,41 @@ namespace TowerDefence
 
         private void CreateNewMonster()
         {
-            if (_monsterCount < 40)
+            if (_monsterCount < _MonsterByWave && _monsterCreationTimer.elapsed())
             {
                 // Créer un nouveau monstre et l'ajouter à la liste
                 var newMonster = new Monster(main, _map);
                 newMonster.Initialize();
-                newMonster.LoadContent();
+                newMonster.LoadContent((_wave%4) + 1);
                 _listMonster.Add(newMonster);
 
                 // Incrémenter le compteur de monstres
-                _monsterCount++;
+                _monsterCount++;                    
+                _monsterCreationTimer.restart();
             }
-            else
+
+            if (_monsterCount == _MonsterByWave && !_waveTimer.hasStart && _listMonster.Count == 0)
             {
-                // Arrêter le timer si 20 monstres ont été créés
-                _monsterCreationTimer.Stop();
+                _waveTimer.restart();
             }
+
+            if (_waveTimer.elapsed() && _waveTimer.hasStart)
+            {
+                _wave++;
+                _waveTimer.stop();
+                _monsterCount = 0;
+                _MonsterByWave += 2; 
+                _monsterCreationTimer.changeTimer(Max(500 - 50 *_wave, 500));
+            }
+
+
         }
+
+        public int Max(int x, int y)
+        {
+            return x >= y ? x : y;
+        }
+
     }
 }
 
