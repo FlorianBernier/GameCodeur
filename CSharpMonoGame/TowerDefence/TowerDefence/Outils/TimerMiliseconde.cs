@@ -1,5 +1,6 @@
-﻿using System;
-
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace TowerDefence
 {
@@ -32,10 +33,14 @@ namespace TowerDefence
             hasStart = false;
         }
 
-        public void changeTimer(int pMs) 
+        public void changeTimer(int pMs)
         {
             miliseconds = pMs;
         }
 
+
+
     }
+
+
 }

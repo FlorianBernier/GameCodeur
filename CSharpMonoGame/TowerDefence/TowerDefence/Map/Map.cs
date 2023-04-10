@@ -10,7 +10,7 @@ namespace TowerDefence
 {
     public class Map
     {
-        private Main main;
+        public Main main;
         // Map
         public TmxMap map;
         public Texture2D tileset;

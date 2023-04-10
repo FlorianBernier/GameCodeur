@@ -12,7 +12,7 @@ namespace TowerDefence
 
         private Texture2D _textureBtn;
         private Rectangle _rectangle;
-        private bool _isClicked = false;
+        public bool _isClicked = false;
 
 
         public Button(Main main, Rectangle pRect) : base()

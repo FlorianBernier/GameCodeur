@@ -87,7 +87,7 @@ namespace TowerDefence
             main.spriteBatch.DrawString(main._font, ""+main._TD._wave, new Vector2(750, 10), Color.White);
             main.spriteBatch.DrawString(main._font, ""+_life, new Vector2(750, 35), Color.White);
 
-
+            main.spriteBatch.Draw()
 
             main.spriteBatch.End();
 
