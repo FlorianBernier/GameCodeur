@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using SharpDX.Direct2D1;
 using System;
-using System.Reflection.Metadata;
 using TiledSharp;
 
 namespace TowerDefence
@@ -21,7 +18,7 @@ namespace TowerDefence
         public int tilesetColumns;
         public int tilesetLines;
 
-        
+
 
 
         public Map(Main main) : base()
@@ -32,7 +29,7 @@ namespace TowerDefence
 
         public void MapInitialize()
         {
-
+                
         }
 
         public void MapLoadContent()
@@ -48,6 +45,9 @@ namespace TowerDefence
 
             tilesetColumns = tileset.Width / tileWidth;
             tilesetLines = tileset.Height / tileHeight;
+
+    
+
         }
 
         public void MapUnloadContent()
@@ -57,8 +57,9 @@ namespace TowerDefence
 
         public void MapUpdate(GameTime gameTime)
         {
-
+            
         }
+
 
         public void MapDraw(GameTime gameTime)
         {
@@ -87,6 +88,9 @@ namespace TowerDefence
                         Rectangle tilesetRect = new Rectangle(tileWidth * tilesetColumn, tileHeight * tilesetLine, tileWidth, tileHeight);
 
                         main.spriteBatch.Draw(tileset, new Vector2(x, y), tilesetRect, Color.White);
+
+                        
+
                     }
                     column++;
                     if (column == mapWidth)

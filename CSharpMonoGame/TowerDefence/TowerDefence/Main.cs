@@ -94,6 +94,7 @@ namespace TowerDefence
             // TODO: Ajoutez ici votre code
             _fullScreen.Update(gameTime);
             _moveCamera.Update(gameTime);
+            _map.MapUpdate(gameTime);
             _menuInGame.Update(gameTime);
             _TD.Update(gameTime);
 

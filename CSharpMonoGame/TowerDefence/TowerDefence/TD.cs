@@ -11,6 +11,9 @@ namespace TowerDefence
         private Main main;
         private Map _map;
 
+        // CaseControl
+        private CaseControl _caseControl;
+
         // Monster
         public List<Monster> _listMonster;
         private TimerMiliseconde _monsterCreationTimer;
@@ -28,6 +31,9 @@ namespace TowerDefence
             this.main = main;
             _map = map;
 
+            // CaseControl
+            _caseControl = new CaseControl(main);
+
             // Monster
             _listMonster = new List<Monster>();
             
@@ -41,12 +47,12 @@ namespace TowerDefence
 
         public void Initialize()
         {
-
+            _caseControl.Initialize();
         }
 
         public void LoadContent()
         {
-
+            _caseControl.LoadContent();
         }
 
         public void UnloadContent()
@@ -64,6 +70,8 @@ namespace TowerDefence
         public void Draw(GameTime gameTime)
         {
             _listMonster.ForEach(m => m.Draw(gameTime));
+
+            _caseControl.Draw(gameTime);
         }
 
         private void CreateNewMonster()
