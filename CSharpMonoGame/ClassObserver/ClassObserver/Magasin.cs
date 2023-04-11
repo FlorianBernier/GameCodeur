@@ -151,7 +151,19 @@ namespace ClassObserver
 
 
 
-/*
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class PlayerBuilder
 {
 
@@ -236,7 +248,6 @@ public class PlayerBuilder
             .Name("Soa")
             .Build();
     }
-*/
 
 
 

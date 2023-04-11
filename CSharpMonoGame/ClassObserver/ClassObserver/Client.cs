@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -28,16 +29,78 @@ namespace ClassObserver
 
 
 
-    public class Tower
+    public abstract class Tower
     {
         public string name;
         public int qte;
         public bool cdTir;
         public bool startCd;
 
-        public void attack()
+        public Tower()
         {
+            //tout ce qui est en commun: variables
+        }
+        //toutes les methodes en commun ou qui DOIVENT etre implémentées
+        public abstract void attack(); //indique que tous les enfants auront une méthode attaque qu'elles devront définir elle memes
+        
+        public virtual void Update(GameTime gameTime)
+        {
+            Debug.WriteLine("1 seconde!");
+            //tous les enfants auront un update, qui pourront etre override si elles le souhaitent
+        }
+        public virtual void Draw(GameTime gameTime)
+        {
+            Debug.WriteLine("1 dessin!");
+            //tous les enfants auront un update, qui pourront etre override si elles le souhaitent
+        }
+    }
+    public class Tower1: Tower
+    {
+        private Tower tower;
+        public Tower1(Tower tower): base()
+        {
+            this.tower = tower;
+        }
+        public override void attack()
+        {
+            Debug.WriteLine("BAM!");
+        }
+        public override void Update(GameTime gameTime) //override indique que la fille peut effacer ou non les parametres de la mere
+        {
+            Debug.WriteLine("UPDATE!");
+            attack();
+            base.Update(gameTime);
 
+        }
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
+        public void AttaqueSpeciale()
+        {
+            
+        }
+    }
+    public class Tower2 : Tower
+    {
+        private Tower tower;
+        public Tower2(Tower tower) : base()
+        {
+            this.tower = tower;
+        }
+        public override void attack()
+        {
+            Debug.WriteLine("BOOM!");
+        }
+        public override void Update(GameTime gameTime) //override indique que la fille peut effacer ou non les parametres de la mere
+        {
+            Debug.WriteLine("UPDATE!");
+            attack();
+            base.Update(gameTime);
+        }
+        public override void Draw(GameTime gameTime)
+        {
+            Debug.WriteLine("DESSIN!");
         }
     }
 
