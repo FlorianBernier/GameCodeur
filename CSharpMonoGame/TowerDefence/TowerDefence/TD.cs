@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -58,13 +56,15 @@ namespace TowerDefence
         public void UnloadContent()
         {
             _listMonster.ForEach(m => m.UnloadContent());
+            _caseControl.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Camera2D pCamera)
         {
             CreateNewMonster();
             _listMonster.ForEach(m => m.Update(gameTime));
             _listMonster.RemoveAll(monster => monster.getToRemove());
+            _caseControl.Update(gameTime, pCamera);
         }
 
         public void Draw(GameTime gameTime)

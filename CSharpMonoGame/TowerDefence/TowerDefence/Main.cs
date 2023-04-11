@@ -29,6 +29,10 @@ namespace TowerDefence
         // TD
         public TD _TD;
 
+        // camera
+        public Camera2D _camera;
+
+        public double _timer;
 
         public Main()
         {
@@ -39,6 +43,9 @@ namespace TowerDefence
 
         protected override void Initialize()
         {
+            //
+            _camera = new Camera2D(GraphicsDevice.Viewport);
+
             // Setting
             _settingBase = new SettingBase(this);
             _fullScreen = new FullScreen(this);
@@ -53,7 +60,7 @@ namespace TowerDefence
             // TD
             _TD = new TD(this, this._map);
 
-
+            
 
             // TODO: Ajoutez ici votre code
             _fullScreen.Initialize();
@@ -90,13 +97,13 @@ namespace TowerDefence
 
         protected override void Update(GameTime gameTime)
         {
-
+            
             // TODO: Ajoutez ici votre code
             _fullScreen.Update(gameTime);
             _moveCamera.Update(gameTime);
             _map.MapUpdate(gameTime);
             _menuInGame.Update(gameTime);
-            _TD.Update(gameTime);
+            _TD.Update(gameTime, _camera);
 
             base.Update(gameTime);
         }
@@ -109,7 +116,7 @@ namespace TowerDefence
             _fullScreen.DrawSet(gameTime);
 
 
-            spriteBatch.Begin(transformMatrix: _moveCamera._camera.GetViewMatrix());
+            spriteBatch.Begin(transformMatrix:_camera.GetViewMatrix());
 
             _map.MapDraw(gameTime);
             _TD.Draw(gameTime);
