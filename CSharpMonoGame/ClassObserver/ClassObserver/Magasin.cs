@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -250,6 +251,21 @@ public class PlayerBuilder
     }
 
 
+
+    public void writeScore(int score)
+    {
+        String path = @"C:\Users\flori\Documents\Autre\cat.txt";
+        using (StreamWriter writer = new StreamWriter(path))
+        {
+            writer.WriteLine(score);
+        }
+
+    }
+    public int readScore()
+    {
+        String path = @"C:\Users\flori\Documents\Autre\cat.txt";
+        return Int32.Parse(File.ReadAllText(path));
+    }
 
 
 
