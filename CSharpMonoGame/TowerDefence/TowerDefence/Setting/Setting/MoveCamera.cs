@@ -74,7 +74,7 @@ namespace TowerDefence
         {
             var mouseState = Mouse.GetState();
 
-            Debug.WriteLine(main._camera.GetViewMatrix());
+            //Debug.WriteLine(main._camera.GetViewMatrix());
 
             if (mouseState.MiddleButton == ButtonState.Pressed)
             {

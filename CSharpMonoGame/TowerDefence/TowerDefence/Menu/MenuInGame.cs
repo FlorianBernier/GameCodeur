@@ -20,9 +20,7 @@ namespace TowerDefence
         // Or
         public int _or = 500;
         // Argent
-        public int _argent = 0;
-
-        
+        public int _argent = 0;        
 
         public MenuInGame(Main main) : base()
         {

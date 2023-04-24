@@ -89,6 +89,11 @@ namespace TowerDefence
 
                     if (i == caseX && j == caseY)
                     {
+
+                        //int type = main._menuInGame.towerSelected;
+
+                        //main._TD.towers.addTower(type, i, j);
+
                         _caseHover[i, j] = true;
                     }
                     else

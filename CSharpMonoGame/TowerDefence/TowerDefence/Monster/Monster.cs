@@ -48,8 +48,8 @@ namespace TowerDefence
         public void Update(GameTime gameTime)
         {
             // Convertir la position du monstre en indices de tuile
-            int tileX = (int)Math.Floor((_position.X +32) / map.tileWidth);
-            int tileY = (int)Math.Floor((_position.Y + 32) / map.tileHeight);
+            int tileX = (int)((_position.X +32) / map.tileWidth);
+            int tileY = (int)((_position.Y + 32) / map.tileHeight);
 
             // Vérifier la prochaine tuile dans la direction actuelle
             int nextTileX = tileX;
@@ -81,6 +81,7 @@ namespace TowerDefence
                 // Vérifier si la prochaine tuile est un chemin valide
                 if (map.map.Layers[0].Tiles[nextTileY * map.mapWidth + nextTileX].Gid != 27)
                 {
+                    //Debug.WriteLine(nextTileY);
                     // Si ce n'est pas le cas, changer de direction
                     if (_isMovingDown)
                     {

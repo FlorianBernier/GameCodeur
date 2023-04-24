@@ -22,6 +22,7 @@ namespace TowerDefence
 
         //public SpriteFont _font; 
 
+        public TowerFilter towers;
 
 
         public TD(Main main, Map map) : base()
@@ -34,13 +35,23 @@ namespace TowerDefence
 
             // Monster
             _listMonster = new List<Monster>();
+
+            
             
 
             // Créer un timer qui déclenche la méthode CreateNewMonster toutes les 1000 millisecondes (soit 1 seconde)
             _monsterCreationTimer = new TimerMiliseconde(500);
             _waveTimer = new TimerMiliseconde(5000);
             _waveTimer.stop();
-            
+
+
+            towers = new TowerFilter();
+
+            towers
+                .addTower()
+                .addTower()
+                .addTower();
+
         }
 
         public void Initialize()
