@@ -8,7 +8,7 @@ math.randomseed(love.timer.getTime())
 -- camera
 camera = {}
 camera.y = 0
-CAMERA_V = 0.5
+CAMERA_V = 2
 
 --currentScreen
 currentScreen = "menu"

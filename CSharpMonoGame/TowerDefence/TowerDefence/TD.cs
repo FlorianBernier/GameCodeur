@@ -111,7 +111,7 @@ namespace TowerDefence
                 _waveTimer.stop();
                 _monsterCount = 0;
                 _MonsterByWave += 2; 
-                _monsterCreationTimer.changeTimer(Max(500 - 50 *_wave, 500));
+                //_monsterCreationTimer.changeTimer(Max(500 - 50 * _wave, 500));
             }
 
 
