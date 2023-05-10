@@ -1,12 +1,18 @@
 
 
 let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d")
+let ctx = canvas.getContext("2d");
 let interval; 
+
+let derniereUpdate = Date.now();
+
 
 function run()
 {
-    update();
+    let maintenant = Date.now();
+    let dt = (maintenant - derniereUpdate) / 1000;
+    derniereUpdate = maintenant;
+    update(dt);
     ctx.clearRect(0,0,canvas.Width, canvas.height);
     draw(ctx);
 }
