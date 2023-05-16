@@ -9,9 +9,42 @@ class Sprite
         this.scaleY = 1;
 
         this.currentFrame = 0;
+        this.currentFrameInAnimation = 0;
+        this.currentAnimation = null;
+        this.frameTimer = 0;
 
         this.tileSize = {x:0, y:0}
         this.tileSheet = false;
+        this.animations = [];
+
+    }
+
+    addAnimation(pName, pFrames, pSpeed, pLoop = true)
+    {
+        let animations = {name: pName, frames: pFrames, speed: pSpeed, loop: pLoop, end: false}
+        this.animations.push(animations);
+    }
+
+    startAnimation(pName)
+    {
+        if (this.currentAnimation != null)
+        {
+            if (this.currentAnimation.name == pName)
+            {
+                return;
+            }
+        }
+
+        this.animations.forEach(animation => 
+        {
+            if (animation.name == pName)
+            {
+                this.currentAnimation = animation;
+                this.currentFrameInAnimation = 0;
+                this.currentFrame = this.currentAnimation.frames[this.currentFrameInAnimation];
+                this.currentAnimation.end = false;
+            }
+        }); 
     }
 
     setTileSheet(pSizeX, pSizeY)
@@ -25,6 +58,32 @@ class Sprite
     {
         this.scaleX = pX;
         this.scaleY = pY;
+    }
+
+    update(dt)
+    {
+        if (this.currentAnimation != null)
+        {
+            this.frameTimer += dt;
+            if (this.frameTimer >= this.currentAnimation.speed)
+            {
+                this.frameTimer = 0;
+                this.currentFrameInAnimation++;
+                if (this.currentFrameInAnimation > this.currentAnimation.frames.length - 1)
+                {
+                    if (this.currentAnimation.loop)
+                    {
+                        this.currentFrameInAnimation = 0;
+                    }
+                    else
+                    {
+                        this.currentFrameInAnimation = this.currentAnimation.frames.length - 1;
+                        this.currentAnimation.end = true;
+                    }
+                }
+                this.currentFrame = this.currentAnimation.frames[this.currentFrameInAnimation];
+            }
+        }
     }
 
     draw(pCtx) 
