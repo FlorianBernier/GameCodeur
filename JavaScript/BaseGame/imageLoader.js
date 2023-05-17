@@ -1,4 +1,3 @@
-
 class ImageLoader
 {
     constructor()

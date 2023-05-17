@@ -61,6 +61,8 @@ function load()
     document.addEventListener("keyup", KeyUp, false);
 
     imageLoader.add("images/background.png");
+    imageLoader.add("images/enemyball.png");
+
     
     imageLoader.start(startGame);
 }
